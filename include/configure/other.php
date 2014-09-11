@@ -1,5 +1,0 @@
-<?php
-$value = array (
-  'pay' => '',
-);
-?>
