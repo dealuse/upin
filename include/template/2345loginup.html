@@ -1,0 +1,91 @@
+<!--{include header}-->
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="login">
+    <div id="content" class="login-box">
+        <div class="box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><h2>{$qname}</h2><span>&nbsp;您好，您已经用2345的帐户成功登录{$INI['system']['sitename']}</span></div>
+                <div class="sect" id="360bind">
+                    <form id="login-user-form" method="post" action="/thirdpart/2345/bundle.php" class="validator">
+                    	  <div class="field ourmember">
+                    	  	   已经注册过{$INI['system']['sitename']}
+                    	  </div>
+                        <div class="field email">
+                            <label for="login-email-address">Email／用户名</label>
+                            <input type="text" size="30" name="email" id="login-email-address" class="f-input" value="" require="true" datatype="require|limit" min="2" />
+                        </div>
+                        <div class="field password">
+                            <label for="login-password">密码</label>
+                            <input type="password" size="30" name="password" id="login-password" class="f-input" require="true" datatype="require" />
+                            <span class="lostpassword"><a href="/account/repass.php">忘记密码？</a></span> 
+                        </div>
+                        <div class="field autologin">
+                            <input type="checkbox" value="1" name="auto_login" id="autologin" class="f-check" checked />
+                            <label for="autologin">下次自动登录</label>
+                        </div>
+                        <div class="act">
+                            <input type="submit" value="绑定" name="commit" id="login-submit" class="formbutton"/>
+                        </div>
+
+                         <input type="hidden" name="qname" value="{$qname}">
+                         <input type="hidden" name="qid" value="{$qid}">
+                         <input type="hidden" name="qmail" value="{$qmail}">
+                         <input type="hidden" name="gurl" value="{$gurl}">
+                         
+                    </form>
+                    <div style="font-size:18px;font-weight:bold;width:450px; margin-left:25px;margin-top:15px;">
+                    <a href="#" onclick="document.getElementById('360bind').style.display='none';document.getElementById('360register').style.display='block';">还没有注册过{$INI['system']['sitename']}>></a></div>
+
+                </div><!--360bindle-->
+                <!-- apt register -->
+                <DIV class="sect" style="padding-left:40px; display:none;" id="360register">
+		                    <div style="font-size:18px;font-weight:bold;margin-left:25px;">
+		                        <a href="#" onclick="document.getElementById('360register').style.display='none';document.getElementById('360bind').style.display='block';">已经注册过{$INI['system']['sitename']}>></a>
+		                    </div>
+                        <div style="background:#fffbf1; width:610px;margin-top:10px;+width:630px;">
+		                        <div style="height:20px;"></div>
+		                        <div style="font-size:18px;font-weight:bold; margin-left:25px;">
+		                              还没有注册过{$INI['system']['sitename']}
+		                        </div>
+		                        <div style="font-size:14px; margin-left:45px;margin-top:8px;"> 将为您创建一个{$INI['system']['sitename']}帐户</div>
+		                              <div style="margin-left:45px;margin-top:8px;+padding-bottom:10px;">
+                                       <form method="post" action="/thirdpart/2345/register.php" id="reg">
+                                       <table style="width:400px; font-size:14px;" border="0" cellpadding="0" cellspacing="0">
+                                          <tr>
+                                              <td width="74" height="45" align="left">&nbsp;</td>
+                                              <td width="326" align="left"><input name="submit" type="submit" class="formbutton" value="创 建" /></td>
+                                          </tr>
+                                        </table>
+                         <input type="hidden" name="qname" value="{$qname}">
+                         <input type="hidden" name="qid" value="{$qid}">
+                         <input type="hidden" name="qmail" value="{$qmail}">
+                         <input type="hidden" name="gurl" value="{$gurl}">
+                                        </form>
+
+		                        </div>
+
+		                    </div>
+		            </DIV>                
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+    <div id="sidebar">
+        <div class="sbox">
+            <div class="sbox-top"></div>
+            <div class="sbox-content">
+                <div class="side-tip">
+                    <h2>还没有{$INI['system']['abbreviation']}账户？</h2>
+                    <p>立即<a href="/account/signup.php">注册</a>，仅需30秒！</p>
+                </div>
+            </div>
+            <div class="sbox-bottom"></div>
+        </div>
+    </div>
+</div>
+    </div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

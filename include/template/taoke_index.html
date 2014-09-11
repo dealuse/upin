@@ -1,0 +1,44 @@
+<!--{include header}-->
+<div id="main">
+    <div class="listerouter">
+        <div class="lister">
+            <!--{loop $teams $index $one}-->
+             <!--{if $one['id']!= 91}-->
+            <dl class="tuanitem" style="height: 390px;">
+                <dt style="height: 294px;">
+                <a id="teamfirsturl97406" href="{$one['link']}" target="_blank" style="height:294px;"><img
+                        style="height:294px;width:294px;"
+                        alt="${strip_tags($one['title'])}"
+                        title="${strip_tags($one['title'])}"
+                        src="{$one['image']}"></a>
+                <div class="buy-mask" style="padding:3px 0;background-color: #fff;opacity: 0.6;filter: alpha(opacity=60);"></div>
+                <!-- <i class="hot" title="热卖"></i> -->
+                </dt>
+                <dd class="dse" >
+                    <h2 style="margin-bottom: 0px;">
+                        <a id="teamsecondurl97406" target="_blank" href="{$one['link']}"
+                           title="${strip_tags($one['title'])}"
+                           class="c_b"> <span class="c_r"> ${moneyit($one['team_price'])}元：</span>
+                            ${strip_tags($one['title'])}
+                        </a>
+                    </h2>
+                </dd>
+                <dd class="des">
+                    <div class="gobuy" style="background: #cb0e0e;border-radius: 5px;border: 1px solid #4d0101;">
+                        <a id="teamthirdurl97406" href="{$one['link']}" target="_blank" title="${strip_tags($one['title'])}"
+                           class="golook">去看看</a> <span class="nprice"><em>¥</em>${split('\.',$one['team_price'])[0]}</span><span
+                           class="nprice" style="font-size: 28px; margin-left: 0px;">.${split('\.',$one['team_price'])[1]|'00'}</span>
+                    </div>
+                </dd>
+
+                <dd class="shadow"></dd>
+            </dl>
+           <!--{/if}-->
+            <!--{/loop}-->
+            <div class="clear"></div>
+        </div>
+        {$pagestring}
+    </div>
+</div>
+
+<!--{include footer}-->

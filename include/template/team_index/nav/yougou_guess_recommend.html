@@ -1,0 +1,39 @@
+<!--TODO:推荐商品-->
+<style>
+     .item-details-information section img{
+        display: block;
+    }
+    .gxq {margin: 1px 0; margin-left: 10px; }
+    #title_font {font-size: 14px !important; }
+    .gxq li {float:left;margin: 0px 6px ; padding-bottom: 0px; border-top: 2px solid #F7F7F7; padding-top: 0px; height: 180px; background:#F7F7F7}
+    .gxq li p{width:173px; }
+    .gxq li p .num_buy{ float: right;}
+    .gxq li h4{width:173px;  margin-top: 7px; text-align: left;  letter-spacing: -1px; }
+    .gxq li img {width:173px;height:111px ;}
+    .gxq em {font-size: 14px; font-weight: 600; color: #D74C00;}
+    .gxq b{width:173px; display: inline-block;}
+</style>
+<div id="bfd_chl"></div>
+<aside class="ps">
+    <!--this hot team-->
+        <div class="item-details-discuss details-block ">
+                <h3><strong>推荐商品</strong></h3>
+            <section class="mb15 gxq">
+                <ul class="block">
+                    <!--{loop $allHistoryDataTo1 $index $one}-->
+                    <li>
+                        <a href="/team/{$one['id']}.html" target="_blank">
+                            <img class="index-item-img" src="/static/v2/img/border.gif" data-original="${team_image($one['image'],true)}" alt="{$one['product']}">
+                            <h4> <b>{$one['product']}</b>  </h4>
+                            <p class="wrapper">
+                                <span class="fl"><strong><em><i class="yuan">&yen;</i>{$one['team_price']}元</em></strong></span>
+                                <span class="fr num_buy"><em>${$one['now_number']+$one['pre_number']}</em>已购买</span>
+                            </p>
+                        </a>
+                    </li>
+                    <!--{/loop}-->
+                </ul>
+            </section>
+        </div>
+    </nav>
+</aside>

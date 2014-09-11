@@ -1,0 +1,83 @@
+<header id="categoryNav" class="box fs12 cb mt10">
+    <!--{if !$REAL_LINK_GLOBAL['isyougouindex']}-->
+    <section class="category wrapper">
+        <div class="pr category-block category-block-last">
+            <p class="pa">分类：</p>
+            <ul class="inline-block">
+                <!--{loop $navYougouGroup $in $one}-->
+                <!--{if $one['group']['select']}-->
+                <li class="active">
+                    <!--{else}-->
+                <li>
+                    <!--{/if}-->
+                    <a href="/mall/{$one['group']['ename']}">
+                        <strong>{$one['group']['name']}</strong>
+                        <small>{$one['group']['count']}</small>
+                    </a>
+                </li>
+                <!--{/loop}-->
+            </ul>
+            <!--{if $navYougouGroup[$REAL_LINK_GLOBAL['gid']]['sub']}-->
+            <div class="category-sub">
+                <div class="pr category-location">
+                    <ul class="inline-block">
+                        <!--{loop $navYougouGroup[$REAL_LINK_GLOBAL['gid']]['sub'] $in $one}-->
+                        <!--{if $one['select']}-->
+                        <li class="active">
+                            <!--{else}-->
+                        <li>
+                            <!--{/if}-->
+                            <a href="/mall/{$one['ename']}">
+                                <strong>{$one['name']}</strong>
+                                <small>{$one['count']}</small>
+                            </a>
+                        </li>
+                        <!--{/loop}-->
+                    </ul>
+                </div>
+            </div>
+            <!--{/if}-->
+        </div>
+    </section>
+    <!--{/if}-->
+    <div class="sort wrapper">
+        <ul class="inline-block fl">
+            <!--{if !$REAL_LINK_GLOBAL['sort_order']}-->
+            <li class="first active">
+                <!--{else}-->
+            <li class="first">
+                <!--{/if}-->
+                <a href="/{$navOrder}">默认排序</a>
+            </li>
+            <!--{if $REAL_LINK_GLOBAL['sort_order'] == 'time'}-->
+            <li class="active">
+                <!--{else}-->
+            <li>
+                <!--{/if}-->
+                <a href="/{$navOrder}/time">今日新单 <i>&darr;</i></a>
+            </li>
+            <!--{if $REAL_LINK_GLOBAL['sort_order'] == 'hot'}-->
+            <li class="active">
+                <!--{else}-->
+            <li>
+                <!--{/if}-->
+                <a href="/{$navOrder}/hot">销量 <i>↓</i></a>
+            </li>
+            <!--{if $REAL_LINK_GLOBAL['sort_order'] == 'price_desc'}-->
+            <li class="active">
+                <!--{else}-->
+            <li>
+                <!--{/if}-->
+                <a href="/{$navOrder}/price_desc">价格 <i>&darr;</i></a>
+            </li>
+            <!--{if $REAL_LINK_GLOBAL['sort_order'] == 'price_asc'}-->
+            <li class="active">
+                <!--{else}-->
+            <li>
+                <!--{/if}-->
+                <a href="/{$navOrder}/price_asc">价格 <i>&uarr;</i></a>
+            </li>
+        </ul>
+        {$pagestring}
+    </div>
+</header>

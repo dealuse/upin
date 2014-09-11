@@ -1,0 +1,176 @@
+<!--{include html_header}-->
+<div id="topbar">
+<div class="w">
+<span id="switchCity" class="cityname">{$city['name']}</span><a href="/city.php" id="switchCityUrl">[切换城市]</a>
+<ul class="topnav">
+<li><a rel="sidebar" title="{$INI['system']['sitename']}" href="#" rel="nofollow" onclick="jQuery.addFavorite('{$INI['system']['wwwprefix']}','{$INI['system']['sitename']}');return false;">收藏</a></li>
+<li onmouseover="this.className='hover'" onmouseout="this.className=''">
+<a target="_blank" href="/help/tour.php" class="help">帮助中心<b class="ico down"></b></a>
+<div class="downlist">
+<a href="/help/tour.php" target="_blank">如何团购</a>
+<a href="/help/faqs.php" target="_blank">常见问题</a>
+<a href="/help/zuitu.php" target="_blank">本站概念</a>
+<a href="/feedback/suggest.php" target="_blank">意见反馈</a>
+<a href="/feedback/seller.php" target="_blank">商务合作</a>
+</div>
+</li>
+
+<li class="last"><a rel="nofollow" class="rss" id="headerMailButton" href="/subscribe.php?ename={$city['ename']}">邮件订阅<b class="ico mail"></b></a></li>
+</ul>
+</div>
+</div>
+<div id="navlist">
+	<ul>
+		<!--<li id="navbln"><a href="/account/invite.php">邀请好友</a></li>-->
+		<li class="sel"><a href="city.php?ename={$city['ename']}">{$city['name']}团购</a></li>
+		<!--{if option_yes('smssubscribe')}-->
+		<li><span><a class="sms" onclick="X.miscajax('sms','subscribe');">&raquo; 短信订阅</a>&nbsp; <a class="sms" onclick="X.miscajax('sms','unsubscribe');">&raquo; 取消手机订阅</a></span></li>
+		<!--{/if}-->
+	<!--{if option_yes('trsimple')}-->
+		<li><a href="javascript:;" onclick="return X.misc.locale();">简繁转换</a></li>
+	<!--{/if}-->
+		<!--<li id="navbrn"><a id="verify-coupon-id" href="javascript:;">{$INI['system']['couponname']}登记</a></li>-->
+	</ul>
+</div>
+<!--{if $_GET['tn']=='baidutuan_tg' || $_SESSION['get_baidutn']}-->
+<script>
+function getUserInfo(res){
+	if(res.uid){
+		var uid = res.uid;
+		var uname = res.uname;
+		var timestamp = res.timestamp;
+		var sign = res.sign;
+		//alert(uname);
+		$.ajax({
+		   type: "GET",
+		   url: "/thirdpart/baidu/ajax.php",
+		   dataType:"json",
+		   data: "uid="+uid+"&uname="+encodeURI(uname)+"&timestamp="+timestamp+"&sign="+sign+"&t="+Math.random(),
+		   success: function(msg){
+			  	if(msg.status){
+					if(msg.status == 'suc'){
+						$('.User_login_warps').html(msg.data);
+					}else if(msg.status == 'log'){//查看订单进入本站,跳转到订单页面
+						window.location.href = '/order/index.php';
+					}
+				}
+		   },
+		   error:function(XMLHttpRequest, textStatus, errorThrown){alert('请求出错!')}
+		});
+	}
+}
+</script>
+<script src='http://openapi.baidu.com/connect/2.0/getLoggedInUser?client_id=iB6RKVcPSjnysl1m9yoFpnjw&callback=getUserInfo'></script>
+<?php
+unset( $_SESSION['get_baidutn'] );
+?>
+<!--{/if}-->
+<div id="header">
+<div class="w">
+<a href="/index.php" id="logo"><img width="161" height="50" alt="{$INI['system']['sitename']}" src="/static/theme/ev56_58/css/img/logo.gif"></a>
+<div class="minbanner"><div id="minbanner"><a href="/help/tour.php" class="baohu" rel="nofollow" target="_blank">{$INI['system']['sitename']}团购用户保障机制，15天未消费一键退款</a></div></div>
+<div id="searhbar" class="rss">
+	<form id="indexSearchForm" method=get action="{$_SERVER["REQUEST_URI"]}">
+	  <input type="text" id="searchW" name="searchName" value="" class="kw"  autocomplete="off" x-webkit-speech lang="zh-CN" x-webkit-grammar="builtin:translate"/>
+	  <input type="submit" name="button" value="搜索" class="searchbtn" >
+	  <label for="searchW" class="searchico"></label>
+	  	<script type="text/javascript">
+					$().ready(function(){
+						$('#searchW').focus(function(){
+							var value = $.trim($('#searchW').val());
+							if(value == "")
+							{
+								$('#searchW').val("");
+							}
+							this.parentNode.className='hover';	
+							
+						});
+						$('#searchW').blur(function(){
+							var value = $.trim($('#searchW').val());
+							if(value == "")
+							{
+								this.parentNode.className='';
+								$('#searchW').val("");
+							}
+							
+						});
+						$("#indexSearchForm").submit( function () {
+							var value = $.trim($('#searchW').val());
+							if(value == "" || value == "")
+								return false;
+//							else{
+//									$("#indexSearchForm").attr("action","/team/index.php" + value + "/");
+//							}
+						} );
+					});
+					
+				</script>
+	</form>
+</div>
+</div>
+<div id="navbar">
+<ul class="nav" id="nav">
+<!--{include block_navigator}-->
+</ul>
+
+		<!--{if $login_user}-->
+
+<ul class="loginbar logined" name="uc1" id="uc">
+	<li class="ucname">欢迎您，<span id="appnick"><!--{if $_SESSION['ali_token']}-->
+				${mb_strimwidth($login_user['realname'],0,10)}！
+                <!--{else}-->
+				${mb_strimwidth($login_user['username'],0,10)}！
+				<!--{/if}--></span></li>
+	<li class="ulist"><a href="/order/index.php">用户中心</a>
+	    <ul class="downlist"> 
+	        ${current_account(null)}
+	        <li class="shadow"></li>
+	    </ul>
+	</li>
+	<li><a id="logout1" href="/account/logout.php">退出</a></li>
+</ul>
+		<!--{else}-->
+                <span class="User_login_warps">
+ <ul class="loginbar nologin" name="uc2">
+<li><a href="/account/login.php">登录</a></li>
+<li><a href="/account/signup.php">注册</a></li>
+</ul>
+</span>
+		<!--{/if}-->
+</div>
+</div>
+
+<script type="text/javascript">
+//添加到收藏夹方法
+jQuery.addFavorite=function(sURL, sTitle){
+    try{
+        window.external.addFavorite(sURL, sTitle);
+    }catch (e){
+        try{
+            window.sidebar.addPanel(sTitle, sURL, "");
+        }catch (e){
+            alert("加入收藏失败，请使用Ctrl+D进行添加");
+        }
+    }	
+}
+
+$(document).ready(function(){
+    $("li.ulist").hover(function(){ $(this).addClass('hover'); $('#uc ul').show();},
+       function(){$('#uc ul').hide();$(this).removeClass('hover');});
+});
+
+function hidetips(){
+       jQuery.ajax({
+               url: "/ajax/hidetips",
+               type: 'post'
+           });
+       $("#errorTips").hide();
+       $("#successTips").hide();
+   }
+</script>
+<!--{if $session_notice=Session::Get('notice',true)}-->
+<div class="mtips" style="position:relative;" id="successTips"><p>{$session_notice}</p><em class="close" onclick="hidetips();">close</em></div>
+<!--{/if}-->
+<!--{if $session_notice=Session::Get('error',true)}-->
+<div class="mtips" style="position:relative;" id="errorTips"><p>{$session_notice}</p><em class="close" onclick="hidetips();">close</em></div>
+<!--{/if}-->

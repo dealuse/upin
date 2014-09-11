@@ -1,0 +1,59 @@
+<!--{include header}-->
+<style>
+ .whybind{margin:60px 10px 10px;padding:10px;zoom:1;font-size:12px;background:#fffbcc;border:1px solid #ffec19;}
+ .whybind h3{margin-bottom:5px;font-size:14px;}
+ .whybind ol{padding-left:10px;}
+ .whybind ol li{list-style-position:inside;list-style-type:decimal;}
+
+</style>
+<div class="wrap new-order">
+        <div class="uleft c3" id="uleft_ev56">
+<h2 id="uctit" style="display:none">用户中心</h2>
+<h3 style="display:none">交易管理</h3>
+<ul class="wrapper">
+<li style="height: 0;display: none;"><img src="/static/theme/ev56_58/css/img/express.png" style="position: relative;left: 95px;top: 9px;"></li>
+${current_account('/account/setbinds.php')}</ul>
+<h3 style="display:none">咨询与售后</h3>
+<ul style="display:none">
+  <li><a href="/feedback/suggest.php">咨询/投诉</a></li>
+  <li><a href="/feedback/seller.php">商务合作</a></li>
+  <li><a href="/team/comments.php">买家点评</a></li>
+</ul>
+<a class="faq" href="/help/faqs.php" target="_blank" style="display:none">常见问题&gt;&gt;</a>
+</div>  <div class="uright" id="consult">
+    <div class="utit">
+      <h2>手机绑定</h2>
+    </div>
+    <div class="sect consult-list">
+					<!--{if !$havemobile}-->
+					<h3>尚未绑定手机号，请先绑定：</h3>
+					
+					<div style="margin-top:20px;"><a href="javascript:;" onclick="X.bindajax('sms','loginbindmobile','{$login_user_id}');">点击绑定手机号码</a></div>
+					<!-- {else} -->
+                    <h3>已绑定的手机号：</h3>
+                    <table cellspacing="0" cellpadding="0" border="0" class="coupons-table" id="bind-mobile-list">
+                    <tr class="alt"><td class="mobile"><strong>{$havemobile['tools']}</strong></td></tr></table>
+
+                    <div class="clear"></div>
+					 <h3>绑定新手机号：</h3>
+                        <div style="margin-top:20px;"><a href="javascript:;" onclick="X.bindajax('sms','loginbindmobile','{$login_user_id}');">点击绑定新手机号</a></div>
+
+                        <span class="hint">注意：绑定新手机号将会清空所有已绑定的手机号</span>
+					<!--{/if}-->				
+                    					 					
+				   <div>
+				     <div class="whybind">
+                      <h3>为什么要绑定您的手机呢？</h3>
+                      <ol>
+                      <li>手机找回密码（遗忘密码的时候通过手机轻易找回）</li>
+                      <li>绑定手机后，可以购买特殊商品</li>
+                      <li>便于我们为您提供更好的服务</li>
+                      </ol>
+                     </div>
+				   </div>
+				</div>
+    
+  </div>
+  <div class="clear"></div>
+</div>
+<!--{include footer}-->

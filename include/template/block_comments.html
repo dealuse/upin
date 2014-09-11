@@ -1,0 +1,56 @@
+<script language="javascript"> 
+    function ShowPage(page,id) { 
+		var ctimes;
+		if(!$("#ctime").val()){
+			ctimes = 0;
+		}else{
+			ctimes = $("#ctime").val();
+		}
+		$("#data2").ajaxStart(function(){
+    		$(this).html("<img id=\"aloading\" src='{$INI['system']['cdnprefix']}/static/img/wait.gif' />");
+		 });
+		
+        $.getJSON("/team/ajaxtest2.php", { 
+            page : page,
+			id : {$team['id']},
+			time:ctimes
+        }, function(data) { 
+            //先清空内容 
+            $("#data2").html(""); 
+            $("div#pager").html(""); 
+			$("#ctimeapp").html("");
+            //数据部分 
+			if(data.yorno ==1){
+				$("#data2").append('<div style="background: url(\'{$INI['system']['cdnprefix']}/static/img/nocomments.gif\') no-repeat scroll 0% 0% transparent; height: 56px; margin-top: 65px; color: rgb(102, 102, 102); font-weight: bold; font-size: 19px; margin-left: 200px; padding-left: 65px; padding-top: 20px;"> 对不起,暂时没有评论。</div>');
+			}else{
+           $.each(data.one, function(idx, item) { 
+                $("#data2").append(
+				"<ul><li class=\"detail_com_usera\">" + item.username + "</li>"
+				+ "<li class=\"detail_com_contenta\">" +item.comment_content + "</li>"
+				+ "<li class=\"detail_com_pointa\">" +item.comment_grade + "</li>"
+				+ "<li class=\"detail_com_datea\">" +item.comment_time + "</li></ul>"
+				); 
+            });
+			}
+			
+			//$("#data2").after(data.details);
+            //翻页链接部分 
+            $("div#pager").append(data.pager); 
+			$("#ctimeapp").append('<input type="hidden" value="'+data.times+'" id="ctime"/>');
+        }); 
+    }
+	ShowPage(1);
+</script> 
+<div class="detail_com">
+	<ul class="detail_com_t">
+		<li class="detail_com_user"><b>买家</b></li>
+		<li class="detail_com_content"><b>评论内容</b>
+        <span style="color:#666" >&nbsp;&nbsp;&nbsp;&nbsp;(用户名前两位隐藏为<span style="color:#F03">**</span> )</span></li>
+		<li class="detail_com_point"><b>满意度</b></li>
+		<li class="detail_com_date"><b>日期</b></li>
+	</ul>
+	<div id="data2" style="height:auto;position: static;">
+    </div>
+	<div id="pager" align="center"></div>
+    <div id="ctimeapp" style="display:none"></div>
+</div>

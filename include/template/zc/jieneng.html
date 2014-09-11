@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>专场</title>
+        <link rel="stylesheet" href='/static/zc/jieneng/css/jieneng.css' />
+         <link rel="shortcut icon" href="/ico/favicon.ico" />
+        <script type="text/javascript" src='/static/zc/lkzjf/js/14B.js' ></script>
+        <script type="text/javascript" src='/static/zc/lkzjf/js/15b.js' ></script>
+    </head>
+    <body>
+       <div class="zcmenu">
+            <ul>
+                <a href="/" ><li>首页</li></a>
+                <a href="/flagship/" target="_blank"><li>旗舰店</li></a>
+                <a href="/mall" target="_blank"><li>购物</li></a>
+                <a href="/join/feedback.php" target="_blank"><li>分站加盟</li></a>
+            </ul>
+        </div>
+
+        <div class="wrapper" id='wrapper'>
+
+            <div id="focus">
+                <ul >
+                    <li><img src="/static/zc/jieneng/images/1.jpg" /></li>
+                    <li><img src="/static/zc/jieneng/images/2.jpg" /></li>
+                </ul>
+            </div><!--focus end-->
+
+
+            <div class="brands-list">
+                <ul>
+                    <!--{loop $allData $index $one}-->
+                    <li><a href="/team/{$one['id']}.html?f=zc_nantongjf"><img src="${team_image($one['image'],false,array(313,199))}" alt="{$one['product_sms']}"/><span class="title"><b>{$one['product_sms']}</b></span></a>
+                        <div class="u1"> <a  class="inline" href="/team/{$one['id']}.html?f=zc_nantongjf" target="_blank">去抢购</a>   <p>优品会价<b>${$one['team_price']}</b>&nbsp;<del class='yj'></br>原价:{$one['market_price']}元</del> </p></div>
+                    </li>
+                    <!--{/loop}-->
+                </ul>
+            </div><!--brands-list end-->
+            <div class='bottom'>©2013 优品会（www.aipintuan.com）版权所有|请使用IE6以上浏览本页面</div>
+
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $(".brands-list li").hover(function() {
+
+                        $(this).find(".title").stop().animate({left: '0px'}, {queue: false, duration: 450});
+                    }, function() {
+                        $(this).find(".title").stop().animate({left: '-280px'}, {queue: false, duration: 200});
+                    });
+                });
+            </script>
+            <script type="text/javascript">
+                $(function() {
+                    var Cwidth = document.body.clientWidth;
+                    $("#focus ul li img").width(Cwidth);
+                    $("#focus ul li img").height((Cwidth * 600) / 1550);
+                    var Aheight = $("#focus ul li img").height();
+                    $("#focus").css("height", Aheight + 'px');
+                });
+            </script> 
+    </body>
+</html>

@@ -1,0 +1,701 @@
+<!--{include header}-->
+<article id="breadNav">
+    <p>
+        您的位置：
+        <a href="">西安团购</a>
+        <span>&gt;</span>
+        <a href="">碑林区</a>
+        <span>&gt;</span>
+        <a href="">美食</a>
+        <span>&gt;</span>
+        <a href="">干锅/香锅</a>
+        <span>&gt;</span>
+        干锅居2-3人套餐
+    </p>
+</article>
+<section id="item-details">
+    <div class="item-details-show details-block">
+        <header>
+            <h3 class="ti-5">【2店通用】摩加咖啡</h3>
+            <h4>仅售88元，市场价184元的干锅居（文艺路总店）2-3人餐，店内提供免费水果，9月19日-9月21日拉手券不可使用，健康又实惠--干锅居！</h4>
+        </header>
+        <section class="wrapper">
+            <div class="fl">
+                <p class="item-price yuan tc">
+                    <i class="yuan">&yen;</i><span>68</span>
+                </p>
+                <p class="tc mt10">
+                    原价 <em class="mr10"><i class="yuan">&yen;</i>381</em>
+                    折扣 <em><i class="yuan">&yen;</i>4.6折</em>
+                </p>
+                <p class="item-buying">
+                    <a href="">抢购</a>
+                </p>
+                <p class="item-purchased">
+                    <span class="first mb10"><strong>21</strong> 人已团购</span>
+                    <span>剩余3天以上</span>
+                </p>
+            </div>
+            <div class="fr">
+                <img src="/static/v2/img/team01.jpg" alt="">
+            </div>
+        </section>
+        <footer class="wrapper">
+            <a class="item-fav fl wrapper" href="">
+                <i class="item-heart"></i>
+                <span>收藏本单</span>
+            </a>
+            <ul class="inline-block fr">
+                <li>
+                    <p>分享到 :</p>
+                </li>
+                <li>
+                    <a class="sinaweibo" href="">新浪微博</a>
+                </li>
+                <li>
+                    <a class="txweibo" href="">腾讯微博</a>
+                </li>
+                <li>
+                    <a class="renren" href="">人人</a>
+                </li>
+                <li>
+                    <a class="douban" href="">豆瓣</a>
+                </li>
+                <li>
+                    <a class="kongjian" href="">QQ空间</a>
+                </li>
+            </ul>
+        </footer>
+    </div>
+    <div class="item-details-others details-block mt15">
+        <header>
+            <h3><strong>该商户的其他团购</strong></h3>
+        </header>
+        <section class="mt15">
+            <ul class="block">
+                <li>
+                    <a class="wrapper" href="">
+                        <span class="item-details-others-priced"><i class="yuan">&yen;</i>88</span>
+                        <span class="item-details-others-price">原价<i class="yuan">&yen;</i>421</span>
+                        <span class="item-details-others-title">【2店通用】双人餐，挡不住的美食滋味扑面而来</span>
+                        <span class="item-details-others-purchased">48人已购买</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="wrapper" href="">
+                        <span class="item-details-others-priced"><i class="yuan">&yen;</i>88</span>
+                        <span class="item-details-others-price">原价<i class="yuan">&yen;</i>421</span>
+                        <span class="item-details-others-title">【2店通用】双人餐，挡不住的美食滋味扑面而来</span>
+                        <span class="item-details-others-purchased">48人已购买</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="wrapper" href="">
+                        <span class="item-details-others-priced"><i class="yuan">&yen;</i>88</span>
+                        <span class="item-details-others-price">原价<i class="yuan">&yen;</i>421</span>
+                        <span class="item-details-others-title">【2店通用】双人餐，挡不住的美食滋味扑面而来</span>
+                        <span class="item-details-others-purchased">48人已购买</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </div>
+    <div class="item-details-content details-block mt15" id="item-details-content">
+        <header>
+            <nav class="wrapper">
+                <ul class="inline-block fl">
+                    <li class="detailsNav-1">
+                        <a href="#position">商家位置</a>
+                    </li>
+                    <li class="detailsNav-2">
+                        <a href="#information">本单详情</a>
+                    </li>
+                    <li class="detailsNav-3">
+                        <a href="#introduce">商家简介</a>
+                    </li>
+                    <li class="detailsNav-4">
+                        <a href="#discuss">购买评价</a>
+                    </li>
+                </ul>
+                <a id="Totop" href="">
+                </a>
+                <a id="buyNow" href="">立即抢购</a>
+                <script>
+                    $(window).scroll(function() {
+                        var scroll = $(window).scrollTop();
+                        var $nav = $(".item-details-content nav");
+                        var contentHeight = $(".item-details-content").offset().top;
+                        var positionHeight = $("#position").offset().top;
+                        var informationHeight = $("#information").offset().top;
+                        var introduceHeight = $("#introduce").offset().top;
+                        var discussHeight = $("#discuss").offset().top;
+                        if (scroll >= contentHeight) {
+                            $nav.addClass('scroll');
+                            $('.detailsNav-1').addClass('active').siblings().removeClass('active');
+                            $('#Totop,#buyNow').show();
+                            $nav.css('border-bottom', '2px solid #fe9c50');
+                        }
+                        if (scroll < contentHeight) {
+                            $nav.removeClass('scroll');
+                            $('.detailsNav-1').removeClass('active');
+                            $('#Totop,#buyNow').hide();
+                            $nav.css('border-bottom', '1px solid #d4d4d4');
+                            $('#position').css('padding-top', '20px');
+                        }
+                        if (scroll >= informationHeight) {
+                            $('.detailsNav-2').addClass('active').siblings().removeClass('active');
+                        }
+                        if (scroll < informationHeight) {
+                            $('#information').css('padding-top', '20px');
+                        }
+                        if (scroll >= introduceHeight) {
+                            $('.detailsNav-3').addClass('active').siblings().removeClass('active');
+                        }
+                        if (scroll < introduceHeight) {
+                            $('#introduce').css('padding-top', '20px');
+                        }
+                        if (scroll >= discussHeight) {
+                            $('.detailsNav-4').addClass('active').siblings().removeClass('active');
+                        }
+                        if (scroll < discussHeight) {
+                            $('#discuss').css('padding-top', '20px');
+                        }
+                    });
+                    $(function() {
+                        $("#Totop").click(function() {
+                            $('body,html').animate({scrollTop: 0}, 400);
+                            return false;
+                        });
+                        $('.detailsNav-1 a').click(function() {
+                            $('#position').css('padding-top', '56px');
+                        });
+                        $('.detailsNav-2 a').click(function() {
+                            $('#information').css('padding-top', '56px');
+                        });
+                        $('.detailsNav-3 a').click(function() {
+                            $('#introduce').css('padding-top', '56px');
+                        });
+                        $('.detailsNav-4 a').click(function() {
+                            $('#discuss').css('padding-top', '56px');
+                        });
+                    });
+                </script>
+            </nav>
+        </header>
+        <div id="position" class="item-details-position">
+            <header class="mb15">
+                <h3><strong>商家位置</strong></h3>
+            </header>
+            <section class="wrapper">
+                <div class="fl mr20">
+
+                </div>
+                <div class="item-details-position-addr fr">
+                    <header>
+                        <h4>
+                            <a href=""><strong>摩加咖啡（桃园店）</strong></a>
+                        </h4>
+                    </header>
+                    <section class="fs12 mt10 wrapper">
+                        <!--
+                        <p class="wrapper">
+                            <span>商家星级：</span>
+                            <span class="wrapper biz-stars-3">
+                                <i class="biz-star-1"></i>
+                                <i class="biz-star-2"></i>
+                                <i class="biz-star-3"></i>
+                                <i class="biz-star-4"></i>
+                                <i class="biz-star-5"></i>
+                                <span class="ml5"><strong>4</strong>星</span>
+                            </span>
+                        </p>
+                        -->
+                        <p class="wrapper">
+                            <span>地址：</span>
+                            <span class="wrapper">
+                                <span>高新区南二环西桃园</span>
+                                <a class="fl" href="">查看地图</a>
+                            </span>
+                            <br>
+                        </p>
+                        <p class="wrapper">
+                            <span>标志：</span>
+                            <span class="wrapper">
+                                <span>钟楼向东100米</span>
+                            </span>
+                            <br>
+                        </p>
+                        <p class="wrapper">
+                            <span>乘车：</span>
+                            <span class="wrapper">
+                                <span>19路、215路</span>
+                            </span>
+                            <br>
+                        </p>
+                        <p class="wrapper">
+                            <span>电话：</span>
+                            <span class="wrapper">
+                                <span>029-68906345</span>
+                            </span>
+                        </p>
+                    </section>
+                </div>
+                <div class="cb"></div>
+            </section>
+        </div>
+        <div class="item-details-information" id="information">
+            <header class="mb15">
+                <h3><strong>本单详情</strong></h3>
+            </header>
+            <section>
+                <!-- 表格 -->
+                <h4>欢乐畅享</h4>
+                <table>
+                    <tr>
+                        <th>内容</th>
+                        <th>单价</th>
+                        <th>数量/规格</th>
+                        <th>小计</th>
+                    </tr>
+                    <tr>
+                        <td class="tc" colspan="4">以下时段2选1</td>
+                    </tr>
+                    <tr>
+                        <td>周一至周日12:00-19:00</td>
+                        <td>196元</td>
+                        <td>1次/4小时</td>
+                        <td>196元</td>
+                    </tr>
+                    <tr>
+                        <td>周一至周日23:00-次日06:00</td>
+                        <td>343元</td>
+                        <td>1次/7小时</td>
+                        <td>343元</td>
+                    </tr>
+                </table>
+                <p class="clearfix">
+                    <span class="fr wrapper">
+                        <span>最高价值：</span>
+                        <span><strong>343</strong>元</span>
+                    </span>
+                </p>
+                <p class="clearfix">
+                    <span class="fr wrapper">
+                        <span>优品会价：</span>
+                        <span><mark>58</mark>元</span>
+                    </span>
+                </p>
+                <!-- 表格 -->
+                <!-- 特别提示 -->
+                <h4>特别提示</h4>
+                <div class="remind">
+                    <p class="remind"><strong>有效期：</strong>2013.7.20 至 2013.10.20</p>
+                    <p class="remind"><strong>不可用日期：</strong>2013年9月19日至9月21日、10月1日至10月7日</p>
+                    <p class="remind"><strong>使用时间：</strong>12:00-次日06:00</p>
+                    <p class="remind"><strong>预约提醒：</strong>无需预约，消费高峰可能需要等位</p>
+                    <p class="remind"><strong>使用规则：</strong></p>
+                    <ul class="rules">
+                        <li>凭美团券到店消费不可同时享受店内其他优惠</li>
+                        <li>同时段内，可使用多张美团券连续唱 </li>
+                        <li>商家根据到店人数安排包厢：小包（2-5人），中包（5-8人），大包（8-10人），豪华包（10-12人）</li>
+                        <li>超时欢唱需按店内标准付费</li>
+                        <li>商家提供免费WiFi</li>
+                        <li>美团券密码一旦验证即代表消费成功，不可申请“随时退款”和“过期退款”，请您合理安排验证时间</li>
+                    </ul>
+                </div>
+                <!-- 特别提示 -->
+                <p style="background-color:#ff8a00;color:#ff8a00;" align="center">
+                    <span style="font-family:SimSun;font-size:14px;font-weight:bold;"><span style="background-color:#ff8a00;font-family:SimSun;color:#ffffff;font-size:14px;"><span style="font-family:SimSun;font-size:14px;">【项目介绍】</span></span></span> 
+                </p>
+                <p style="font-family:宋体;font-size:10.5pt;">
+                    <span style="font-family:SimSun;font-size:14px;">仅8.8元!享价值25元的延安迪士尼儿童乐园全场通票一张,帝豪四楼(羽绒服大卖场内)室内开放,不怕炎热,让宝宝在童年留下更多的欢笑!</span> 
+                </p>
+                <p style="font-family:宋体;font-size:10.5pt;">
+                <table style="background:#339966;" class="MsoNormalTable" cellpadding="0" cellspacing="0" border="1">
+                    <tbody>
+                        <tr>
+                            <td valign="top" width="444">
+                                <p style="text-align:center;" class="MsoNormal" align="center">
+                                    <b><span style="font-family:宋体;color:#333333;font-size:11.5pt;"><span style="font-family:SimSun;font-size:14px;">内</span><span style="font-family:SimSun;font-size:14px;">&nbsp;</span></span></b><b><span style="font-family:SimSun;color:#333333;font-size:14px;">&nbsp;</span></b><b><span style="font-family:SimSun;color:#333333;font-size:14px;">容</span></b><span style="font-family:宋体;color:#333333;font-size:12pt;"></span> 
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background:white;" valign="top" width="444">
+                                <p style="text-align:center;" class="MsoNormal" align="center">
+                                    <span><span style="line-height:21px;font-family:SimSun;font-size:14px;">延安迪士尼儿童乐园全场通票一张</span><span style="font-family:SimSun;font-size:14px;"></span><span style="font-family:SimSun;font-size:14px;">&nbsp;</span></span> 
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background:white;" valign="top" width="444">
+                                <p style="text-align:center;" class="MsoNormal" align="center">
+                                    <span style="font-family:宋体;color:#333333;font-size:11.5pt;"><span style="font-family:SimSun;color:#000000;font-size:14px;">原价：25元</span><span style="font-family:SimSun;color:#000000;font-size:14px;">&nbsp;&nbsp; &nbsp;&nbsp;</span><span style="font-family:SimSun;color:#000000;font-size:14px;">团购价：</span></span><b><span style="font-family:SimSun;color:red;font-size:14px;">8.8</span></b><span style="font-family:SimSun;color:#000000;font-size:14px;">元</span><span style="font-family:宋体;color:#333333;font-size:12pt;"></span> 
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </p>
+
+            </section>
+        </div>
+        <div class="item-details-introduce" id="introduce">
+            <header class="mb15">
+                <h3><strong>商家简介</strong></h3>
+            </header>
+            <section>
+                <p class="MsoNormal">
+                    延安迪士尼儿童乐园海为儿童打造的室内多功能儿童乐园，是丰润首家益智乐园，设备先进，安全卫生，园内项目丰富，设计童趣无限，不限时间，随到随玩，集健身、趣味、寓教于乐为一体。运动、健康、快乐成长即是我们对每个孩子的真诚祝福，也是我们努力追求的奋斗目标。通过在本游园地内游玩各种游戏设备，可以培养孩子们的勇气，爱心，创造美好的梦想，让孩子们拥有一个多彩的童年。延安迪士尼儿童乐园为孩子们提供了安全，健康的成长空间，也让家长们在这繁忙的生活中，与孩子们近距离享受在一起的快乐。<span style="line-height:1.5;font-size:10.5pt;"></span><span style="line-height:1.5;font-size:10.5pt;"></span><img alt="" src="{$INI['system']['cdnprefix']}/static/team/2013/0611/2013061110071585911.jpg" /><img alt="" src="{$INI['system']['cdnprefix']}/static/team/2013/0611/2013061110072096079.jpg" /><img alt="" src="{$INI['system']['cdnprefix']}/static/team/2013/0611/2013061110072517807.jpg" /><img alt="" src="{$INI['system']['cdnprefix']}/static/team/2013/0611/2013061110073067920.jpg" /><img alt="" src="{$INI['system']['cdnprefix']}/static/team/2013/0611/2013061110073594860.jpg" /><img alt="" src="{$INI['system']['cdnprefix']}/static/team/2013/0611/2013061110074469829.jpg" /><img alt="" src="{$INI['system']['cdnprefix']}/static/team/2013/0611/2013061110075016176.jpg" /><img alt="" src="{$INI['system']['cdnprefix']}/static/team/2013/0611/2013061110075955755.jpg" /><img alt="" src="{$INI['system']['cdnprefix']}/static/team/2013/0611/2013061110080548523.jpg" /><img alt="" src="{$INI['system']['cdnprefix']}/static/team/2013/0611/2013061110081243942.jpg" /><img alt="" src="{$INI['system']['cdnprefix']}/static/team/2013/0611/2013061110081779101.jpg" /><img alt="" src="{$INI['system']['cdnprefix']}/static/team/2013/0611/2013061110082228729.jpg" /><img alt="" src="{$INI['system']['cdnprefix']}/static/team/2013/0611/2013061110083290490.jpg" /> 
+                </p>
+            </section>
+        </div>
+        <div class="item-details-discuss" id="discuss">
+            <header class="mb15">
+                <h3><strong>购买评价</strong></h3>
+            </header>
+            <section>
+                <header class="wrapper">
+                    <div class="discuss-kind fl">
+                        <p class="discuss-kind-title">商品与网站描述是否相符</p>
+                        <section class="wrapper">
+                            <div class="fl">
+                                <p class="wrapper">
+                                    <span>5分</span>
+                                    <span class="discuss-percent">
+                                        <i style="width:40%"></i>
+                                    </span>
+                                    <span>100%</span>
+                                </p>
+                                <p class="wrapper">
+                                    <span>5分</span>
+                                    <span class="discuss-percent">
+                                        <i style="width:40%"></i>
+                                    </span>
+                                    <span>60%</span>
+                                </p>
+                                <p class="wrapper">
+                                    <span>5分</span>
+                                    <span class="discuss-percent">
+                                        <i style="width:40%"></i>
+                                    </span>
+                                    <span>60%</span>
+                                </p>
+                                <p class="wrapper">
+                                    <span>5分</span>
+                                    <span class="discuss-percent">
+                                        <i style="width:40%"></i>
+                                    </span>
+                                    <span>60%</span>
+                                </p>
+                                <p class="wrapper">
+                                    <span>5分</span>
+                                    <span class="discuss-percent">
+                                        <i style="width:40%"></i>
+                                    </span>
+                                    <span>60%</span>
+                                </p>
+                            </div>
+                            <div class="fr">
+                                <span><strong>4.9</strong>分</span>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="discuss-kind fr">
+                        <p class="discuss-kind-title">发货快递配送是否满意</p>
+                        <section class="wrapper">
+                            <div class="fl">
+                                <p class="wrapper">
+                                    <span>5分</span>
+                                    <span class="discuss-percent">
+                                        <i style="width:40%"></i>
+                                    </span>
+                                    <span>100%</span>
+                                </p>
+                                <p class="wrapper">
+                                    <span>5分</span>
+                                    <span class="discuss-percent">
+                                        <i style="width:40%"></i>
+                                    </span>
+                                    <span>60%</span>
+                                </p>
+                                <p class="wrapper">
+                                    <span>5分</span>
+                                    <span class="discuss-percent">
+                                        <i style="width:40%"></i>
+                                    </span>
+                                    <span>60%</span>
+                                </p>
+                                <p class="wrapper">
+                                    <span>5分</span>
+                                    <span class="discuss-percent">
+                                        <i style="width:40%"></i>
+                                    </span>
+                                    <span>60%</span>
+                                </p>
+                                <p class="wrapper">
+                                    <span>5分</span>
+                                    <span class="discuss-percent">
+                                        <i style="width:40%"></i>
+                                    </span>
+                                    <span>60%</span>
+                                </p>
+                            </div>
+                            <div class="fr">
+                                <span><strong>4.9</strong>分</span>
+                            </div>
+                        </section>
+                    </div>
+                </header>
+                <section class="discuss-list pt20">
+                    <ul class="wrapper">
+                        <li class="first">
+                            <p class="wrapper mb5">
+                                <span class="discuss-list-username fl wrapper">
+                                    <span>Jinx***g</span>
+                                    <span class="user-level level-1"></span>
+                                    <span class="discuss-time">2013-07-17</span>
+                                </span>
+                                <span class="wrapper discuss-stars discuss-star5">
+                                    <span class="discuss-star-1"></span>
+                                    <span class="discuss-star-2"></span>
+                                    <span class="discuss-star-3"></span>
+                                    <span class="discuss-star-4"></span>
+                                    <span class="discuss-star-5"></span>
+                                </span>
+                            </p>
+                            <p>其他还好，只是空调不给力</p>
+                        </li>
+                        <li>
+                            <p class="wrapper mb5">
+                                <span class="discuss-list-username fl wrapper">
+                                    <span>Jinx***g</span>
+                                    <span class="user-level level-1"></span>
+                                    <span class="discuss-time">2013-07-17</span>
+                                </span>
+                                <span class="wrapper discuss-stars discuss-star5">
+                                    <span class="discuss-star-1"></span>
+                                    <span class="discuss-star-2"></span>
+                                    <span class="discuss-star-3"></span>
+                                    <span class="discuss-star-4"></span>
+                                    <span class="discuss-star-5"></span>
+                                </span>
+                            </p>
+                            <p>其他还好，只是空调不给力</p>
+                        </li>
+                    </ul>
+                    <div>
+                        <ul class="inline-block">
+                            <li>
+                                <a href="">首页</a>
+                            </li>
+                            <li>
+                                <a href="">上一页</a>
+                            </li>
+                            <li class="active">
+                                <a href="">1</a>
+                            </li>
+                            <li>
+                                <a href="">2</a>
+                            </li>
+                            <li>
+                                <a href="">下一页</a>
+                            </li>
+                            <li>
+                                <a href="">尾页</a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+            <footer class="wrapper">
+                <div class="fl wrapper">
+                    <p class="first"><i class="yuan">&yen;</i>68</p>
+                    <p>
+                        <span class="first">原价</span>
+                        <span><em><i class="yuan">&yen;</i>381</em></span>
+                    </p>
+                    <p>
+                        <span class="first">折扣</span>
+                        <span>1.8折</span>
+                    </p>
+                    <p>
+                        <span class="first">已购买</span>
+                        <span>146人</span>
+                    </p>
+                </div>
+                <div class="fr wrapper">
+                    <a href="">抢购</a>
+                </div>
+                <div class="cb"></div>
+            </footer>
+        </div>
+    </div>
+    <div class="item-details-else details-block mt15">
+        <header class="mb15">
+            <h3><strong>看过本团购的用户还购买了</strong></h3>
+        </header>
+        <section>
+            <ul class="inline-block">
+                <li>
+                    <a href="">
+                        <img src="/static/v2/img/team01.jpg" alt="">
+                        <h4>【高新路沿线】澳门豆捞：双人餐，免费提供...</h4>
+                        <p class="wrapper">
+                            <span class="fl"><em><i class="yuan">&yen;</i>68</em></span>
+                            <span class="fr"><em>1395</em>人已团购</span>
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img src="/static/v2/img/team01.jpg" alt="">
+                        <h4>【高新路沿线】澳门豆捞：双人餐，免费提供...</h4>
+                        <p class="wrapper">
+                            <span class="fl"><em><i class="yuan">&yen;</i>68</em></span>
+                            <span class="fr"><em>1395</em>人已团购</span>
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img src="/static/v2/img/team01.jpg" alt="">
+                        <h4>【高新路沿线】澳门豆捞：双人餐，免费提供...</h4>
+                        <p class="wrapper">
+                            <span class="fl"><em><i class="yuan">&yen;</i>68</em></span>
+                            <span class="fr"><em>1395</em>人已团购</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="last">
+                    <a href="">
+                        <img src="/static/v2/img/team01.jpg" alt="">
+                        <h4>【高新路沿线】澳门豆捞：双人餐，免费提供...</h4>
+                        <p class="wrapper">
+                            <span class="fl"><em><i class="yuan">&yen;</i>68</em></span>
+                            <span class="fr"><em>1395</em>人已团购</span>
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </div>
+    <div class="item-details-aipinsaid details-block mt15">
+        <header class="wrapper">
+            <h3 class="fl"><strong>优品会</strong> <small>SAID</small></h3>
+            <p class="fr wrapper">
+                <strong>分享到：</strong>
+                <a class="sinaweibo mr10 ml10" href="">新浪微博</a>
+                <a class="txweibo" href="">腾讯微博</a>
+            </p>
+        </header>
+        <section>
+            <p>中古时期的欧洲人相信，生日是灵魂最容易被恶魔入侵的日子，所以在生日当天，亲人朋友都会齐聚身边给予祝福，并且送蛋糕以带来好运驱逐恶魔。流传到现在，不论是大人或小孩，都可以在生日时，买个漂亮的蛋糕，享受众人给予的祝福。由于疼爱孩子，古希腊人在庆祝他们孩子的生日时，在糕饼上面放很多点亮的小蜡烛，并且加进一项新的活动——吹灭这些燃亮的蜡烛。他们相信燃亮着的蜡烛具有神秘的力量，如果这时让过生日的孩子在心中许下一个愿望，然后一口气吹灭所有蜡烛的话，那么这个孩子的美好愿望就一定能够实现。
+            </p>
+        </section>
+    </div>
+</section>
+<aside id="item-details-right">
+    <div class="item-details-commitment details-block">
+        <a href="">
+            <img src="/static/v2/img/commitment.png" alt="">
+        </a>
+    </div>
+    <div class="item-details-else-side details-block mt15">
+        <header>
+            <h3><strong>看过最终购买</strong></h3>
+        </header>
+        <section>
+            <ul class="block">
+                <li>
+                    <a href="">
+                        <img src="/static/v2/img/team01.jpg" alt="">
+                        <h4>【高新路沿线】澳门豆捞：双人餐，免费提供...</h4>
+                        <p class="wrapper">
+                            <span class="fl"><strong><em><i class="yuan">&yen;</i>68</em></strong></span>
+                            <span class="fl">原价<small>381</small></span>
+                            <span class="fr"><em>1395</em>人已团购</span>
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img src="/static/v2/img/team01.jpg" alt="">
+                        <h4>【高新路沿线】澳门豆捞：双人餐，免费提供...</h4>
+                        <p class="wrapper">
+                            <span class="fl"><strong><em><i class="yuan">&yen;</i>68</em></strong></span>
+                            <span class="fl">原价<small>381</small></span>
+                            <span class="fr"><em>1395</em>人已团购</span>
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img src="/static/v2/img/team01.jpg" alt="">
+                        <h4>【高新路沿线】澳门豆捞：双人餐，免费提供...</h4>
+                        <p class="wrapper">
+                            <span class="fl"><strong><em><i class="yuan">&yen;</i>68</em></strong></span>
+                            <span class="fl">原价<small>381</small></span>
+                            <span class="fr"><em>1395</em>人已团购</span>
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img src="/static/v2/img/team01.jpg" alt="">
+                        <h4>【高新路沿线】澳门豆捞：双人餐，免费提供...</h4>
+                        <p class="wrapper">
+                            <span class="fl"><strong><em><i class="yuan">&yen;</i>68</em></strong></span>
+                            <span class="fl">原价<small>381</small></span>
+                            <span class="fr"><em>1395</em>人已团购</span>
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img src="/static/v2/img/team01.jpg" alt="">
+                        <h4>【高新路沿线】澳门豆捞：双人餐，免费提供...</h4>
+                        <p class="wrapper">
+                            <span class="fl"><strong><em><i class="yuan">&yen;</i>68</em></strong></span>
+                            <span class="fl">原价<small>381</small></span>
+                            <span class="fr"><em>1395</em>人已团购</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="last">
+                    <a href="">
+                        <img src="/static/v2/img/team01.jpg" alt="">
+                        <h4>【高新路沿线】澳门豆捞：双人餐，免费提供...</h4>
+                        <p class="wrapper">
+                            <span class="fl"><strong><em><i class="yuan">&yen;</i>68</em></strong></span>
+                            <span class="fl">原价<small>381</small></span>
+                            <span class="fr"><em>1395</em>人已团购</span>
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </div>
+    <div class="item-details-topic details-block mt15">
+        <header>
+            <h3><strong>热门专题</strong></h3>
+        </header>
+        <section>
+            <ul class="block">
+                <li>
+                    <a href=""><img src="/static/v2/img/topic01.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href=""><img src="/static/v2/img/topic01.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href=""><img src="/static/v2/img/topic01.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href=""><img src="/static/v2/img/topic01.jpg" alt=""></a>
+                </li>
+            </ul>
+        </section>
+    </div>
+</aside>
+<!--{include footer}-->

@@ -1,0 +1,14 @@
+<script>
+    $(function(){
+        $('.yougouNav-menu').hover(function(){
+        	$(this).children('.yougouNav-menu-border').css('height','auto').css('overflow','visible');
+        },function(){
+            $(this).children('.yougouNav-menu-border').css('height','192px').css('overflow','hidden');
+        });
+        $('.yougouNav-menu-show li').hover(function(){
+        	$(this).addClass('active');
+        },function(){
+            $(this).removeClass('active');
+        });
+    });
+</script>

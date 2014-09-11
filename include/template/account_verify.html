@@ -1,0 +1,27 @@
+<!--{include header}-->
+<!---content--->
+<div class="wrap2 wrap3">
+    <div class="utit">
+      <h2>请验证邮箱</h2>
+    </div>
+    <div class="tips2">
+        <h2 class="green">请验证您的Email</h2>
+        <p>我们发送了一封验证邮件到 <span class="red">{$email}</span>，请到您的邮箱收信，并点击其中的链接验证您的邮箱。</p>
+					<!--{if $wwwlink}-->
+                        <p class="signup-gotoverify"><a href="{$wwwlink}" target="_blank"><img src="/static/theme/ev56_58/img/signup-email-link.gif"></a></p>                    
+					<!--{/if}-->
+    </div>
+     <div class="acon">
+       <div class="jobcon">
+         <strong>收不到邮件？</strong>
+         <ul>
+           <li>1、有可能被误判为垃圾邮件了，请到垃圾邮件文件夹找找。</li>
+           <li>2、<a href="/account/verify.php?email=${urlEncode($email)}">点击这里</a>重发验证邮件到你的邮箱。</li>
+           <li>3、如果还收不到，联系{$INI['system']['abbreviation']}进行<a href="/feedback/suggest.php">问题反馈</a>，我们会尽快解决您的问题。</li>
+         </ul>
+       </div>
+     </div> 
+</div>
+<!---contentEnd--->
+        
+<!--{include footer}-->

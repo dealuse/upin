@@ -1,0 +1,150 @@
+<!--{include header}-->
+<style type="text/css">
+<!--
+.doc_ {
+	background-color: #8f213e;
+}
+.STYLE2 {
+	color: #cc0000;
+	font-weight: bold;
+}
+#apDiv1 {
+	position:absolute;
+	left:122px;
+	top:747px;
+	width:28px;
+	height:23px;
+	z-index:100000;
+}
+.STYLE3 {font-size: 16px}
+.STYLE4 {
+	color: #000000;
+	font-weight: bold;
+}
+#apDiv2 {
+	position:absolute;
+	left:85px;
+	top:22px;
+	width:48px;
+	height:37px;
+	z-index:100000;
+}
+#apDiv3 {
+	position:absolute;
+	left:1070px;
+	top:5487px;
+	width:63px;
+	height:47px;
+	z-index:100001;
+}
+.selling_all_list{
+	width:968px;
+	padding:0px;
+	border:1px solid #fff;
+	border-top:none;
+	overflow:hidden;
+	margin-top: 0;
+	margin-right: auto;
+	margin-bottom: 0;
+	margin-left: auto;
+	background-image: url(%E6%BB%91%E9%9B%AA%E4%B8%93%E5%9C%BA/bg.png);
+}
+.selling_all_list .deal{ width:300px; float:left; padding:10px 0 15px 17px;}
+.selling_all_list .deal .selling_info{
+	border:1px solid #CCC;
+	background: #fff;
+}
+.selling_all_list .deal .selling_pic{
+	height:192px;
+	background:#CCC;
+	overflow:hidden;
+}
+.selling_all_list .deal .selling_pic a{ width:300px; overflow:hidden; display:block;}
+.selling_all_list .deal .selling_pic img{border:0;}
+.selling_all_list .deal h3{ font-size:14px; line-height:20px; font-weight:normal; margin:0 0 3px 0; padding:4px 5px 3px 5px; border-bottom:1px dashed #CCC; height:40px; overflow:hidden;}
+.selling_all_list .deal h3 a{
+	color:#000;
+}
+.selling_all_list .deal .info{ height:30px; line-height:30px; padding:0 10px; overflow:hidden;}
+.selling_all_list .deal .info .price{ height:30px; line-height:30px; float:left; font-size:18px; font-weight:bold; color:#cc0000; text-shadow:1px 1px 0px #ccc;}
+.selling_all_list .deal .info .price span{
+	font-size:12px;
+	color:#000000;
+	padding-left:5px;
+	font-weight:normal;
+	text-shadow:none;
+}
+.selling_all_list .deal .info .total{ height:30px; line-height:30px;float:right; font-size:18px; font-weight:bold; color:#cc0000; text-shadow:1px 1px 0px #ccc;}
+.selling_all_list .deal .info .total span{ font-size:12px; color:#666; padding-left:5px; font-weight:normal; text-shadow:none;}
+.selling_all_list .deal .sel_btn{
+	height:40px;
+	height:40px;
+	overflow:hidden;
+	padding-top: 0;
+	padding-right: 10px;
+	padding-bottom: 0;
+	padding-left: 10px;
+}
+.selling_all_list .deal .sel_btn .addr{
+	height:40px;
+	line-height:40px;
+	padding-left:25px;
+	float:left;
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	width: auto;
+}
+.selling_all_list .deal .sel_btn .qkk,.selling_all_list .deal .sel_btn .yjs{ float:right; padding:5px 0 0 0;}
+.selling_all_list .deal .sel_btn .qkk a,.selling_all_list .deal .sel_btn .yjs a{ display:block; width:94px; height:31px; }
+.selling_all_list .deal .sel_btn .yjs a{ background-position:-100px -145px;}
+.selling_all_list .deal .sel_btn img{border:0}
+-->
+.xuan{
+top:0px;
+}
+ .STYLE5 {
+	font-size: 16px;
+	color: #00CC33;
+}
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+a:active {
+	text-decoration: none;
+}
+.STYLE6 {color: #cc0000}
+.STYLE8 {font-size: 16px; color: #00CC33; font-weight: bold; }
+</style>
+</head>
+
+<div id="doc" class="doc_">
+<div  class="xuan"; style="text-align: center;"><img src="{$INI['system']['cdnprefix']}/static/img/zc_jiafang0109/jiafang.jpg" width="1440" height="635" /></div>
+ <div class="selling_all_list">
+ <!--{loop $team $index $one}-->
+ 	<div class="deal">
+ 		<div class="selling_pic">
+ 			<a target="_blank" href="/team/{$one['id']}.html">
+ 			<img width="300" src="${team_image($one['image'])}" alt="" style="display: inline; "></a> </div>
+ 				<div class="selling_info">
+   					<h3><a href="/team/{$one['id']}.html" target="_blank">${mb_substr($one['title'],7,42,'utf-8')}</a>》</h3>
+   					<div class="info"><span class="price">¥{$one['team_price']}<span class="STYLE4 STYLE4">原价¥{$one['market_price']}</span></span>
+   					<div class="total">{$one['now_number']<span>人已购买</span></div>
+ 				</div>
+ 				<div class="sel_btn">
+ 				<div class="cc00 addr STYLE3 STYLE6"><span class="STYLE8">${team_discount($one)}折</span></div>
+ 				<div class="qkk ">
+ 					<a target="_blank" href="/team/{$one['id']}.html"><img src="{$INI['system']['cdnprefix']}/static/img/zc_jiafang0109/btn_buy5.jpg" alt="" width="68" height="25" /></a></div>
+ 				</div>
+ 		</div>
+ 	</div>
+ <!--{/loop}-->
+ </div>
+</div>
+
+<!--{include footer}-->

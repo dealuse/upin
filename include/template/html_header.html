@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta property="wb:webmaster" content="9b128aa801c6858b" />
+        <!--{if $newSeo}-->
+        <title>{$newSeo['title']}</title>
+        <!--{elseif !$pagetitle||$request_uri=='index'}-->
+        <title>{$INI['system']['sitename']} - {$INI['system']['sitetitle']}|{$city['name']}购物|{$city['name']}团购|{$city['name']}打折</title>
+        <!--{else}-->
+        <title>{$pagetitle} | {$INI['system']['sitename']} - {$INI['system']['sitetitle']} |{$city['name']}购物|{$city['name']}团购|{$city['name']}打折{$INI['system']['subtitle']}</title>
+        <!--{/if}-->
+        <!--{if $newSeo}-->
+        <meta name="description" content="{$newSeo['description']} " />
+        <!--{elseif $seo_description}-->
+        <meta name="description" content="{$seo_description}" />
+        <!--{elseif $team}-->
+        <meta name="description" content="${mb_strimwidth(strip_tags($team['title'] .', '. $team['summary'] .', '. $team['systemreview']), 0, 320)}" />
+        <!--{else}-->
+        <meta name="description" content="团购,最有保障的团购网站-{$INI['system']['sitename']}。每天团购：餐厅、酒吧、KTV、SPA、美发店、瑜伽馆、电影、洗车、手机数码、家居日用、服装服饰等团购。电 话:400-696-0223" />
+        <!--{/if}-->
+        <!--{if $newSeo}-->
+        <meta name="keywords" content="{$newSeo['keywords']}" />
+        <!--{elseif $seo_keyword}-->
+        <meta name="keywords" content="{$seo_keyword}" />
+        <!--{else}-->
+        <meta name="keywords" content="{$INI['system']['sitename']}" />
+        <!--{/if}-->
+        <link href="{$INI['system']['wwwprefix']}/feed.php?ename={$city['ename']}" rel="alternate" title="订阅更新" type="application/rss+xml" />
+        <link rel="shortcut icon" href="/ico/favicon.ico" />
+        <link rel="stylesheet" href="/static/theme/ev56_58/css/base.1_1.css" />
+        <link rel="stylesheet" href="/static/v2/css/aipintuan.1_3.css" />
+        <link rel="stylesheet" href="/static/v2/css/siteMap.css" />
+
+        <!--[if (gte IE 6)&(lte IE 8)]>
+            <script src="/static/v2/js/nwmatcher-1.2.5.js"></script>
+            <script src="/static/v2/js/selectivizr-1.0.2-min.js"></script>
+        <![endif]-->
+        <!--[if lt IE 9]>
+            <script src="/static/v2/js/html5shiv.js"></script>
+            <script src="/static/v2/js/pie-1.0.0.js"></script>
+        <![endif]-->
+        </head>
+        <body class="${$request_uri=='index'?'bg-alt':'newbie'}">
+            <div id="pagemasker"></div>
+            <div id="dialog"></div>

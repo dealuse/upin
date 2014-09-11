@@ -1,0 +1,23 @@
+<script charset="utf-8" type="text/javascript" src="http://map.soso.com/api/v2/main.js"></script>
+<script type="text/javascript">
+    var sosoMapLonglat = {long:{$team['long']}, lat:{$team['lat']}}
+    var sosoMapCenter = new soso.maps.LatLng(sosoMapLonglat.lat, sosoMapLonglat.long);
+    var sosoMap = new soso.maps.Map(document.getElementById("sosomap"), {
+        center: sosoMapCenter,
+        zoom: 13
+    });
+    new soso.maps.MapTypeControl({map: sosoMap});
+    new soso.maps.NavigationControl({
+        align: soso.maps.ALIGN.TOP_LEFT,
+        style: soso.maps.NavigationControlStyle.SMALL,
+        map: sosoMap
+    });
+    var sosoMapMarker = new soso.maps.Marker({
+        position: sosoMapCenter,
+        map: sosoMap
+    });
+    sosoMap.setOptions({
+        keyboardShortcuts: false,
+        scrollwheel: false
+    });
+</script>

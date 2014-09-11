@@ -1,0 +1,41 @@
+<!--{include header}-->
+<!--{include ad/top_index_banner}-->
+<!--{include block_navigator_ev56_s}-->
+<section id="list" class="mt10 mr10 fl w100">
+    <!--团购列表-->
+    <ul class="inline threeArrange">
+        <!--{loop $itemData $tindex $item}-->
+        <!--{if ($tindex+1)%3 == 0}-->
+        <li class="third-item">
+        <!--{else}-->
+        <li>
+        <!--{/if}-->
+            <a class="img" target="_blank" href="/team/{$item['id']}.html" title="{$item['title']}">
+                <!--{if $tindex <= 2}-->
+                <img src="${team_image($item['image'],false,array(313,199))}" title="{$item['title']}" alt="{$item['title']}">
+                <!--{else}-->
+                <img class="index-item-img" src="/static/v2/img/border.gif" data-original="${team_image($item['image'],false,array(313,199))}" target="_blank" title="{$item['title']}" alt="{$item['title']}">
+                <!--{/if}-->
+            </a>
+            <a href="/team/{$item['id']}.html" target="_blank" title="{$item['title']}">
+                <!--<h3>${mb_substr($item['product'],0,16);}</h3>-->
+                <!--{if stripos($item['title'], '【') === 0}-->
+                <p class="bracket">${mb_substr($item['title'],0,33);}...</p>
+                <!--{else}-->
+                <p>${mb_substr($item['title'],0,33);}...</p>
+                <!--{/if}-->
+            </a>
+            <p class="price wrapper">
+                <span class="fl"><strong>&yen;{$item['team_price']}</strong>原价 <i>&yen;{$item['market_price']}</i></span>
+                <a class="fr" target="_blank" href="/team/{$item['id']}.html">去看看</a>
+            </p>
+            <p class="tr"><strong>${$item['now_number']+$item['pre_number']}</strong>人已团购</p>
+            <!--{if $startingToday <= $item['begin_time'] && $item['sched_num'] <= 1}-->
+            <i class="today"></i>
+            <!--{/if}-->
+        </li>
+        <!-- {/loop} -->
+    </ul>
+    {$pagestring}
+</section>
+<!--{include footer}-->

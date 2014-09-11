@@ -1,0 +1,42 @@
+<!--${
+		$linkcity = array(
+			37   => '<a target="_blank" href="/shanghai">上海团购</a>',
+			5     => '<a target="_blank" href="/beijing">北京团购</a>',
+			40   => '<a target="_blank" href="/guangzhou">广州团购</a>',
+			1     => '<a target="_blank" href="/xian">西安团购</a>',
+			41   => '<a target="_blank" href="/shenzhen">深圳团购</a>',
+        	43   => '<a target="_blank" href="/tianjin">天津团购</a>',
+        	42   => '<a target="_blank" href="/nanjing">南京团购</a>',
+        	9     => '<a target="_blank" href="/zhengzhou">郑州团购</a>',
+        	47   => '<a target="_blank" href="/haizhou">杭州团购</a>',
+        	12   => '<a target="_blank" href="/chongqing">重庆团购</a>',
+        );
+}-->
+<div id="ft_nav" class="foot_nav">
+	<ul>
+		<li class="current">热门团购</li>
+		<li class="">热门城市</li>
+		<!--<li class="">团购大全</li>-->
+		<li class="">友情链接</li>
+		<!--<li class="">团购索引</li>-->
+	</ul>
+    <div class="links_current">
+   		<a target="_blank" href="/?gid=3">{$city['name']}美食团购</a>
+		<a target="_blank" href="/?gid=29">{$city['name']}网购团购</a>
+		<a target="_blank" href="/?gid=27">{$city['name']}休闲娱乐团购</a>
+		<a target="_blank" href="/?gid=27&fid_s=107">{$city['name']}生活服务团购</a>
+		<a target="_blank" href="/?gid=27&fid_s=411">{$city['name']}游乐游艺团购</a>
+    </div>
+    <div class="">
+    	<!--{loop $linkcity $index $alink}-->
+        	<!--${ if ( $city['id'] == $index ) continue; }-->
+        	{$alink}
+        <!--{/loop}-->
+    </div>
+    <div class="">
+    </div>
+</div>
+<script>
+jQuery(function(){function a(){function a(){for(var b=0,e=d.length;b<e;b+=1)d[b].className="",c[b].className="",d[b]==this&&(d[b].className="current",c[b].className="links_current")}$("#ft_nav").find("li").eq(0).addClass("current");$("#ft_nav").find("div").eq(0).addClass("links_current");$("#ft_nav ul").children().is("li")||$("#ft_nav").hide();var f=document.getElementById("ft_nav"),d=f.getElementsByTagName("ul")[0].getElementsByTagName("li"),c=f.getElementsByTagName("div");(function(){for(var b=
+0,c=d.length;b<c;b+=1)d[b].onclick=a})()}$("#ft_nav")[0]&&a()});
+</script>

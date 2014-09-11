@@ -1,0 +1,72 @@
+<!--{include header}-->
+<!--{include team_index/nav/yougou}-->
+<!--{include team_index/nav/yougou_s}-->
+<!--{include team_index/nav/yougou_guess_recommend}-->
+<section id="list" class="mt10 mr10 fl w100">
+    <!--团购列表-->
+    <ul class="inline threeArrange">
+        <!--{loop $itemData $tindex $item}-->
+        <!--{if ($tindex+1)%3 == 0}-->
+        <li class="third-item">
+            <!--{else}-->
+        <li>
+            <!--{/if}-->
+            <a class="img" target="_blank" href="/team/{$item['id']}.html" title="{$item['title']}">
+                <!--{if $tindex <= 2}-->
+                <img src="${team_image($item['image'])}" title="{$item['title']}" alt="{$item['title']}">
+                <!--{else}-->
+                <img class="index-item-img" src="/static/v2/img/border.gif" data-original="${team_image($item['image'])}" target="_blank" title="{$item['title']}" alt="{$item['title']}">
+                <!--{/if}-->
+            </a>
+            <a href="/team/{$item['id']}.html" target="_blank" title="{$item['title']}">
+                <!--{if stripos($item['product'], '【') === 0}-->
+                <p class="bracket">${mb_substr($item['product_ind'],0,33);}</p>
+                <!--{else}-->
+                <p>${mb_substr($item['product_ind'],0,33);}</p>
+                <!--{/if}-->
+            </a>
+            <p class="price wrapper">
+                <span class="fl"><strong>&yen;{$item['team_price']}</strong><i>&yen;{$item['market_price']}</i></span>
+                <span class="fr"><strong>${$item['now_number']+$item['pre_number']}</strong>人关注并购买</span>
+            </p>
+            <!--{if $startingToday <= $item['begin_time'] && $item['sched_num'] <= 1}-->
+            <i class="today"></i>
+            <!--{/if}-->
+        </li>
+        <!-- {/loop} -->
+    </ul>
+    {$pagestring}
+</section>
+<?php $includeScript[]='team_yougou'; ?>
+<!--百分点代码：频道页-->
+<script type="text/javascript">
+    var url = window.location.href;
+    var _s = url.indexOf('/mall/');
+    if (_s == -1) {
+        window["_BFD"] = window["_BFD"] || {};
+        _BFD.BFD_INFO = {
+            "channel_name": "精品网购", //频道名称
+            "user_id": "{$login_user['id']}", //网站当前用户id，如果未登录就为0或空字符串
+            "page_type": "channel" //当前页面全称，请勿修改
+        };
+    } else{
+        if ("{$navYougouTypeSon['ename']}" != "" || "{$navYougouTypeSon['ename']}" != null) {
+            //<!--百分点代码：列表页-->
+            window["_BFD"] = window["_BFD"] || {};
+            _BFD.BFD_INFO = {
+                "category": [["{$navYougouType['name']}", "/mall/{$navYougouType['ename']}"], ["{$navYougouTypeSon['name']}", "/mall/{$navYougouTypeSon['ename']}"]], //商品的类别详细信息，第一个元素为类别名称，第二个元素为类别地址，2维数组;类别从大到小，数组最后一项为商品当前属类别
+                "user_id": "{$login_user['id']}", //网站当前用户id，如果未登录就为0或空字符串
+                "page_type": "list" //当前页面全称，请勿修改
+            };
+        } else {
+        //<!--百分点代码：列表页-->
+            window["_BFD"] = window["_BFD"] || {};
+            _BFD.BFD_INFO = {
+                "category": [["{$navYougouType['name']}", "/mall/{$navYougouType['ename']}"]],
+                "user_id": "{$login_user['id']}", //网站当前用户id，如果未登录就为0或空字符串
+                "page_type": "list" //当前页面全称，请勿修改
+            };
+        }
+    }
+</script>
+<!--{include footer}-->

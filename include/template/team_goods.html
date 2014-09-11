@@ -1,0 +1,75 @@
+<!--{include header}-->
+<style type="text/css">
+.w_filter{margin:10px auto 15px auto;width:978px; border-bottom:solid 1px #E8E8E8;background:#fff;position:relative; height:auto; padding-bottom:10px;}
+.dashboard{position:relative;bottom:-2px;z-index:2;_display:inline;margin-left:10px;zoom:1;}
+.dashboard ul{float:left;_display:inline;width:100%;}
+.dashboard li{float:left;_display:inline;margin-right:4px;font-size:14px;}
+.dashboard li a{float:left;height:27px;padding:7px 7px 0 17px;outline:0;}
+.dashboard li span{float:left;width:10px;height:34px;}
+.dashboard li.current a{font-weight:bold;color:#000;}
+.dashboard li.current span{color:#fff;}
+</style>
+<div id="main">
+
+<!--{if option_yes('categoods')}-->
+<div class="w_filter">
+	<div class="dashboard" id="dashboard">
+		<ul>${current_teamcategory($group_id)}</ul>
+	</div>
+</div>
+					<div class="clear"></div>	
+<!--{/if}-->
+<div class="listerouter">
+<div class="lister">
+					<!--{loop $goods $index $one}-->
+  															<dl class="tuanitem">
+				<dt>
+					<a  id="teamfirsturl{$one['id']}"  href="/team.php?id={$one['id']}" target="_blank"><img width="294" heigth="184" alt="{$one['title']}" title="{$one['title']}" src="${team_image($one['image'])}" /></a>
+<!--start 商户调用-->
+<!--${
+/*淘宝地址：http://ev56.taobao.com/*/
+$team_partner_id = $one['partner_id'];
+$team_partner = Table::Fetch('partner', $team_partner_id);
+}-->					
+<!--{if $one['partner_id']}-->											
+								<i class="localmask"></i>
+								<div class="local" title="{$team_partner['title']}">
+									商户：{$team_partner['title']}
+								</div>
+<!--{/if}--> 	
+								
+								<i class="hot" title="热销商品"></i>
+				</dt>
+				<dd class="des">
+					<h2>
+						<a  id="teamsecondurl{$one['id']}"  target="_blank" href="/team.php?id={$one['id']}" title="{$one['title']}" class="c_b">
+							<span class="c_r"> ${moneyit((10*$one['team_price']/$one['market_price']))}折：</span>
+							${mb_strimwidth($one['title'],0,86,'...')}
+						</a>
+					</h2>
+				<div class="gobuy">
+											<a  id="teamthirdurl{$one['id']}"  href="/team.php?id={$one['id']}" target="_blank" class="<!--{if ($one['state']=='soldout')}-->soldout_i<!--{elseif $one['close_time']}-->soldout_i<!--{else}-->golook<!--{/if}-->">去看看</a>
+										<span class="nprice"><i>&yen;</i>${moneyit($one['team_price'])}</span>
+				</div>
+				</dd>
+				<dd class="btmbar">
+					<span class="oprice">原价：&yen;${moneyit($one['market_price'])}</span>
+										<span class="savemoney">节省：&yen;${moneyit($one['market_price']-$one['team_price'])}</span>
+											<span class="ordernums"><b>{$one['now_number']}</b>人已购买</span>
+									</dd>
+				<dd class="shadow"></dd>
+				</dl>				
+		  												
+	<!-- {/loop} -->				
+		  																
+		  																
+		  																
+		    <div class="clear"></div>
+</div>
+					<div  class="class_quick_fm">{$pagestring}</div>
+	
+
+</div>
+</div>
+
+<!--{include footer}-->

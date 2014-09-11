@@ -1,0 +1,30 @@
+<!--TODO:看过最终购买-->
+<div class="item-details-else-side details-block mt15">
+        <header>
+            <h3><strong>看过最终购买</strong></h3>
+        </header>
+        <section>
+            <ul class="block">
+                <!--{loop $otherTeam $index $one}-->
+                <!--{if $one['id'] == $lastOtherTeam}-->
+                <!--{if $index < 0}-->
+                <li class="last">
+                    <!--{else}-->
+                <li>
+                    <!--{/if}-->
+                    <a href="/team/{$one['id']}.html">
+                        <img class="index-item-img" src="/static/v2/img/border.gif" data-original="${team_image($one['image'],true)}" alt="{$one['product']}">
+                        <h4>{$one['product']}</h4>
+                        <p class="wrapper">
+                            <span class="fl"><strong><em><i class="yuan">&yen;</i>{$one['team_price']}</em></strong></span>
+                            <span class="fl">原价<small>{$one['market_price']}</small></span>
+                            <span class="fr"><em>${$one['now_number']+$one['pre_number']}</em>人已团购</span>
+                        </p>
+                    </a>
+                </li>
+                <!--{else}-->
+                <!--{/if}-->
+                <!--{/loop}-->
+            </ul>
+        </section>
+    </div>

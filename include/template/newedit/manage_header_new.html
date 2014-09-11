@@ -1,0 +1,53 @@
+<!--{include manage_html_header}-->
+<!--{if $INI['system']['editor'] == 'xh'}-->
+<script type="text/javascript" src="/static/js/xheditor/xheditor.js"></script>
+<!--{else}-->
+<script type="text/javascript" src="/static/js/kindeditor-4.1.4/kindeditor-min.js"></script>
+<script type="text/javascript" src="/static/js/kindeditor-4.1.4/plugins/imagelib/imagelib.js"></script>
+<script type="text/javascript" src="/static/js/kindeditor-4.1.4/plugins/multiimage/multiimage.js"></script>
+
+<script type="text/javascript">
+<!--
+if(KindEditor){
+	KindEditor.instancesMap = {};
+	KindEditor.ready(function(K) {
+		jQuery('textarea.editor').each(function(){
+			K.instancesMap[jQuery(this).attr('id')] = 
+			K.create('#'+jQuery(this).attr('id'), {
+				filterMode:false,
+                resizeType : 1,
+                allowFileManager:true,
+                allowPreviewEmoticons : true,
+                allowImageUpload : true,
+                uploadJson : '/kindupload.php', // 相对于当前页面的路径
+                fileManagerJson: '/filemanager.php',
+                items : ['source','forecolor', 'hilitecolor','fontname','fontsize', 'bold', 'italic', 'underline', 'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', '|', 'image','multiimage','imagelib', 'link', 'table','|', 'fullscreen'],
+                extraFileUploadParams : {'PHPSESSID' : "<?php echo session_id(); ?>"},
+			});
+		}); 
+	});
+}
+//-->
+</script>
+<!--{/if}--> 
+<!-- {if $_REQUEST['type']!='dialog'} -->
+<div id="hdw">
+	<div id="hd">
+		<div id="logo"><a href="/index.php" class="link" target="_blank"><img src="/static/css/i/logo.gif" /></a></div>
+		<div class="guides">
+			<div class="city">
+				<h2>管理后台</h2>
+			</div>
+			<div id="guides-city-change" class="change">{$login_user['realname']}</div>
+		</div>
+		<ul class="nav cf">${current_backend('super')}</ul>
+		<!--{if is_manager()}--><div class="vcoupon"><span style="color: white;font-weight: bold;">您已登录<span id="showLoginTime"></span></span>&raquo;&nbsp;<a href="/manage/logout.php">管理员退出</a></div><!--{/if}-->
+	</div>
+</div>
+<!-- {/if} -->
+<!--{if $session_notice=Session::Get('notice',true)}-->
+<div class="sysmsgw" id="sysmsg-success"><div class="sysmsg"><p>{$session_notice}</p><span class="close">关闭</span></div></div> 
+<!--{/if}-->
+<!--{if $session_notice=Session::Get('error',true)}-->
+<div class="sysmsgw" id="sysmsg-error"><div class="sysmsg"><p>{$session_notice}</p><span class="close">关闭</span></div></div> 
+<!--{/if}-->

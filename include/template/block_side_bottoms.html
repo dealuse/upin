@@ -1,0 +1,49 @@
+<!--${
+$others_side_ns = 6;
+$others_team_id = abs(intval($team['id']));
+$others_city_id = abs(intval($city['id']));
+$other_sub_id = abs(intval($team['sub_id']));
+if ( abs(intval($INI['system']['sideteam'])) && !$disable_multi){
+        $others = index_team_sideCate_sql($others_team_id,$others_city_id,$other_sub_id,$others_side_ns);
+}
+$other_count = count($others);
+if($other_count >= 16){
+        $if_flag = 9;
+}
+}-->
+<!--{if $others}-->
+<!--{if $other_count>=6}-->
+<script>
+    setInterval("action66()", 5000);
+    function action66() {
+        $("#action0").toggle(200);
+        $("#action1").toggle(200);
+        $("#action2").toggle(200);
+    }
+</script>
+<!--{/if}-->
+<div class="bottomOther" style="height:239px;">
+    <h3 id="click66">猜您喜欢</h3>
+    <!--{loop $others $index $one}-->
+    <div class="deal" id="action{$index}">
+        <div class="selling_pic">
+            <a target="_blank" href="/team.php?id={$one['id']}" title="{$one['title']}">
+                <img src="${team_image($one['image'],true)}" width="220" height="124" alt="{$one['title']}"/>
+            </a>
+        </div>
+        <div class="con-num">
+            <span style="float:right;">
+                <strong style="color:#C51800">${$one['now_number']+$one['pre_number']}</strong>人已购买
+            </span>
+            <span>市场价:<del>{$one['market_price']}元</del></span>
+            <em><strong>${team_discount($one)}</strong>折</em>
+        </div>
+        <div class="con-pre">
+            <a target="_blank" href="/team.php?id={$one['id']}" class="con-but">
+                <span class="units">¥</span>${moneyit($one['team_price'])}
+            </a>
+        </div>
+    </div>
+    <!--{/loop}-->
+</div>
+<!--{/if}-->

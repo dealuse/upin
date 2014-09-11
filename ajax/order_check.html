@@ -1,0 +1,254 @@
+<!--{include header}-->
+
+<div class="wrap2">
+    <div class="uleft2" id="deal-buy" style="min-height: 400px;">
+        <div class="utit">
+            <ul class="step step2">
+                <li>提交订单</li>	
+                <li>选择支付方式 </li>
+                <li>支付成功</li>
+            </ul>
+            <h2>购买信息</h2>
+        </div>
+        <!-- 订单信息begin -->
+        <div class="order_check_list">
+            <table>
+                <tr>
+                    <td class="item-name">项目名称：</td>
+                    <td class="item-cont"><a title="{$team['title']}"
+                                             href="/team.php?id={$team['id']}" target="_blank">{$team['product']}</a></td>
+                </tr>
+                <!-- {if empty($order['condbuy'])} -->
+                <tr>
+                    <td class="item-name">商品数量：</td>
+                    <td class="item-cont">{$order['quantity']}</td>
+                </tr>
+                <!-- {else} -->
+                <tr>
+                    <td class="item-name">商品类型：</td>
+                    <td class="item-cont">${str_replace("\n",",",str_replace("@","*",$order['condbuy']))}</td>
+                </tr>
+                <!-- {/if} -->
+                <!-- {if $team['delivery'] == 'express'} -->
+                <tr>
+                    <td class="item-name">配送地址：</td>
+                    <td class="item-cont">{$order['realname']},{$order['province']}
+                        {$order['city']} {$order['area']} {$order['address']} ,
+                        {$order['zipcode']},电话:{$order['mobile']}</td>
+                </tr>
+                <tr>
+                    <td class="item-name">特殊说明：</td>
+                    <td class="item-cont">{$order['remark']}</td>
+                </tr>
+                <!-- {else} -->
+                <tr>
+                    <td class="item-name">您的手机：</td>
+                    <td class="item-cont">团购成功后，{$INI['system']['couponname']}将发送到您的手机：<b>{$order['mobile']}</b>,凭该短信去商家消费。
+                    </td>
+                </tr>
+                <!-- {/if} -->
+                <!--{if time()>strtotime('2013-11-10') && time()<strtotime('2013-11-11 20:01')}-->
+                <p style="color:red">凡在双十一 11:00~11:03、17:00~17:02、20:00~20:01 时间段购买的所有本地服务商品，成功下单后会在当前订单金额的基础上立享5折优惠，每件商品仅限购1份哦!（仅限活动城市）</p>
+                <!--{/if}-->
+                <!--{if $deInfo}-->
+                <tr>
+                    <td colspan="2"><span style="color: red">*恭喜您成功使用双十一优惠券，券号为:{$deInfo['code']}，本订单已减免5元!</span></td>
+                </tr>
+                <!--{/if}-->
+                <!--{if $isDEDay}-->
+                <tr>
+                    <td colspan="2"><span style="color: red">*凡双11期间成功购买优品会邮购类产品的用户，优品会将会在次日(12日零点)返还5元现金至您优品会余额！</span></td>
+                </tr>
+                <!--{/if}-->
+            </table>
+        </div>
+
+        <!--{if false==$credityes}-->
+        <p class="pay-total">
+            <!--{if $deInfo}-->
+            <em>还需支付<span class="money">{$currency}${moneyit($order['origin']-$login_user['money'])}</span></em>
+            = 应付总额<span class="money">{$currency}${moneyit($order['origin']+5)}</span>
+            - {$INI['system']['sitename']}余额<span class="money">{$currency}${moneyit($login_user['money'])}</span>
+            - <span class="money" style="color: red">双十一优惠券{$currency}5</span>
+            <!--{else}-->
+            <em>还需支付<span class="money">{$currency}${moneyit($order['origin']-$login_user['money'])}</span></em>
+            = 应付总额<span class="money">{$currency}${moneyit($order['origin'])}</span>
+            - {$INI['system']['sitename']}余额<span class="money">{$currency}${moneyit($login_user['money'])}</span>
+            <!--{/if}-->
+        </p>
+        <!--{else}-->
+        <p class="pay-credit">
+            使用{$INI['system']['sitename']}余额支付：<span class="money">{$currency}${moneyit($order['origin'])}</span>
+        </p>
+        <p class="pay-total">
+            <!--{if $deInfo}-->
+            应付总额<span class="money">{$currency}${moneyit($order['origin']+5)}</span><span class="money" style="color: red">(双十一优惠券减免{$currency}5)</span>
+            ,{$INI['system']['sitename']}余额<span class="money">{$currency}${moneyit($login_user['money'])}</span>
+            <!--{else}-->
+            应付总额<span class="money">{$currency}${moneyit($order['origin'])}</span>
+            ,{$INI['system']['sitename']}余额<span class="money">{$currency}${moneyit($login_user['money'])}</span>
+            <!--{/if}-->
+        </p>
+        <!--{/if}-->
+        <!-- 订单信息end -->
+        <form action="/order/pay.php" method="post" class="validator">
+            <!--{if false==$creditonly && false==$credityes &&empty($_SESSION['ali_token'])}-->
+            <div class="paytype paytype-list">
+                <h3>支付方式</h3>
+                <!--{if $INI['tenpay']['mid']&&'Y'==$INI['tenpay']['direct']}-->
+                <ul id="paybank" class="bank-list">
+                    <!--{loop $paybank $one}-->
+                    <!--{if $one=='POST-NET'}-->
+                    <li class="item chinapost"><input id="check-{$one}" type="radio" name="paytype" value="{$one}" /><label for="check-{$one}" class="{$one}"></label></li>
+                    <!--{else}-->
+                    <li class="item"><input id="check-{$one}" type="radio" name="paytype" value="{$one}" /><label for="check-{$one}" class="{$one}"></label></li>
+                    <!--{/if}-->
+                    <!--{/loop}-->
+                </ul>  
+                <!--{/if}-->
+
+                <ul class="typelist xpay-list">
+                    <!--{if $INI['alipay']['mid']}-->
+                    <li class="item"><input id="check-alipay" type="radio" name="paytype" value="alipay" {$ordercheck['alipay']} /><label for="check-alipay" class="alipay">支付宝交易，推荐淘宝用户使用</label></li>
+                    <!--{/if}-->
+                    <!--{if $INI['tenpay']['mid']}-->
+                    <li class="item"><input id="check-tenpay" type="radio" name="paytype" value="tenpay" {$ordercheck['tenpay']} /><label for="check-tenpay" class="tenpay">财付通交易，推荐拍拍用户使用</label></li>
+                    <!--{/if}-->
+                    <!--{if $INI['sdopay']['mid']}-->
+                    <li class="item"><input id="check-sdopay" type="radio" name="paytype" value="sdopay" {$ordercheck['sdopay']} /><label for="check-sdopay" class="sdopay">盛付通交易，推荐盛大一卡通用户使用</label></li>
+                    <!--{/if}-->
+                    <!--{if $INI['yeepay']['mid']}-->
+                    <li class="item"><input id="check-yeepay" type="radio" name="paytype" value="yeepay" {$ordercheck['yeepay']} /><label for="check-yeepay" class="yeepay">易宝支付，人民币支付网关</label></li>
+                    <!--{/if}-->
+                    <!--{if $INI['bill']['mid']}-->
+                    <li class="item"><input id="check-bill" type="radio" name="paytype" value="bill" {$ordercheck['bill']} /><label for="check-bill" class="bill">快钱交易，助您生活娱乐更加便捷</label></li>
+                    <!--{/if}-->
+                    <!--{if $INI['chinabank']['mid']}-->
+                    <li class="item"><input id="check-chinabank" type="radio" name="paytype" value="chinabank" {$ordercheck['chinabank']} /><label for="check-chinabank" class="chinabank">网银支付交易，支持招商、工行、建行、中行等主流银行</label></li>
+                    <!--{/if}-->
+                    <!--{if $INI['paypal']['mid']}-->
+                    <li class="item"><input id="check-paypal" type="radio" name="paytype" value="paypal" checked="checked" /><label for="check-paypal" class="paypal"></label></li>
+                    <!--{/if}-->
+                    <!--{if $INI['cmpay']['mid']}-->
+                    <li class="item"><input id="check-cmpay" type="radio" name="paytype" value="cmpay" {$ordercheck['cmpay']} /><label for="check-cmpay" class="cmpay">手机号就是您的支付账户，中国移动为您提供随时随地随身的支付服务！</label></li>
+                    <!--{/if}-->
+                    <!--{if $INI['gopay']['mid']}-->
+                    <li class="item"><input id="check-gopay" type="radio" name="paytype" value="gopay" {$ordercheck['gopay']} /><label for="check-gopay" class="gopay">国家级电子支付平台，超低费率，安全保证。</label></li>
+                    <!--{/if}-->
+                </ul>
+
+
+
+                <!--{if $INI['sdopay']['mid']&&'Y'==$INI['sdopay']['direct']&&'N'==$INI['tenpay']['direct']}-->
+                <ul id="paybank" class="bank-list">
+                    <!--{loop $sdopaybank $one $sid}-->
+                    <li class="item"><input id="check-{$one}" type="radio" name="paytype" value="{$sid}" /><label for="check-{$one}" class="{$one}"></label></li>
+                    <!--{/loop}-->
+                </ul>  
+                <!--{/if}-->
+
+                <!--{if $INI['yeepay']['mid']&&'Y'==$INI['yeepay']['direct']&&'N'==$INI['tenpay']['direct']&&'N'==$INI['sdopay']['direct']}-->
+                <ul id="paybank" class="bank-list">
+                    <!--{loop $yeepaybank $one $pid}-->
+                    <li class="item"><input id="check-{$one}" type="radio" name="paytype" value="{$pid}" /><label for="check-{$one}" class="{$one}"></label></li>
+                    <!--{/loop}-->
+                </ul>  
+                <!--{/if}-->
+                <!--{if $INI['gopay']['mid']&&'Y'==$INI['gopay']['direct']&&'N'==$INI['tenpay']['direct']&&'N'==$INI['sdopay']['direct']&&'N'==$INI['yeepay']['direct']}-->
+                <ul id="paybank" class="bank-list">
+                    <!--{loop $gopaybank $one $gid}-->
+                    <li class="item"><input id="check-{$one}" type="radio" name="paytype" value="{$gid}" /><label for="check-{$one}" class="{$one}"></label></li>
+                    <!--{/loop}-->
+                </ul>  
+                <!--{/if}-->
+
+            </div>
+            <p class="pay-other">支付<span class="money">{$currency}${moneyit($order['origin']-$login_user['money'])}</span></p>
+            <!--{elseif false==$creditonly && false==$credityes && $_SESSION['ali_token']}-->
+            <div class="paytype paytype-list">
+                <ul class="typelist">
+                    <li class="item"><input id="check-alipay" type="radio" name="paytype" value="alipay" {$ordercheck['alipay']} /><label for="check-alipay" class="alipay">支付宝交易</label></li>
+                </ul>
+            </div>
+            <!--{else}-->
+            <input type="hidden" name="paytype" value="credit" />
+            <!--{/if}-->
+
+
+
+            <!--{if $credityes || false==$creditonly}-->
+            <p class="check-act">
+                <input type="hidden" name="order_id" value="{$order['id']}" />
+                <input type="hidden" name="team_id" value="{$order['team_id']}" />
+                <input type="hidden" name="cardcode" value="" />
+                <input type="hidden" name="quantity" value="{$order['quantity']}" />
+                <input type="hidden" name="address" value="{$order['address']}" />
+                <input type="hidden" name="express" value="{$order['express']}" />
+                <input type="hidden" name="remark" value="{$order['remark']}" />
+
+            <table border="0" style="width: 100%;">
+                <tbody>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td align="right"><input type="submit" value="立即支付" class="input input1" /></td>
+                    </tr>
+                    <tr>
+                        <td align="right" colspan="2" style="padding-top: 5px">
+                            <!--{if false==$credityes}-->
+                            <!--<input type="button" value="确认订单，以后再付款" class="formbutton" onclick="location.href='index.php';" />-->
+                            <!--{/if}-->
+                            <a href="/team/buy.php?id={$order['team_id']}" style="margin-left:1em;">返回修改订单</a>
+                            <!--{/if}-->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <div class="uright2" style="margin-right:0">
+        <!--{include block_side_payhelp}-->
+    </div>
+    <div class="clear"></div>
+</div>
+<!--百分点代码：下订单页-->
+<script type="text/javascript">
+   
+    var total = "{$order['service']}";
+    if (total == 'alipay'){
+    total = '支付宝';
+    }
+    if (total == 'tenpay'){
+    total = '财付通';
+    }
+    if (total == 'chinabank'){
+    total = '中国银行';
+    }
+    if (total == 'yeepay'){
+    total = '易宝支付';
+    }
+    if (total == 'gopay'){
+    total = '国付宝';
+    }
+    if (total == 'cmpay'){
+    total = '中国移动手机支付';
+    }
+    if (total == 'credit'){
+    total = '优品会余额';
+    }
+    window["_BFD"] = window["_BFD"] || {};
+            _BFD.BFD_INFO = {
+            "order_id" : "{$order['id']}", //当前订单号，如果有拆单等特殊情况现象（一次购买中出现多个订单号）此页面代码不可用，请联系我修改；
+                    "order_items" : [["{$team['id']}", {$team['team_price']}, {$order['quantity']}]], //同购物车页
+                    "total" : "{$team['team_price']} " * "{$order['quantity']}", //用户实际支付的价格
+                    "payment" : total, //支付方式
+                    "express" : "", //快递方式
+                    "address" : "{$order['province']}{$order['city']}{$order['area']}{$order['address']}{$order['zipcode']}", //送货地址
+                    "mobile" : "{$order['mobile']}", //手机
+                    "name" : "{$order['realname']}", //收货人姓名
+                    "express_price" : "{$express_info[0]}" == ''?"0":"{$express_info[0]}", //快递价格
+                    "category" : ["", ""], //订单内商品的最小类别数组
+                    "user_id" : "{$login_user['id']}", //网站当前用户id，如果未登录就为0或空字符串
+                    "page_type" : "order" //当前页面全称，请勿修改
+            };
+</script>
+<!--{include footer}-->

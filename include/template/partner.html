@@ -1,0 +1,260 @@
+<!--{include header}-->
+<style type="text/css">
+.w_filter{margin:10px auto 15px auto;width:978px; border-bottom:solid 1px #E8E8E8;background:#fff;position:relative; height:auto; padding-bottom:10px;}
+
+.dashboard{position:relative;bottom:-2px;z-index:2;_display:inline;margin-left:24px;zoom:1;}
+.dashboard ul{float:left;_display:inline;width:100%;}
+.dashboard li{float:left;_display:inline;margin-right:4px;font-size:14px;}
+.dashboard li a{float:left;height:27px;padding:7px 7px 0 17px;background:url("/static/theme/ev56_58/css/i/bg-dashboard-tab.gif") no-repeat 0 -200px;outline:0;}
+.dashboard li span{float:left;width:10px;height:34px;background:url("/static/theme/ev56_58/css/i/bg-dashboard-tab.gif") no-repeat -161px -300px;}
+.dashboard li.current a{background-position:0 0;}
+.dashboard li.current span{background-position:-161px -100px;}
+
+#deal-intro{clear:both;padding:25px 14px 15px;background:#fff; width:695px;}
+#deal-intro .pic{position:relative;z-index:1;float:left;width:200px;height:121px;margin:8px 0 20px;_display:inline;zoom:1;}
+#deal-intro{clear:both;padding:5px;background:#fff;}
+#deal-intro .main{float:left;width:215px;margin-right:5px;_margin-right:5px;_display:inline;font-family:Helvetica,arial,sans-serif;}
+#deal-intro .side{float:left;width:440px;margin-right:0;}
+#deal-intro .side .deal-buy-cover-img img{width:440px;}
+#deal-intro .side .digest{margin-top:28px;margin-left:10px;padding-left:70px;padding-right:35px;background:url("/static/theme/ev56_58/css/i/bg-deal-voice-quote.gif") no-repeat 0 0;color:#666;}
+#deal-intro h1{padding:0 50px 20px;font-size:30px;line-height:1.2;font-family:'黑体',arial,sans-serif;}
+#deal-intro h1 span{font-family:arial,sans-serif;}
+#deal-intro .deal-buy{position:relative;}
+#deal-intro .deal-today-link{text-decoration:none;}
+#deal-intro .deal-price-tag{position:absolute;z-index:1;left:-72px;width:237px;height:97px;padding-left:50px;background:url("/static/theme/ev56_58/css/i/bg-deal-price.png") no-repeat 0 0;_background:transparent;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/static/theme/ev56_58/css/i/bg-deal-price.png");}
+#deal-intro .deal-price{position:absolute;z-index:2;left:-72px;width:237px;height:97px;line-height:82px;padding-left:50px;}
+#deal-intro .deal-price span{position:absolute;z-index:2;top:0;left:146px;color:#fff;}
+#deal-intro .deal-price span.deal-price-expire,#deal-intro .deal-price span.deal-price-soldout{padding-left:10px;width:140px;background:url(i/bg-deal-close-text.gif) no-repeat 0 16px;color:#666;}
+#deal-intro .deal-price span.deal-price-expire{width:140px;height:84px;background:url("/static/theme/ev56_58/css/i/bg-deal-expired-text.gif") no-repeat 6px 17px;}
+#deal-intro .deal-price span.deal-price-soldout{width:140px;height:84px;background:url("/static/theme/ev56_58/css/i/bg-deal-soldout-text.gif") no-repeat 6px 17px;}
+#deal-intro .deal-price strong{float:left;margin-left:5px;font-size:32px;color:#fff;font-weight:normal;}
+#deal-intro .deal-price strong.digits5 {font-size: 24px;margin-top: 3px;}
+#deal-intro .deal-price span a{display:block;width:144px;height:53px;line-height:53px;margin-top:19px;outline:0;}
+#deal-intro .progress-pointer{float:left;zoom:1;padding:3px 0;}
+#deal-intro .progress-pointer span{float:left;width:14px;height:13px;background:url("/static/theme/ev56_58/css/i/bg-progress-pointer.gif") no-repeat 0 0;}
+#deal-intro .progress-bar{float:left;height:17px;padding:0 2px;width:198px;background:url("/static/theme/ev56_58/css/i/bg-progress-bottom.gif") no-repeat left top;}
+#deal-intro .progress-left,#deal-intro .progress-right{float:left;height:9px;margin-top:3px;*margin-top:3px;background:url("/static/theme/ev56_58/css/i/bg-progress-top-l.gif") no-repeat left top;}
+#deal-intro .progress-left{margin-left:2px;_margin-left:1px;}
+#deal-intro .progress-right{width:6px;background-image:url("/static/theme/ev56_58/css/i/bg-progress-top-r.gif");}
+#deal-intro .hide{display:none;}
+#deal-intro .min{clear:both;float:left;font-weight:bold;}
+#deal-intro .max{float:right;font-weight:bold;}
+#recent-deals .sect{width:auto;padding:10px;}
+#recent-deals .deals-list li{float:left;width:318px;height:228px;border-bottom:1px dashed #ccc;border-right:1px dashed #ccc;}
+#recent-deals .deals-list li.first{height:213px;}
+#recent-deals .deals-list li.alt{padding-left:20px;border-right:none;}
+#recent-deals .deals-list .time{margin-top:15px;font-size:12px;font-weight:bold;color:#000;}
+#recent-deals .deals-list .first .time{margin-top:0;}
+#recent-deals .deals-list h4{margin-top:5px;height:42px;padding-right:10px;font-weight:normal;}
+#recent-deals .deals-list h4 a{color:#666;}
+#recent-deals .pic{position:relative;z-index:1;float:left;width:200px;height:121px;margin:8px 0 20px;_display:inline;zoom:1;}
+#recent-deals .pic .soldout{position:absolute;z-index:1;right:0;bottom:0;_bottom:-1px;width:122px;height:69px;background:url("/static/theme/ev56_58/css/i/bg-deals-default-soldout.png") no-repeat 0 0;_background:transparent;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/static/theme/ev56_58/css/i/bg-deals-default-soldout.png");}
+#recent-deals .pic .soldoutlink{display:block;position:absolute;z-index:2;right:0;bottom:0;width:122px;height:69px;outline:0;text-indent:-999em;}
+#recent-deals .pic .isopen{position:absolute;z-index:1;right:-13px;bottom:-7px;width:65px;height:65px;background:url("/static/theme/ev56_58/css/i/bg-deals-default-isopen.png") no-repeat 0 0;_background:transparent;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/static/theme/ev56_58/css/i/bg-deals-default-isopen.png");}
+#recent-deals .pic .isopenlink{display:block;position:absolute;z-index:2;right:-13px;bottom:-7px;width:65px;height:65px;outline:0;text-indent:-999em;}
+
+#recent-deals .pic .seconds_wait{position:absolute;z-index:1;right:-13px;bottom:-7px;width:65px;height:65px;background:url("/static/theme/ev56_58/css/i/bg-deals-seconds_wait.png") no-repeat 0 0;_background:transparent;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/static/theme/ev56_58/css/i/bg-deals-seconds_wait.png");}
+#recent-deals .pic .seconds_wait_link{display:block;position:absolute;z-index:2;right:-13px;bottom:-7px;width:65px;height:65px;outline:0;text-indent:-999em;}
+#recent-deals .pic .seconds_on{position:absolute;z-index:1;right:-13px;bottom:-7px;width:65px;height:65px;background:url("/static/theme/ev56_58/css/i/bg-deals-seconds_on.png") no-repeat 0 0;_background:transparent;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/static/theme/ev56_58/css/i/bg-deals-seconds_on.png");}
+#recent-deals .pic .seconds_on_link{display:block;position:absolute;z-index:2;right:-13px;bottom:-7px;width:65px;height:65px;outline:0;text-indent:-999em;}
+#recent-deals .pic .seconds_off{position:absolute;z-index:1;right:-13px;bottom:-7px;width:65px;height:65px;background:url("/static/theme/ev56_58/css/i/bg-deals-seconds_off.png") no-repeat 0 0;_background:transparent;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/static/theme/ev56_58/css/i/bg-deals-seconds_off.png");}
+#recent-deals .pic .seconds_off_link{display:block;position:absolute;z-index:2;right:-13px;bottom:-7px;width:65px;height:65px;outline:0;text-indent:-999em;}
+
+#recent-deals .pic img{display:block;}
+#recent-deals .info{float:left;padding-top:5px;padding-left:15px;width:100px;color:#666;font-size:12px;}
+#recent-deals .total strong{color:#c33;font-size:20px;}
+#recent-deals .price{margin-top:10px;*margin-top:6px;font-size:12px;line-height:1.5;}
+#recent-deals .price strong{color:#000;font-size:14px;font-weight:bold;}
+#recent-deals .price strong.discount{font-size:14px;font-weight:bold;color:#c33;}
+#recent-deals .price strong.old{text-decoration:line-through;}
+#recent-deals .detail{margin-top:8px;color:#666;font-size:12px;}
+#recent-deals .deal-subscribe{margin-top:0;}
+#partner-tip-bottom { width:650px;}
+.rbox{margin-bottom:15px;width:253px;overflow:hidden;border:none;background:#fff;}
+</style>
+
+<div class="wrap2">
+  <div class="uleft2" id="deal-intro">
+    <div class="utit">
+      <h2>商户：{$partner['title']}</h2>
+    </div>
+    <div class="acon">
+      <div class="sect">
+      <div class="main" style="float:left; height:auto;">
+					<div class="other other-top" style="margin-top:5px;">
+						<p><b>地址</b>：{$partner['address']}</p>
+						<p><b>电话</b>：{$partner['phone']}</p>
+					<!--{if $partner['homepage']}-->
+						<p><b>网址</b>：<a href="{$partner['homepage']}" target="_blank">${domainit($partner['homepage'])}</a></p>
+					<!--{/if}-->
+					</div>					
+					<div class="other">
+					<!-- {if $partner['guarantee'] == 'Y'} -->
+					<p class="e_icon ensure"><a href="/help/guarantee.php" target="_blank" title="更低廉的价格，更优质的服务！消费保障计划全面推出！">团员消费保障</a></p>
+					<!-- {/if} -->
+					</div>
+					<div class="partner_team_info" style="height:320px;">
+						<p>组织 <b>{$team_count}</b> 次团购</p>
+						<p>购买 <b>{$join_number}</b> 人次</p>
+						<p>节省 <b>${moneyit($save_number)}</b> 元</p>
+						<p id="partner-btn">
+							<span class="h-comment">
+								<!-- {if $comments_num>0} -->
+								${number_format(100*$partner['comment_good']/$comments_num,2)}%
+								<!-- {else} -->
+								--%
+								<!-- {/if} -->
+							</span>
+							<span class="partner-comment-btn">
+								<a id="partner-comment-btn" href="/order/index.php?s=pay"><strong>消费点评</strong></a>
+							</span>
+						</p>
+						<div class="partner-dianping">
+							<p style="line-height:24px;">
+							共 <strong>{$comments_num}</strong> 条点评：
+							</p>
+							<p><img src="/static/theme/ev56_58/css/i/comment-icon-A.gif" alt="" />&nbsp;<span>满意:</span>{$grades['A']}</p>
+							<p><img src="/static/theme/ev56_58/css/i/comment-icon-P.gif" alt="" />&nbsp;<span>一般:</span>{$grades['P']}</p>
+							<p><img src="/static/theme/ev56_58/css/i/comment-icon-F.gif" alt="" />&nbsp;<span>失望:</span>{$grades['F']}</p>
+						</div>
+					</div>
+				</div>
+				<div class="side"  style="float:left;">
+                    <div class="deal-buy-cover-img" id="team_images">
+					<!--{if $partner['image1']||$partner['image2']}-->
+						<div class="mid">
+							<ul>
+								<li class="first"><img src="${team_image($partner['image'])}"/></li>
+							<!--{if $partner['image1']}-->
+								<li><img src="${team_image($partner['image1'])}"/></li>
+							<!--{/if}-->
+							<!--{if $partner['image2']}-->
+								<li><img src="${team_image($partner['image2'])}"/></li>
+							<!--{/if}-->
+							</ul>
+							<div id="img_list">
+								<a ref="1" class="active">1</a>
+							<!--${$imageindex=1;}-->
+							<!--{if $partner['image1']}-->
+								<a ref="${++$imageindex}" >{$imageindex}</a>
+							<!--{/if}-->
+							<!--{if $partner['image2']}-->
+								<a ref="${++$imageindex}" >{$imageindex}</a>
+							<!--{/if}-->
+							</div> 
+						</div>
+						<!--{else}-->
+							<img src="${team_image($partner['image'])}" width="440" height="280" />							
+						<!--{/if}-->
+					</div>
+					<div class="review partner-detil">
+							<p>{$partner['other']}</p>
+					</div>
+                </div>
+							<div class="clear"></div>
+							</div>
+				
+            <input type="hidden" name="partner-availablecoupons" value="${count($coupons)}" />
+            <input type="hidden" name="partner-id" value="{$partner['id']}" />
+				
+				<div id="recent-deals" class="cf" style="margin-top:35px;">
+			<div id="dashboard" class="dashboard">
+				<ul>
+				<li class="${$view == 'comment'?'current':''}"><a class="" href="/partner.php?id={$partner['id']}&view=comment#comments" id="comments">全部点评</a><span></span></li>
+				<li class="${$view == 'team'?'current':''}"><a class="" href="/partner.php?id={$partner['id']}&view=team#teams" id="teams">团购项目</a><span></span></li>
+				</ul>
+			</div>
+			<div id="partner-content" style="margin-left:0px; margin-right:0px;" page="{$focus}">
+				<!--团购-->
+				<!-- {if $view=='team'} -->
+				<div class="box">
+					<div class="box-top"></div>
+					<div class="box-content">
+						<div class="sect" style="border-top:1px solid #fff">
+							<ul class="deals-list">
+							<!-- {if empty($teams)} -->
+							当前商家还未举行过团购活动
+							<!-- {else} -->
+							<!--{loop $teams $index $one}-->
+								<li class="${$index++%2?'alt':''} ${$index<=2?'first':''}">
+									<p class="time">${date('Y年n月j日', $one['begin_time'])}</p>
+									<h4><a href="/team.php?id={$one['id']}" title="{$one['title']}" target="_blank">${mb_strimwidth($one['title'],0,86,'...')}</a></h4>
+									<div class="pic">
+										<div class="{$one['picclass']}"></div>
+										<a href="/team.php?id={$one['id']}" title="{$one['title']}" target="_blank"><img alt="{$one['title']}" src="${team_image($one['image'])}" width="200" height="121" align="middle" /></a>
+									</div>
+									<div class="info"><p class="total"><strong class="count">{$one['now_number']}</strong>人购买</p><p class="price">原价：<strong class="old"><span class="money">{$currency}</span>${moneyit($one['market_price'])}</strong><br />折扣：<strong>${team_discount($one)}折</strong><br />现价：<strong><span class="money">{$currency}</span>${moneyit($one['team_price'])}</strong><br />节省：<strong><span class="money">{$currency}</span>${moneyit($one['market_price']-$one['team_price'])}</strong><br /></p></div>
+								</li>
+							<!--{/loop}-->
+							<!-- {/if} -->
+							</ul>
+							<div class="clear"></div>
+							<div>{$pagestring}</div>
+						</div>
+					</div>
+					<div class="box-bottom"></div>
+				</div>				
+				<!--点评-->
+				<!-- {else} -->
+				<div class="box">
+					<div class="box-top"></div>
+					<div class="box-content">
+						<div class="sect" style="border-top:1px solid #fff">
+							<div id="partner-comment-box">
+							<!-- {if empty($comments)} -->
+							还没有用户对当前商家做出点评。
+							<!-- {else} -->
+							<!-- {loop $comments $k $v} -->												
+							<div class="partner-comment-box-avatar"><a name="comment-{$v['id']}"><img src="${user_image($users[$v['user_id']]['avatar'])}" /></a></div>
+							<div class="partner-comment-box-cont">
+								<ul>
+									<li class="comment-name"><a>{$users[$v['user_id']]['username']}</a></li>
+									<li class="comment-text">{$v['comment']}</li>
+									<li class="comment-misc">
+										<img src="/static/theme/ev56_58/css/i/comment-icon-{$v['grade']}.gif" alt="" />&nbsp;
+										<!-- {if $v['grade'] == 'A'} -->
+										 满意
+										<!-- {elseif $v['grade'] == 'P'} -->
+										一般
+										<!-- {elseif $v['grade'] == 'F'} -->
+										失望 
+										<!-- {/if} -->
+										<span class="comment-time">&nbsp;[${date('Y-m-d H:i:s',$v['create_time'])}]
+										<!-- {if $manger} -->
+										[<a class="ajaxlink" href="/ajax/comment.php?action=recommend&id={$v['id']}">推荐</a>]
+										<!-- {/if} -->
+										</span>
+									</li>
+								</ul>
+							</div>
+							<!-- {/loop} -->
+							<!-- {/if} -->
+							</div>							
+							<div class="clear"></div>
+							<div>{$pagestring}</div>
+						</div>
+					</div>
+					<div class="box-bottom"></div>
+				</div>	
+				<!-- {/if} -->		
+				<!-- {if empty($coupons)} -->				
+				<div id="partner-tip-bottom">
+					点评功能目前只对参与过该商家产品团购的团员开放，谢谢您的支持！<br/>
+					<!-- {if !$login_user} -->
+					您尚未登录，请先 <a href="/account/login.php">登录</a> 或 <a href="/account/signup.php">注册</a> 。
+					<!-- {/if} -->
+				</div>
+				<!-- {/if} -->
+            </div>
+		</div>
+    </div>
+  </div>
+  <div class="uright2">   
+		<!--今日其他团购-->  
+		<!--{include block_side_others}-->    
+		<!--邮件订阅-->  	
+		<!--{include block_side_subscribe}-->
+  </div>
+  <div class="clear"></div>
+</div>
+<!--{include footer}-->

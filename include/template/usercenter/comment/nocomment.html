@@ -1,0 +1,66 @@
+<!--{include header}-->
+<div class="wrap new-order">
+    <div class="fl" style="width:700px">
+        <div class="uleft c3" id="uleft_ev56">
+            <ul class="wrapper">
+                ${current_account('/user/comment/index.php')}
+            </ul>
+        </div>
+        <div class="uright" id="uright_ev56">
+            <div class="utit">
+                <ul class="wrapper">${current_comment_index($selector)}</ul>
+            </div>
+            <div class="sect comment uncomment">
+                <!--{if $total != 0}-->
+                <div class="title">
+                    您有<strong>${count($comment)}</strong>个待评价的订单。现在评价，赢取<strong>{$total}</strong>积分。
+                </div>
+                <!--{/if}-->
+                <table>
+                    <tr>
+                        <th class="first">团购商品</th>
+                        <th>操作</th>
+                    </tr>
+                    <!--{loop $comment $index $one}-->
+                    <?php
+                        if(!$one['tid'])
+                            continue;
+                    ?>
+                    <tr>
+                        <td class="alt">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <img src="${team_image($one['image'],true)}" title="{$one['title']}" alt="">
+                                    </td>
+                                    <td>
+                                        <a href="/team/{$one['tid']}.html" target='_blank'>${$one['title']?$one['title']:'未找到该商品'}</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <p class="stars star0 wrapper" oid="{$one['oid']}">
+                                <span>我的评价：</span>
+                                <i class="star-1"></i>
+                                <i class="star-2"></i>
+                                <i class="star-3"></i>
+                                <i class="star-4"></i>
+                                <i class="star-5"></i>
+                                <span class="msg ml10"></span>
+                                <a href="/order/ajax.php?action=ordercomment&id={$one['oid']}" class="ajaxlink">发表评价(奖${abs(round($one['origin']))}积分)</a>
+                            </p>
+                        </td>
+                    </tr>
+                    <!--{/loop}-->
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="new-order-right fr">
+        <!--{include usercenter/block_userinfo}-->
+    </div>
+    <div class="clear"></div>
+</div>
+<?php $includeScript[] = 'uc_comment'; ?>
+<!--{include footer}-->

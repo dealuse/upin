@@ -1,0 +1,103 @@
+<!--{include header}-->
+<style type="text/css">
+#referrals .refers .share-list{margin:40px 38px 20px;}
+#referrals .refers .share-list .f-text{width:235px;}
+#referrals .refers .blk{float:left;margin-bottom:40px;}
+#referrals .refers .blk h4{color:#349835;}
+#referrals .refers .last{margin-bottom:0;}
+#referrals .refers .logo{float:left;_display:inline;margin-right:15px;width:48px;height:48px;border:1px solid #ccc;background-color:#fff;}
+#referrals .refers .info{float:left;width:535px;}
+#referrals .refers .im .formbutton{visibility:hidden;*visibility:visible;font-size:14px;}
+#referrals .refers .deal-info{float:left;margin-top:12px;}
+#referrals .refers .pic{float:left;width:150px;}
+#referrals .refers .pic img{display:block;}
+#referrals .refers .deal-title{float:left;width:237px;padding-left:13px;}
+#referrals #deal-share{float:left;margin-top:16px;}
+#referrals #deal-share h4{color:#000;font-size:12px;*padding-top:2px;_padding-top:0;}
+#referrals #deal-share .deal-share-links{width:535px;padding:5px 10px 5px 25px;background:#EFF8FF;}
+#referrals #deal-share .nodeal{margin-top:12px; float:left; width:auto;}
+/* deal */
+#deal-share .deal-share-fix{float:left;width:10px;height:30px;background:url("/static/theme/ev56_58/css/i/bg-share-corner.gif") no-repeat 100% -50px;}
+#deal-share .deal-share-top{float:left;_display:inline;margin-left:24px;background:url("/static/theme/ev56_58/css/i/bg-share-corner.gif") no-repeat 0 0;}
+#deal-share .deal-share-links{float:left;width:535px;height:23px;padding:7px 0 0 20px;}
+#deal-share .deal-share-links h4{float:left;font-weight:normal;}
+#deal-share .deal-share-links ul{zoom:1;}
+#deal-share .deal-share-links li{float:left;margin-top:2px;margin-left:3px;}
+#deal-share .deal-share-links p.link{float:left;margin-left:3px;}
+#deal-share a{float:left;dwidth:30px;height:16px;line-height:16px;*line-height:18px;padding-left:20px;background:url("/static/theme/ev56_58/css/i/icons-share.gif") no-repeat 0 0;margin-right:10px;color:#000;font-size:12px;font-family:Helvetica,arial,sans-serif;outline:0;}
+#deal-share a:hover{color:#0981be;}
+#deal-share a img{margin-right:2px;vertical-align:-2px;}
+#deal-share .kaixin{background-position:0 -40px;}
+#deal-share .renren{background-position:0 -80px;}
+#deal-share .douban{background-position:0 -120px;}
+#deal-share .email{background-position:0 -161px;}
+#deal-share .sina{background-position:0 -201px;}
+#deal-share .tencent{background-position:0 -280px;}
+#deal-share-im-c{display:none;clear:both;width:565px;margin-left:24px;}
+#deal-share-im-c .deal-share-im-b{height:50px;padding:10px 10px 10px 20px;border-left:1px solid #89b4d6;border-right:1px solid #89b4d6;background-color:#e5f8ff;}
+#deal-share-im-c .f-input{width:345px;*width:320px;}
+#deal-share-im-c .formbutton{display:none;*display:inline;}
+</style>
+<script src="http://widgets.manyou.com/misc/scripts/ab.js" type="text/javascript"></script>
+<!---content--->
+<div class="wrap2">
+
+  <div class="uleft2" id="referrals">
+    <div class="utit">
+      <h2>邀请有奖</h2>
+    </div>
+		            													<div class="tips1">
+					<!--{if $money}-->
+					<p class="notice-total">您已成功邀请 <strong>{$count}</strong> 人，累计获得 <strong><span class="money">{$currency}</span>{$count*$INI['system']['invitecredit']}</strong> 返利，<a href="/account/refer.php">查看邀请成功列表</a>。</p>
+					<!--{/if}-->
+                            </div>
+							<div class="refers">
+					<!--{if $money}-->
+					<p class="notice-total">您已成功邀请 <strong>{$count}</strong> 人，累计获得 <strong><span class="money">{$currency}</span>{$count*$INI['system']['invitecredit']}</strong> 返利，<a href="/account/refer.php">查看邀请成功列表</a>。</p>
+					<!--{/if}-->
+					<div class="share-links">
+                    <ul class="share-list cf">
+                        <li class="site">
+                            <a class="logo" href="javascript:void 0" id="referrals-share-others-link"><img src="{$INI['system']['wwwprefix']}/static/theme/ev56_58/css/i/logo_msn.png" /></a>
+                            <p class="im">这是您的专用邀请链接，请通过 MSN 或 QQ 发送给好友：
+                                <input id="share-copy-text" type="text" value="{$INI['system']['wwwprefix']}/r.php?r={$login_user_id}" size="35" class="f-input" onfocus="this.select()" />
+                            </p>
+                        </li>
+                    </ul>
+					<div class="nodeal cf">
+						<ul class="deal-share-links">
+							<li><a class="logo" href="${share_kaixin($team)}" target="_blank" title="开心网好友点击链接并购买，您可获 {$INI['system']['invitecredit']} 元返利"><img src="/static/theme/ev56_58/css/i/logo_kaixin.gif" /></a><p class="link"><a href="${share_kaixin($team)}" target="_blank" title="开心网好友点击链接并购买，您可获 {$INI['system']['invitecredit']} 元返利">分享到开心网</a></p></li>
+							<li><a class="logo" href="${share_renren($team)}" target="_blank" title="人人网好友点击链接并购买，您可获 {$INI['system']['invitecredit']} 元返利"><img src="/static/theme/ev56_58/css/i/logo_renren.png" /></a><p class="link"><a href="${share_renren($team)}" target="_blank" title="人人网好友点击链接并购买，您可获 {$INI['system']['invitecredit']} 元返利">分享到人人网</a></p></li>
+							<li><a class="logo" href="${share_sina($team)}" target="_blank" title="关注者点击链接并购买，您可获 {$INI['system']['invitecredit']} 元返利"><img src="/static/theme/ev56_58/css/i/logo_sina.png" /></a><p class="link"><a href="${share_sina($team)}" target="_blank" title="关注者点击链接并购买，您可获 {$INI['system']['invitecredit']} 元返利">分享到新浪微博</a></p></li>
+							<li><a class="logo" href="${share_douban($team)}" target="_blank" title="豆瓣网友点击链接并购买，您可获 {$INI['system']['invitecredit']} 元返利"><img src="/static/theme/ev56_58/css/i/logo_douban.gif" /></a><p class="link"><a href="${share_douban($team)}" target="_blank" title="豆瓣网友点击链接并购买，您可获 {$INI['system']['invitecredit']} 元返利">分享到豆瓣</a></p></li>
+							<li><a class="logo" href="${share_mail($team)}" target="_blank" title="好友点击链接并购买，您可获 {$INI['system']['invitecredit']} 元返利"><img src="/static/theme/ev56_58/css/i/logo_email.gif" /></a><p class="link"><a href="${share_mail($team)}" target="_blank" title="好友点击链接并购买，您可获 {$INI['system']['invitecredit']} 元返利">通过邮件发给好友</a></p></li>
+						</ul>
+						</div>
+					</div>
+				</div>
+												    <br /><br /><br />
+  </div>
+                             <div class="uright2 c3">
+<div class="side-tip referrals-side">
+			<h3 class="first">在哪里可以看到我的返利？</h3>
+			<p>如果邀请成功，在本页面会看到成功邀请列表。在"帐号设置"页右侧，可看到您目前电子账户的余额。返利金额不返现，可在下次团购时用于支付。</p>
+			<h3>好友已经注册过{$INI['system']['abbreviation']}账户，邀请购买还有效么？</h3>
+			<p>只要好友是首次购买，不管之前是否注册过{$INI['system']['abbreviation']}账户都有效。</p>
+			<h3>哪些情况会导致邀请返利失效？</h3>
+			<ul class="invalid">
+
+			<li>好友点击邀请链接后超过 72 小时才购买</li>
+			<li>好友购买之前点击了其他人的邀请链接</li>
+			<li>好友的本次购买不是首次购买</li>
+			<li>由于最终团购人数没有达到人数下限，本次团购取消</li>
+			</ul>
+			<h3>自己邀请自己也能获得返利吗？</h3>
+
+			<p>不可以。我们会人工核查，对于查实的作弊行为，不返利。</p>
+		</div>
+            </div>
+                   <div class="clear"></div>
+</div>
+<!---contentEnd--->
+
+<!--{include footer}-->

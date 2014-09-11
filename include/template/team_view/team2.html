@@ -1,0 +1,461 @@
+<!--{include header}-->
+<style>
+    .item-details-information section img{
+        display: block;
+    }
+    .gxq {margin: 15px 0; margin-left: 10px; }
+    #title_font {font-size: 14px !important; }
+    .gxq li {float:left;margin: 0px 5px ; padding-bottom: 15px; border-top: 2px solid #F7F7F7; padding-top: 9px; height: 186px;}
+    .gxq li p{width:190px; border: 1px solid white; }
+    .gxq li p .num_buy{ float: right;}
+    .gxq li h4{width:200px;  margin-top: 7px; text-align: left;  letter-spacing: -1px; }
+    .gxq li img {width:200px;height:138px ;}
+    .gxq em {font-size: 14px; font-weight: 600; color: #D74C00;}
+    .gxq B{width:200px; display: inline-block;}
+</style>
+<article id="breadNav">
+    <p>
+        您的位置：
+        <a href="/">温哥华团购</a><span>&gt;</span>
+        <!--<a href="/{$city['ename']}">{$city['name']}团购</a><span>&gt;</span> -->
+        <!--{loop $breadcrumb $i $one}-->
+        <!--<a href="/{$city['ename']}{$one['link']}">{$one['name']}</a><span>&gt;</span>-->
+        <a href="{$one['link']}">{$one['name']}</a><span>&gt;</span>
+        <!--{/loop}-->
+        {$team['product']}
+
+    </p>
+</article>
+<section id="item-details">
+    <div class="item-details-show details-block">
+        <header>
+            <h3 class="ti-5">{$team['product']}</h3>
+            <h4>{$team['title']}</h4>
+        </header>
+        <section class="wrapper">
+            <div class="fl">
+                <p class="item-price yuan tc">
+                    <i class="yuan">&#36;</i><span>{$team['team_price']}</span>
+                </p>
+                <p class="tc mt10" style="font-size:">
+                    <em>${team_discount($team)}&nbsp;折</em>
+                    <span style="font-size:16px;">原价</span> <em class="mr8"><i class="yuan">&#36;</i>{$team['market_price']}</em>
+                    
+                </p>
+                <!--{if $team['max_number']>0 && $team['now_number'] >= $team['max_number']}-->
+                <p class="item-buy-botton item-empty">
+                    <a href="javascript:alert('本团购已卖光!')"><span>已卖光</span></a>
+                </p>
+                <!--{elseif $team['begin_time'] > time()}-->
+                <p class="item-buy-botton item-begin">
+                    <a href="javascript:alert('本团购还未开始!')"><span>即将开始</span></a>
+                </p>
+                <!--{elseif $team['end_time'] < time()}-->
+                <p class="item-buy-botton item-over">
+                    <a href="javascript:alert('本团购已结束!')"><span>已结束</span></a>
+                </p>
+                <!--{else}-->
+                <p class="item-buy-botton item-buying">
+                    <a href="/team/buy.php?id={$team['id']}"><span>抢购</span></a>
+                </p>
+                <!--{/if}-->
+                <p class="item-purchased" style="padding-top:30px;">
+                    <!--{if $team['begin_time'] > time()}-->
+                    <span class="first mb10"><strong>0</strong> 人购买</span>
+                    <!--{else}-->
+                    <span class="first mb10" style="font-size:28px;"><strong>{$team['now_number']}</strong> 人购买</span>
+                    <!--{/if}-->
+                    <span>{$cutTime}</span>
+                </p>
+            </div>
+            <div class="fr" id="slide">
+                <!--{if false && ($team['image1']||$team['image2'])}-->
+                                            <ul>
+                                <li class="first"><img src="${team_image($team['image'])}"/></li>
+                            <!--{if $team['image1']}-->
+                                <li><img src="${team_image($team['image1'])}"/></li>
+                            <!--{/if}-->
+                            <!--{if $team['image2']}-->
+                                <li><img src="${team_image($team['image2'])}"/></li>
+                            <!--{/if}-->
+                            </ul>
+                                                        <div id="img_list">
+                                <a ref="1" class="active">1</a>
+                            <!--${$imageindex=1;}-->
+                            <!--{if $team['image1']}-->
+                                <a ref="${++$imageindex}" >{$imageindex}</a>
+                            <!--{/if}-->
+                            <!--{if $team['image2']}-->
+                                <a ref="${++$imageindex}" >{$imageindex}</a>
+                            <!--{/if}-->
+                            </div> 
+                                                    <!--{else}-->
+                            <div u="loading">
+                                <img src="${team_image($team['image'])}" alt="{$team['product']}团购">
+                            </div>
+                            <!--
+         <div u="slides">
+            <div>
+                <img u="image" src="${team_image($team['image'])}"/>
+                <img u="thumb" src="${team_image($team['image'])}"/>
+            </div>
+            <div>
+                <img u="image" src="${team_image($team['image1'])}"/>
+                <img u="thumb" src="${team_image($team['image1'])}"/>
+            </div>
+            <div>
+                <img u="image" src="${team_image($team['image2'])}"/>
+                <img u="thumb" src="${team_image($team['image2'])}"/>
+            </div>
+        </div>    
+        -->                       
+                        <!--{/if}-->
+            </div>
+        </section>
+        <footer class="wrapper">
+            <!--
+            <a class="item-fav fl wrapper" href="">
+                <i class="item-heart"></i>
+                <span>收藏本单</span>
+            </a>
+        -->
+
+            <div class="bdsharebuttonbox" style="float:left;">
+                <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+                <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+            </div>
+            <script>window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2503814745"},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","weixin","renren","fbook"],"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+        </footer>
+    </div>
+    <!--
+    <div class="item-details-discuss  details-block mt15">
+        
+    </div>
+    -->
+    <!--{if $partnerItem}-->
+    <!--this partner other items-->
+    <div class="item-details-others details-block mt15">
+        <header>
+            <h3><strong>该商户的其他团购</strong></h3>
+        </header>
+        <section class="mt15">
+            <ul class="block">
+                <!--{loop $partnerItem $in $one}-->
+                <li>
+                    <a class="wrapper" href="/team/{$one['id']}.html">
+                        <span class="item-details-others-priced"><i class="yuan">&#36;</i>{$one['team_price']}</span>
+                        <span class="item-details-others-price">原价<i class="yuan">&#36;</i>{$one['market_price']}</span>
+                        <span class="item-details-others-title">{$one['product_sms']}</span>
+                        <span class="item-details-others-purchased">{$one['now_number']}人购买</span>
+                    </a>
+                </li>
+                <!--{/loop}-->
+            </ul>
+        </section>
+    </div>
+    <!-- END -->
+    <!--{/if}-->
+    <div class="item-details-content details-block mt15" id="item-details-content">
+        <header>
+            <nav class="wrapper">
+                <ul class="inline-block fl">
+                    <!--{if $team['delivery'] != 'express'}-->
+                    <li class="detailsNav-1">
+                        <a href="#position">商家位置</a>
+                    </li>
+                    <!--{/if}-->
+                    <li class="detailsNav-2">
+                        <a href="#information">本单详情</a>
+                    </li>
+                    <!--{if $team['detail_partner']}-->
+                    <li class="detailsNav-3">
+                        <a href="#introduce">商家简介</a>
+                    </li>
+                    <!--{/if}-->
+                </ul>
+                <a id="Totop" href="javascript:void(0);">
+                </a>
+                <a id="buyNow" href="/team/buy.php?id={$team['id']}">立即抢购</a>
+            </nav>
+        </header>
+        <!--{include team_view/partner_location}-->
+
+
+        <div class="item-details-information" id="information">
+            <header class="mb15">
+                <h3><strong>本单详情</strong></h3>
+            </header>
+            <section>
+                <!--{if $team['detail_table']}-->
+                <!-- item detail table -->
+                <p id="standard-bar">欢乐畅想</p>
+                {$team['detail_table']}
+                <!-- END -->
+                <!--{/if}-->
+                <!--{if $city['name'] == '北京'}-->
+                <!--温馨提示：2014年1月25日-2014年2月6日购买的电子券产品，全部移至2014年2月7日陆续发送，为此给您带来的不便，请谅解！-->
+                <br/>
+                <!--{/if}-->
+                <!--{if $team['notice']}-->
+                <!-- item detail notice -->
+                <div class="remind">
+                    {$team['notice']}
+                </div>
+                <!-- END -->
+                <!--{/if}-->
+                <p id="standard-bar">项目介绍</p>
+                <!--{if !$aptSaidLink}-->
+                <!--<div><strong>分享更多网购<a href="{$breadcrumb['group']['link']}" target="_blank" style="color:red">{$breadcrumb['group']['name']}</a>信息</strong></div>-->
+                <!--{/if}-->
+                <!-- detail -->
+                <div style="padding:2px 14px;">
+                    {$team['detail']}
+                </div>
+                <!--{if $team['detail_partner']}-->
+                <!-- item detail partner -->
+                <div id="introduce">
+                    <p id="standard-bar">商家简介</p>
+                    <div style="padding:2px 14px;">
+                        {$team['detail_partner']}
+                    </div>
+                </div>
+                <!-- END -->
+                <!--{/if}-->
+            </section>
+        </div>
+
+        <div class="item-details-discuss gxq" >
+            <!--{if  true}-->
+
+            <section>
+                <header class="wrapper">
+                    <p class="title wrapper">
+                        <span class="fl">您可能感兴趣的团购</span>
+                    </p>
+                    <div class="wrapper" id="v2-comment">
+                        <div class="gather" style=" width:100%;clear: both;height:auto " >
+                            <ul class="block gxq">
+                                <!--{loop $otherTeam $index $one}-->
+                                <!--{if $one['id'] == $lastOtherTeam}-->
+                                <li class="last">
+                                    <!--{else}-->
+                                <li>
+                                    <!--{/if}-->
+                                    <a href="/team/{$one['id']}.html">
+                                        <img class="index-item-img" src="/static/v2/img/border.gif" data-original="${team_image($one['image'],true)}" alt="{$one['product']}">
+                                        <h4>{$one['product']}</h4>
+                                        <p class="wrapper" style="float:right;">
+                                            <span class="fl"><strong><em><i class="yuan">&#36;</i>{$one['team_price']}</em></strong></span>
+                                            <span class="fl">&nbsp;&nbsp;&nbsp;原价<small>{$one['market_price']}</small></span>
+                                            <!--<span class="fr"><em>${$one['now_number']+$one['pre_number']}</em>人已团购</span>-->
+                                        </p>
+                                    </a>
+                                </li>
+                                <!--{/loop}-->
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+            </section>
+        </div>
+
+
+        <div class="item-details-discuss" id="discuss">
+            <footer class="wrapper">
+                <div class="fl wrapper">
+                    <p class="first"><i class="yuan">&#36;</i>{$team['team_price']}</p>
+                    <p>
+                        <span class="first">原价</span>
+                        <span><em><i class="yuan">&#36;</i>{$team['market_price']}</em></span>
+                    </p>
+                    <p>
+                        <span class="first">折扣</span>
+                        <span>${team_discount($team)}折</span>
+                    </p>
+                    <p>
+                        <span class="first">已购买</span>
+                        <span>{$team['now_number']}人</span>
+                    </p>
+                </div>
+
+                <!--{if $team['max_number']>0 && $team['now_number'] >= $team['max_number']}-->
+                <div class="fr wrapper item-empty">
+                    <a href="javascript:alert('本团购已卖光!')">已卖光</a>
+                </div>
+                <!--{elseif $team['begin_time'] > time()}-->
+                <div class="fr wrapper item-begin">
+                    <a href="javascript:alert('本团购还未开始!')">即将开始</a>
+                </div>
+                <!--{elseif $team['end_time'] < time()}-->
+                <div class="fr wrapper item-over">
+                    <a href="javascript:alert('本团购已结束!')">已结束</a>
+                </div>
+                <!--{else}-->
+                <div class="fr wrapper item-buying">
+                    <a href="/team/buy.php?id={$team['id']}">抢购</a>
+                </div>
+                <!--{/if}-->
+                <div class="cb"></div>
+            </footer>
+        </div>
+    </div>
+    <!--{if $team['systemreview']}-->
+    <div class="item-details-aipinsaid details-block mt15">
+        <header class="wrapper">
+            <h3 class="fl"><strong>优品会</strong> <small>SAID</small></h3>
+            <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" style="float:right;margin-top:15px">
+
+                <a class="bds_qzone"></a>
+                <a class="bds_tsina"></a>
+                <a class="bds_tqq"></a>
+                <a class="bds_renren"></a>
+                <a class="bds_t163"></a>
+                <span class="bds_more" style="line-height: 14px;">更多</span>
+            </div>
+        </header>
+        <section>
+            <!--{if $aptSaidLink}-->
+            <div style="text-align: right"><strong>{$aptSaidLink}</strong></div>
+        </section>
+        <!--{/if}-->
+        <div style="margin:15px auto; width: 658px; padding-bottom: 25px;">
+            {$team['systemreview']}
+        </div>
+</section>
+</div>
+
+<!--{/if}-->
+
+<aside id="item-details-right">
+    <!--
+    <header class="box ">
+        <span style=" font-size: 18px; font-weight: 600; display: inline-block; width: 112%; color: #FF7417 !important;padding: 10px 0px ;  margin-left: -14px; margin-top: -11px; background: #F6F6F6; letter-spacing: 1px ;border-bottom: 1px solid #F4F4F4 ">优品会APP客户端</span>
+        <a href="http://m.aipintuan.com/android"><img src="/static/v2/img/APPbig.png" width="220" height="220"></a>
+    </header>
+-->
+    <!--{include ad/right_index_banner}-->
+    <!--{include block_side_others}-->
+
+</aside>
+</section>
+<?php $includeScript[]='team_toolfixed' ?>
+<?php //$includeScript[]='team_comment'; ?>
+<?php //$includeScript[]='team_share'; ?>
+
+<!--{include footer}-->
+    <script type="text/javascript" src="/static/js/jssor/js/jssor.core.js"></script>
+    <script type="text/javascript" src="/static/js/jssor/js/jssor.utils.js"></script>
+    <script type="text/javascript" src="/static/js/jssor/js/jssor.slider.js"></script>
+    <script>
+         jQuery(document).ready(function ($) {
+
+            var _SlideshowTransitions = [
+            //Fade in L
+                {$Duration: 1200, x: 0.3, $During: { $Left: [0.3, 0.7] }, $Easing: { $Left: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2 }
+            //Fade out R
+                , { $Duration: 1200, x: -0.3, $SlideOut: true, $Easing: { $Left: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2 }
+            //Fade in R
+                , { $Duration: 1200, x: -0.3, $During: { $Left: [0.3, 0.7] }, $Easing: { $Left: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2 }
+            //Fade out L
+                , { $Duration: 1200, x: 0.3, $SlideOut: true, $Easing: { $Left: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2 }
+
+            //Fade in T
+                , { $Duration: 1200, y: 0.3, $During: { $Top: [0.3, 0.7] }, $Easing: { $Top: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2, $Outside: true }
+            //Fade out B
+                , { $Duration: 1200, y: -0.3, $SlideOut: true, $Easing: { $Top: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2, $Outside: true }
+            //Fade in B
+                , { $Duration: 1200, y: -0.3, $During: { $Top: [0.3, 0.7] }, $Easing: { $Top: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2 }
+            //Fade out T
+                , { $Duration: 1200, y: 0.3, $SlideOut: true, $Easing: { $Top: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2 }
+
+            //Fade in LR
+                , { $Duration: 1200, x: 0.3, $Cols: 2, $During: { $Left: [0.3, 0.7] }, $ChessMode: { $Column: 3 }, $Easing: { $Left: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2, $Outside: true }
+            //Fade out LR
+                , { $Duration: 1200, x: 0.3, $Cols: 2, $SlideOut: true, $ChessMode: { $Column: 3 }, $Easing: { $Left: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2, $Outside: true }
+            //Fade in TB
+                , { $Duration: 1200, y: 0.3, $Rows: 2, $During: { $Top: [0.3, 0.7] }, $ChessMode: { $Row: 12 }, $Easing: { $Top: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2 }
+            //Fade out TB
+                , { $Duration: 1200, y: 0.3, $Rows: 2, $SlideOut: true, $ChessMode: { $Row: 12 }, $Easing: { $Top: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2 }
+
+            //Fade in LR Chess
+                , { $Duration: 1200, y: 0.3, $Cols: 2, $During: { $Top: [0.3, 0.7] }, $ChessMode: { $Column: 12 }, $Easing: { $Top: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2, $Outside: true }
+            //Fade out LR Chess
+                , { $Duration: 1200, y: -0.3, $Cols: 2, $SlideOut: true, $ChessMode: { $Column: 12 }, $Easing: { $Top: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2 }
+            //Fade in TB Chess
+                , { $Duration: 1200, x: 0.3, $Rows: 2, $During: { $Left: [0.3, 0.7] }, $ChessMode: { $Row: 3 }, $Easing: { $Left: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2, $Outside: true }
+            //Fade out TB Chess
+                , { $Duration: 1200, x: -0.3, $Rows: 2, $SlideOut: true, $ChessMode: { $Row: 3 }, $Easing: { $Left: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2 }
+
+            //Fade in Corners
+                , { $Duration: 1200, x: 0.3, y: 0.3, $Cols: 2, $Rows: 2, $During: { $Left: [0.3, 0.7], $Top: [0.3, 0.7] }, $ChessMode: { $Column: 3, $Row: 12 }, $Easing: { $Left: $JssorEasing$.$EaseInCubic, $Top: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2, $Outside: true }
+            //Fade out Corners
+                , { $Duration: 1200, x: 0.3, y: 0.3, $Cols: 2, $Rows: 2, $During: { $Left: [0.3, 0.7], $Top: [0.3, 0.7] }, $SlideOut: true, $ChessMode: { $Column: 3, $Row: 12 }, $Easing: { $Left: $JssorEasing$.$EaseInCubic, $Top: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2, $Outside: true }
+
+            //Fade Clip in H
+                , { $Duration: 1200, $Delay: 20, $Clip: 3, $Assembly: 260, $Easing: { $Clip: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2 }
+            //Fade Clip out H
+                , { $Duration: 1200, $Delay: 20, $Clip: 3, $SlideOut: true, $Assembly: 260, $Easing: { $Clip: $JssorEasing$.$EaseOutCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2 }
+            //Fade Clip in V
+                , { $Duration: 1200, $Delay: 20, $Clip: 12, $Assembly: 260, $Easing: { $Clip: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2 }
+            //Fade Clip out V
+                , { $Duration: 1200, $Delay: 20, $Clip: 12, $SlideOut: true, $Assembly: 260, $Easing: { $Clip: $JssorEasing$.$EaseOutCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2 }
+                ];
+
+            var options = {
+                $AutoPlay: true,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+                $AutoPlayInterval: 1500,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
+                $PauseOnHover: 1,                                //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, 4 freeze for desktop, 8 freeze for touch device, 12 freeze for desktop and touch device, default value is 1
+
+                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+                $ArrowKeyNavigation: true,                          //[Optional] Allows keyboard (arrow key) navigation or not, default value is false
+                $SlideDuration: 800,                                //Specifies default duration (swipe) for slide in milliseconds
+
+                $SlideshowOptions: {                                //[Optional] Options to specify and enable slideshow or not
+                    $Class: $JssorSlideshowRunner$,                 //[Required] Class to create instance of slideshow
+                    $Transitions: _SlideshowTransitions,            //[Required] An array of slideshow transitions to play slideshow
+                    $TransitionsOrder: 1,                           //[Optional] The way to choose transition to play slide, 1 Sequence, 0 Random
+                    $ShowLink: true                                    //[Optional] Whether to bring slide link on top of the slider when slideshow is running, default value is false
+                },
+
+                $ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
+                    $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
+                    $ChanceToShow: 1                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+                },
+
+                $ThumbnailNavigatorOptions: {                       //[Optional] Options to specify and enable thumbnail navigator or not
+                    $Class: $JssorThumbnailNavigator$,              //[Required] Class to create thumbnail navigator instance
+                    $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+
+                    $ActionMode: 1,                                 //[Optional] 0 None, 1 act by click, 2 act by mouse hover, 3 both, default value is 1
+                    $SpacingX: 8,                                   //[Optional] Horizontal space between each thumbnail in pixel, default value is 0
+                    $DisplayPieces: 10,                             //[Optional] Number of pieces to display, default value is 1
+                    $ParkingPosition: 360                          //[Optional] The offset position to park thumbnail
+                }
+            };
+
+            var jssor_slider1 = new $JssorSlider$("team_images", options);
+            //responsive code begin
+            //you can remove responsive code if you don't want the slider scales while window resizes
+            function ScaleSlider() {
+                var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
+                if (parentWidth)
+                    jssor_slider1.$SetScaleWidth(Math.max(Math.min(parentWidth, 800), 300));
+                else
+                    window.setTimeout(ScaleSlider, 30);
+            }
+
+            ScaleSlider();
+
+            if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
+                $(window).bind('resize', ScaleSlider);
+            }
+
+
+            //if (navigator.userAgent.match(/(iPhone|iPod|iPad)/)) {
+            //    $(window).bind("orientationchange", ScaleSlider);
+            //}
+            //responsive code end
+        });
+    </script>

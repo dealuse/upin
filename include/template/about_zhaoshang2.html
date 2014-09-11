@@ -1,0 +1,58 @@
+<!--{include header}-->
+<style>
+#contentsx{
+	font-size:16px;
+	font-weight: bold;
+	padding:0 0 0 25px;
+	margin-top:10px;
+}
+#contents{
+	font-size:14px;
+	font-weight: normal;
+	padding:0 45px 0 45px;
+	margin-top:10px;
+}
+</style>
+<!--{if $noticesz=Session::Get('alert123',true)}-->
+<script>
+alert('{$noticesz}');
+</script>
+<!--{/if}-->
+<div class="wrap" style="background:#fff">
+	<h1 style="font-size:24px;text-align:center">加盟优品会城市代理步骤</h1>
+	<hr/>
+	<p id="contentsx" style="margin-top:10px;">① 了解优品会城市代理体系</p>
+	<p id="contentsx">② 填写申请表</p>
+	<!--{if Session::Get('alert321')}-->
+	<b style="color:red;padding:0 0 0 25px;">（ √ 已填写申请表格，等待工作人员联系您!）</b>
+	<!--{else}-->
+	<div style="margin:0 0 10px 25px; width:450px; border:1px rgb(255, 163, 0) solid;">
+		<form class="validator ucon" id="consult-add-form" action="/about/submitZs.php" method="POST">
+			<ul class="my_qa">
+				<li><label>接收者:</label><b>优品会分站加盟商务中心</b></li>
+				<li><label><font color="red">*</font>您的称呼:</label><input name="name" class="i_text" datatype="require" require="true" msg="您的称呼不能为空"></li>
+				<li><label><font color="red">*</font>联系方式:</label><input name="tel" class="i_text" datatype="require" require="true" msg="联系方式不能为空"></li>
+				<li style="padding-left: 235px;"><input type="submit" class="input input42" value="提交" id="addAsk"></li>
+			</ul>
+		</form>
+	</div>
+	<!--{/if}-->
+	<p id="contentsx">③ 等待总部工作人员审核并开通</p>
+	<p id="contentsx">④ 发展周边商家</p>
+	<p id="contentsx">⑤ 获得商家利润100%分成</p>
+	<p id="contentsx">⑥ 晋级地区经理:</p>
+	<p id="contents" style="margin-top:3px;"><b>优品会城市代理：</b>
+	<br/>&nbsp;&nbsp;&nbsp;&nbsp;是给毕业大学生提供创业机会，城市代理通过团购平台开展本地吃喝玩乐项目扩展，利用优品会平台的优势和商家进行合作。给当地消费者带来超低折扣的优质服务， 每天多团购为商家找到优质的消费群体。
+让商家只需通过低折扣和互联网推广，就能达到以前大面积电视广告推广达不到的效果。 城市分站享受全年100%的利润分成。</p>
+<p id="contents"><b>城市代理基本要求：</b><br/>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red">城市代理需有一定的组织能力和自我学习能力，能独立发展整个分站城市的代理工作，并负责拓展城市周边的商家。</span></p>
+<p id="contents"><b>城市代理的优势：</b> <br/>&nbsp;&nbsp;&nbsp;&nbsp;
+优品会为城市代理提供完善的拓展体系与相应的工作指导；
+优品会拥有完善的支付体系与评价体系，确保城市代理拥有产品与价格优势；
+优品会强大的技术团队与客服团队是分站代理及其下属直销商户和顾客的有力保障；
+优品会强势的品牌效应以及360独家合作的运营体系。让城市代理拓展之路更加顺畅。
+城市代理：创业者的最佳选择
+给创业者创造机会，是创业者成功起飞的航母。
+为创业者积累当地的人脉资源和社会关系。
+</p>
+</div>
+<!--{include footer}-->

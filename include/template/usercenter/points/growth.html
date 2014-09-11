@@ -1,0 +1,100 @@
+<!--{include header}-->
+
+<div class="wrap new-order">
+    <div class="fl" style="width:700px">
+        <div class="uleft c3" id="uleft_ev56">
+            <ul class="wrapper">
+                ${current_account('/user/points/index.php')}
+            </ul>
+        </div>
+        <div class="uright" id="uright_ev56">
+            <div class="utit">
+                <ul class="wrapper">${current_points_index($selector)}</ul>
+            </div>
+            <div class="sect grow">
+                <section>
+                    <header class="wrapper">
+                        <h2>我的成长信息</h2>
+                        <p>VIP会员专属活动即将开放！</p>
+                    </header>
+                    <div>
+                        <p class="wrapper">
+                            <span>我当前的等级是：</span>
+                            <i class="level-{$growthLevelNum}"></i>
+                            <span class="last">我目前的成长值是：<em>{$growthVal}</em></span>
+                        </p>
+                        <section class="grow-content">
+                            <p class="progress">
+                                <span style="width:{$growthValP}%"></span>
+                            </p>
+                            <ul class="inline level-icon">
+                                <li class="level-0"></li>
+                                <li class="level-1"></li>
+                                <li class="level-2"></li>
+                                <li class="level-3"></li>
+                                <li class="level-4"></li>
+                                <li class="level-5"></li>
+                                <li class="level-6"></li>
+                            </ul>
+                            <ul class="inline level-number">
+                                <li class="level-0">0</li>
+                                
+                                
+                                <li class="level-1">300</li>
+                                <li class="level-2">1000</li>
+                                <li class="level-3">3000</li>
+                                <li class="level-4">10000</li>
+                                <li class="level-5">30000</li>
+                                <li class="level-6">100000</li>
+                            </ul>
+                            <p class="tc">成长值 = 购买金额 - 退款金额</p>
+                        </section>
+                    </div>
+                </section>
+                <section class="mt20">
+                    <header class="wrapper">
+                        <h2>我的成长记录</h2>
+                    </header>
+                    <table class="grow-table">
+                        <tr>
+                            <th class="th-1">时间</th>
+                            <th class="th-2">详情</th>
+                            <th class="th-3">成长值</th>
+                        </tr>
+                        <!--{loop $flow $index $one}-->
+                        <tr>
+                            <td>${date('Y-m-d H:i:s',$one['create_time'])}</td>
+                            <td>{$one['chstatus']} - <a href="/team/{$one['detail_id']}.html" target="_blank">${$one['title']?$one['title']:'无标题信息'}</a></td>
+                            <td>{$one['money']}</td>
+                        </tr>
+                        <!--{/loop}-->
+                    </table>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="new-order-right fr">
+        <!--{include usercenter/block_userinfo}-->
+        <article class="tips">
+            <header>
+                <p class="title">需要帮助</p>
+            </header>
+            <section>
+                <div>
+                    <p class="title">如何升级？</p>
+                    <p class="mb10">会员等级体现了优品会会员不同的成长阶段，升级依靠成长值的积累，即累计购买金额。</p>
+                    <p class="title">升级有什么好处？</p>
+                    <p class="mb10">优品会为不同级别的VIP会员提供专属的尊享礼遇，即将开放，敬请期待。</p>
+                    <p class="title">如何获得成长值？</p>
+                    <p class="mb10">购买即可获得。成长值=累计购买金额，且退款时会扣除相应成长值，每日可获得的成长值上限为5000，个别特殊任务也可以获得成长值。</p>
+                    <p class="title">如何获得积分</p>
+                    <p class="mb10">通过短信/网站对消费过的订单进行评价，可获赠与每次现金消费金额相等的积分。</p>
+                    <p class="title">成长值和积分有什么不同？</p>
+                    <p class="mb10">成长值是优品会会员通过购物所获得的经验值，可换算会员等级。积分是通过评价等行为获得的财富值，可兑换奖品，用于消耗。</p>
+                </div>
+            </section>
+        </article>
+    </div>
+    <div class="clear"></div>
+</div>
+<!--{include footer}-->

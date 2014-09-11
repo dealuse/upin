@@ -1,0 +1,42 @@
+<!--{include header}-->
+<!---content--->
+<div class="wrap2 wrap3">
+    <div class="utit">
+      <h2>绑定成功</h2>
+    </div>
+    <div class="tips2">
+        <h2 class="green">恭喜您，绑定成功！</h2>
+        <p>您的手机号码已绑定成功</p>
+        <p>
+                        现在就去 <a href="/">查看今日团购</a> </p>  
+    </div>
+      
+</div>
+<!---contentEnd--->
+<script language="javascript">
+
+var i=50;
+function change()
+{
+var o=document.getElementById("mobile-input");
+var p=document.getElementById("mobile-verify");
+var s=document.getElementById("mobile-tip");
+if(o.value==""){
+s.innerHTML="请输入正确的手机号码";
+return false;
+}
+i--;
+p.disabled="disabled";
+p.value="重新获取"+i;
+s.innerHTML="已发送。1分钟后如仍未收到短信，可重新获取。";
+if(i==0)
+{ p.value="重新获取"; 
+  p.disabled="";
+  i=50;
+}
+else
+setTimeout("change()",1000);
+}
+
+</script>
+<!--{include footer}-->

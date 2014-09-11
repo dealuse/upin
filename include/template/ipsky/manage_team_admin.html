@@ -1,0 +1,69 @@
+<!--{include ipsky/manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_ipsky_team($selector)}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+				<!--{if $selector=='failure'}-->
+                    <h2>失败项目</h2>
+				<!--{elseif $selector=='success'}-->
+                    <h2>成功项目</h2>
+				<!--{else}-->
+                    <h2>当前项目</h2>
+				<!--{/if}-->
+					<ul class="filter">
+<form method="get">
+                                   <div id="jqtgss">
+                                        <div id="jqtgssa">
+                	                   <ul>
+                	                      <li>
+                	                 	<span id="gjc">项目ID:</span><input type="text" value="{$team_id}" class="hw-input" name="team_id">&nbsp;<span id="gjc">关键字:</span><input type="text" value="{$searchName}" class="hw-input" name="searchName">&nbsp;
+                		<input type="submit" class="formbutton" value="筛选">
+					      </li>
+                	                   </ul>
+					 </div> 
+                                        </div>
+                                       </form>						   
+
+
+					</ul>
+				</div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<tr><th width="40">ID</th><th width="400">项目名称</th><th width="80" nowrap>类别</th><th width="100">日期</th><th width="50">成交</th><th width="60" nowrap>价格</th><th width="140">操作</th></tr>
+					<!--{loop $teams $index $one}-->
+					<!--${$oldstate = $one['state']}-->
+					<!--${$one['state'] = team_state($one)}-->
+					<tr ${$index%2?'':'class="alt"'} id="team-list-id-{$one['id']}">
+						<td>{$one['id']}<!--{if $partners[$one['partner_id']]['qq'] != '' }--><br/><a href="http://wpa.qq.com/msgrd?v=3&uin={$partners[$one['partner_id']]['qq']}&site={$INI['system']['sitename']}&menu=yes" target="_blank" title="{$partners[$one['partner_id']]['qq']}"><img SRC="/thirdpart/qq/imgs/Connect_logo_1.png" ></a><!--{/if}--><br/><a href="/manage/ipsky/partner/edit.php?id={$one['partner_id']}">商家</a></td>
+						<td>
+						  <a href="?partner_id={$one['partner_id']}" title="点击查看此供货商的所有产品">{$partners[$one['partner_id']]['username']}</a>
+              &nbsp;&nbsp;
+							<a class="deal-title" href="/team.php?id={$one['id']}" target="_blank">{$one['title']}</a>
+						</td>
+						<td nowrap>{$cities[$one['city_id']]['name']}<br/>{$groups[$one['group_id']]['name']}</td>
+						<td nowrap>${date('Y-m-d',$one['begin_time'])}<br/>${date('Y-m-d',$one['end_time'])}</td>
+						<td nowrap>{$one['now_number']}/{$one['min_number']}</td>
+						<td nowrap><span class="money">{$currency}</span>${moneyit($one['team_price'])}<br/><span class="money">{$currency}</span>${moneyit($one['cost_price'])}<br/>${sprintf ("%.2f",($one['team_price'] - $one['cost_price'])/$one['team_price']*100)}%<br/><span class="money">{$currency}</span>${moneyit($one['market_price'])}</td>
+						<td class="op" nowrap><a href="/manage/ipsky/team/ajax.php?action=teamdetail&id={$one['id']}" class="ajaxlink">详情</a>｜<a href="/manage/ipsky/team/edit.php?id={$one['id']}&page={$page}">编辑</a><!--{if $one['close_time']>0}-->｜<a href="/manage/ipsky/team/ajax.php?action=teamrenew&id={$one['id']}" class="ajaxlink" ask="确定重开本团吗？" >重开</a><!--{/if}--></td>
+					</tr>
+					<!--{/loop}-->
+					<tr><td colspan="7">{$pagestring}</tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

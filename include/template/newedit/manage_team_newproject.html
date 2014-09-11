@@ -1,0 +1,93 @@
+<!--{include newedit/manage_header_new}-->
+<style>
+<!--
+dl.team_template_city_dept,
+dl.team_template_template_dept{
+	width:100%;
+	display:inline-block;
+	border:dashed #FC0 thin;
+	margin-bottom:20px;
+}
+dl.team_template_template_dept dt,
+dl.team_template_city_dept dt{
+	background-color: rgb(255, 204, 0); padding: 5px; font-weight: bold;
+}
+dl.team_template_template_dept dd,
+dl.team_template_city_dept dd{
+	width: 100px;
+	height: 100px;
+	float: left;
+	margin:10px;
+	text-align:center;
+	background:#68A5F8;
+	line-height: 100px;
+}
+dl.team_template_template_dept dd a,
+dl.team_template_city_dept dd a{
+	color:white;
+	width:100%;
+	height:100%;
+	font-size:18px;
+	display:inline-block;
+}
+-->
+</style>
+<div id="bdw" class="bdw">
+	<div id="bd" class="cf">
+		<div id="leader">
+			<div class="dashboard" id="dashboard">
+				<ul>${mcurrent_team('team')}
+				</ul>
+			</div>
+			<div id="content" class="clear mainwide">
+				<div class="clear box">
+					<div class="box-top"></div>
+					<div class="box-content">
+						<div class="head">
+							<h2>选择新建项目类型</h2>
+						</div>
+						<div class="sect">
+							<dl class="team_template_city_dept">
+								<dt>
+									城市部模板
+								</dt>
+								<dd>
+									<a href="edit.php?template=ktv">KTV</a>
+								</dd>
+								<dd>
+									<a href="edit.php?template=hotel">酒店住宿</a>
+								</dd>
+								<dd>
+									<a href="edit.php?template=cake">蛋糕</a>
+								</dd>
+								<dd>
+									<a href="edit.php?template=film">电影</a>
+								</dd>
+								<dd>
+									<a href="edit.php">通用</a>
+								</dd>
+							</dl>
+							<div class="clear"></div>
+							<dl class="team_template_template_dept">
+								<dt>
+									产品部模板
+								</dt>
+								<div style="height:100px;MARGIN:10px;">
+									<img alt="" src="/static/img/building.png" width="100PX" HEIGHT="100PX">正在建设中...
+								</div>
+							</dl>
+						</div>
+					</div>
+					<div class="box-bottom"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- bd end -->
+</div>
+<!-- bdw end -->
+
+<script type="text/javascript">
+	
+</script>
+<!--{include manage_footer}-->

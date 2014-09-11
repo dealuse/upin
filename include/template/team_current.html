@@ -1,0 +1,50 @@
+<!--{include header}-->
+
+<div id="main">
+<div class="listerouter">
+<div class="lister">
+					<!--{loop $teams $index $one}-->
+  															<dl class="tuanitem">
+				<dt>
+					<a  id="teamfirsturl{$one['id']}"  href="/team.php?id={$one['id']}" target="_blank"><img width="294" heigth="184" alt="{$one['title']}" title="{$one['title']}" src="${team_image($one['image'])}" /></a>
+											
+								<i class="localmask"></i>
+								<div class="local" title="团购时间">
+									时间：${date('Y年n月j日', $one['begin_time'])} - ${date('Y年n月j日', $one['end_time'])}
+								</div>
+								
+								<i class="new" title="最新上线"></i>
+				</dt>
+				<dd class="des">
+					<h2>
+						<a  id="teamsecondurl{$one['id']}"  target="_blank" href="/team.php?id={$one['id']}" title="{$one['title']}" class="c_b">
+							<span class="c_r"> ${moneyit((10*$one['team_price']/$one['market_price']))}折：</span>
+							${mb_strimwidth($one['title'],0,86,'...')}
+						</a>
+					</h2>
+				<div class="gobuy">
+											<a  id="teamthirdurl{$one['id']}"  href="/team.php?id={$one['id']}" target="_blank" class="<!--{if ($one['state']=='soldout')}-->soldout_i<!--{elseif $one['close_time']}-->soldout_i<!--{else}-->golook<!--{/if}-->">去看看</a>
+										<span class="nprice"><i>&yen;</i>${moneyit($one['team_price'])}</span>
+				</div>
+				</dd>
+				<dd class="btmbar">
+					<span class="oprice">原价：&yen;${moneyit($one['market_price'])}</span>
+										<span class="savemoney">节省：&yen;${moneyit($one['market_price']-$one['team_price'])}</span>
+											<span class="ordernums"><b>{$one['now_number']}</b>人已购买</span>
+									</dd>
+				<dd class="shadow"></dd>
+				</dl>				
+		  												
+	<!-- {/loop} -->				
+		  																
+		  																
+		  																
+		    <div class="clear"></div>
+</div>
+					<div  class="class_quick_fm">{$pagestring}</div>
+	
+
+</div>
+</div>
+
+<!--{include footer}-->

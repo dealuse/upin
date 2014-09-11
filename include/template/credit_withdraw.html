@@ -1,0 +1,66 @@
+<!--{include header}-->
+
+<div class="wrap new-order">
+    <div class="fl" style="width:700px">
+        <div class="uleft c3" id="uleft_ev56">
+            <h2 id="uctit" style="display:none">用户中心</h2>
+            <h3 style="display:none">交易管理</h3>
+            <ul>
+                <li style="height: 0; display: none;"><img
+                        src="/static/theme/ev56_58/css/img/express.png"
+                        style="position: relative; left: 95px; top: 9px;"></li>
+                ${current_account('/credit/index.php')}
+            </ul>
+            <h3 style="display:none">咨询与售后</h3>
+            <ul style="display:none">
+                <li><a href="/feedback/suggest.php">咨询/投诉</a></li>
+                <li><a href="/feedback/seller.php">商务合作</a></li>
+                <li><a href="/team/comments.php">买家点评</a></li>
+            </ul>
+            <a class="faq" href="/help/faqs.php" target="_blank" style="display:none">常见问题&gt;&gt;</a>
+        </div>
+        <div class="uright" id="credit">
+            <div class="utit">
+                <h2>申请提现</h2>
+                <a href="/credit/withdrawlist.php" style="float: right;">返回提现列表</a>
+            </div>
+            <div class="sect">
+                <!-- {if $showSuccess} -->
+                <h1 style="font-size:24px;">提现申请成功，请耐心等待系统处理！<small><a href="/credit/withdrawlist.php">查看提现申请</a></small></h1>
+                <!-- {elseif $showError} -->
+                <h1 style="font-size:24px;">提现申请失败，请稍后再试！</h1>
+                <!-- {else} -->
+                <form action="/credit/withdraw.php" method="post" class="validator" >
+                    <div class="field" style="padding:0;margin:5px 0 10px;">
+                        <label style="height: 20px;line-height: 20px;padding: 6px;display: inline-block;">账户余额：</label>
+                        <span><strong style="font-size: 16px;color: #c33;">${moneyit($user['money'])}</strong> 元</span>
+                    </div>
+                    <div class="field" style="padding:0;margin:5px 0 10px;">
+                        <label style="height: 20px;line-height: 20px;padding: 6px;display: inline-block;">提现金额：</label>
+                        <input type="text" size="30" name="money" id="settings-money" class="i_text" require="true" datatype="range" maxLength="7" min="1" max="99999" msg="提现金额不正确"/>
+                    </div>
+                    <div class="field" style="padding:0;margin:5px 0 10px;">
+                        <label style="height: 20px;line-height: 20px;padding-left:72px;display: inline-block;">&nbsp;</label>
+                        <input type="submit" class="input input1" name="withdraw" value="申请提现"/>
+                    </div>
+                </form>
+                <!-- {/if} -->
+                <div style="margin-top: 20px;border: 1px solid #f6e0af;background: #fffbf2;padding: 8px 16px;zoom:1;" >
+                    <b>申请提现后，提现可能分多笔依次到账，3~10个工作日会依次全部到账</b><br>
+                    <ul style="list-style-type: disc;padding-left: 20px;">
+                        <li>使用支付宝支付的金额，将原路退回至您的支付宝</li>
+                        <li>使用财付通支付的金额，将原路退回至您的财付通</li>
+                        <li>使用网上银行支付的金额，将原路退回至您的银行卡</li>
+                    </ul>
+                    注:提现至您支付宝/财付通/银行卡会产生2%的手续费
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="new-order-right fr">
+        <!--{include usercenter/block_userinfo}-->
+    </div>
+    <div class="clear"></div>
+</div>
+<!--{include footer}-->

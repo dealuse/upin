@@ -1,0 +1,157 @@
+<style>
+.headh{ 
+	background: none repeat scroll 0 0 #00C8C8;
+    color: #FFFFFF;
+    height: 28px;
+    line-height: 28px;
+    padding-left: 10px;
+	line-height: 28px;
+    position: relative;
+}
+.headh span.close {
+    background: url("/static/img/sys-icons-16.png?v=1") no-repeat scroll 0 -476px transparent;
+    cursor: pointer;
+    font-weight: normal;
+    position: absolute;
+    right: 10px;
+    text-indent: -9999px;
+    top: 1px;
+    width: 16px;
+}
+</style>
+<div id="get-card" class="order-pay-dialog-c" style="width:380px;" align="left">
+<h3 class="headh">{$msg}<span class="close" onclick="return X.boxClose();">登录</span></h3>
+<!--{if $needlogin == true}-->
+<style>
+label {
+    width: 110px;
+	display: inline-block;
+    font-size: 14px;
+    overflow: hidden;
+    text-align: right;
+    vertical-align: middle;
+	font-weight:bold;
+}
+.i_text {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    font-family: arial,tahoma,"宋体",sans-serif;
+    font-size: 12px;
+    height: 16px;
+    line-height: 18px;
+    margin: 1px;
+    padding: 3px;
+    width: 200px;
+}
+.input42, .input2 {
+    background-position: -233px -112px !important;
+    font-size: 14px;
+    height: 24px;
+    padding-bottom: 3px;
+    width: 86px;
+}
+a.input, .input {
+    background: url("{$INI['system']['cdnprefix']}/static/theme/ev56_58/css/img/ucico.png") no-repeat scroll -322px -109px transparent;
+    border: 0 none;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-weight: 700;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+select, input {
+    font-family: Tahoma;
+    font-size: 12px;
+    vertical-align: middle;
+}
+a {
+    color: #0066CC;
+    cursor: pointer;
+    text-decoration: none;
+	font: 12px/2 arial,"宋体";
+}
+a.zhuce {
+    background: url("{$INI['system']['cdnprefix']}/static/theme/ev56_58/css/img/ucico.png") no-repeat scroll -302px -81px transparent;
+    color: #333333;
+    display: block;
+    font-weight: bold;
+    height: 24px;
+    line-height: 24px;
+    overflow: hidden;
+    text-align: center;
+    width: 106px;
+}
+</style>
+		<div style="height:20px;"></div>
+    	<p style="margin-top:5px;">您可以通过以下方式快速登录:</p>
+        <div style="height:10px;"></div>
+        <div align="center">
+        <a href="/thirdpart/sina/login.php"><img src="/static/img/thirdpart_ico/sina.gif"></a>
+        <a href="/thirdpart/qqlogin/qq_login.php"><img src="/static/img/thirdpart_ico/qq.png"></a>
+        <a href="/thirdpart/baidu/index.php"><img height="24" width="71" src="/static/img/thirdpart_ico/hao123.png"></a>
+        <br/> 
+        <a href="/thirdpart/tuan800/tuanlogin.php"><img src="/static/img/thirdpart_ico/tuan800.jpg"></a>
+        <a href="/thirdpart/hao360/360login.php"><img src="/static/img/thirdpart_ico/360.gif"></a>
+        <a href="/alifast/auth_authorize.php"><img src="/static/img/thirdpart_ico/zhifu.gif"></a>
+        </div>
+        <div style="height:10px; border-bottom: 1px solid #E5E5E5;"></div>
+        <p style="margin-top:5px;">已有优品会账号?</p>
+        <div style="height:10px;"></div>
+        <form id="login-user-form" method="post" action="/account/login.php" class="validator">
+        <label for="login-email-address">用户名／邮箱：</label>
+        <input type="text" size="30" name="email" id="login-email-address" class="i_text" value="" require="true" datatype="require|limit" min="2" />
+        <div style="height:5px;"></div>
+        <label for="login-password">密码：</label>
+        <input type="password" size="30" name="password" id="login-password" class="i_text" require="true" datatype="require" />
+        <br />
+        <label for="autologin"></label><input type="checkbox" value="1" name="auto_login" id="autologin" class="f-check" checked /> 下次自动登录
+        <br/>
+        <label for=""></label>
+		  <input type="submit" value="登录" name="commit" id="login-submit" class="input input42"/>
+          <a href="/account/repass.php">忘记密码</a>
+        </form>
+        <div style="height:10px; border-bottom: 1px solid #E5E5E5;"></div>
+        <div style="height:10px;"></div>
+        <p>还没有优品会账户？<a class="zhuce" href="/account/signup.php">点击注册</a></p>
+        <p></p>
+        <div style="height:10px;"></div>
+<!--{else}-->
+    
+    <!--{if $notic}-->
+    <h2>请记录您的代金券号，以免丢失！</h2>
+    <p>代金券编号：<b style="color:#F00">{$card['id']}</b></p>
+	<p>代金券金额：<b style="color:#0C0">{$card['credit']}</b>元</p>
+   	<!--{else}--> 
+    <p>
+    您的三张代金券为：
+    </p>
+    <!--{loop $card $index $c}-->
+    	<p><span style="font-weight:bold">${$index+1}.</span>编号<span style="color:#F00"><b>[{$c['id']}]</b></span>&nbsp;&nbsp;&nbsp;金额<span style="color:#0C0"><b>{$c['credit']}</b></span>元&nbsp;<!--{if $c['consume']=='N'}--><span style="color:#0C0; font-weight:bold">&lt;未使用&gt;</span><!--{else}--><span style="color:#F00; font-weight:bold">&lt;已使用&gt;</span><!--{/if}--></p>
+    <!--{/loop}-->
+    <!--{/if}-->
+    <div style="height:10px; border-bottom: 1px solid #E5E5E5;"></div>
+  <p align="center">
+  <b id="click">点击查看活动小教程</b>
+  <br />
+  <img style="display:none" id="picjc" src="/static/img/jc.png" />
+  
+  </p>
+  <script type="text/javascript">
+		$(document).ready(function(){
+  			$("#click").click(function(){
+  			$("#picjc").slideToggle();
+ 		 	});
+		});
+</script>
+<!--{/if}--> 
+   <div style="background-color:#FF9; border:#666 thin dashed; display:none"><p>Debug<hr /></p>
+    	<div>
+        <b>$card</b><br />
+    		${print_r($card)}
+    	</div>
+    </div>
+</div>
+ 

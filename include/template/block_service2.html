@@ -1,0 +1,66 @@
+<div id="tuan_kefu">
+	<h3>
+		<span><img src="/static/theme/ev56_58/css/img/kefu_top.png"></span>
+	</h3>
+	<p>周一至周五</p>
+	<p>9:00 - 21:00</p>
+	<p>周六、周日</p>
+	<p>9:00 - 17:30</p>
+	<ul>
+		<!-- <li><a class="ajaxlink" href="/robot.php?dialog=on">自助服务</a></li> -->
+		<li><img src="/static/theme/ev56_58/css/img/sqzx.gif" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&sid=800026405&eid=2188z8p8p8p8K8x8Q8p8R&o=www.aipintuan.com&q=7&ref='+document.location, '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');"><span></span></li>
+		<li><a target="_blank" href="/team/ask.php"><img src="/static/theme/ev56_58/css/img/shfw.png"></a><span></span></li>
+		<!-- 
+		<li><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1531395660&site=qq&menu=yes"><img src="/static/theme/ev56_58/css/img/shfw.gif"></a><span></span></li>
+		<li><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1460101057&site=qq&menu=yes"><img src="/static/theme/ev56_58/css/img/shfw.gif"></a><span></span></li>
+		 -->
+		<li><a href="/team/ask.php">我要投诉</a><span>&gt;&gt;</span></li>
+        <li>
+    		<wb:follow-button uid="2797879823" type="gray_1" width="67" height="24" ></wb:follow-button>
+    	</li>
+	</ul>
+	<!--{if $login_user}-->
+	<p>
+		<a href="/order/index.php"><img src="/static/theme/ev56_58/css/img/kefu_order.png"></a>
+	</p>
+	<!--{/if}-->
+	<p>
+		<a href="javascript:void();" class="setFavor"><img src="/static/theme/ev56_58/css/img/kefu_shoucang.png"></a>
+	</p>
+	<p>
+		<a href="javascript:void();" id="btnToTop"><img src="/static/theme/ev56_58/css/img/totop.jpg"></a>
+	</p>
+</div>
+<script type="text/javascript">
+$(function() {
+	$(window).scroll(function() {
+		if($(this).scrollTop() != 0) {
+			$('#btnToTop').fadeIn();	
+		} else {
+			$('#btnToTop').fadeOut();
+		}
+	});
+ 
+	$('#btnToTop').click(function() {
+		$('body,html').animate({scrollTop:0},800);
+	});	
+	$('.setFavor').click(function(){
+		AddFavorite("优品会","");
+	});
+});
+
+function AddFavorite(title, url) {
+    try {
+        window.external.addFavorite(url, title);
+    }
+    catch (e) {
+        try {
+            window.sidebar.addPanel(title, url, "");
+        }
+        catch (e) {
+            alert("抱歉，您所使用的浏览器无法完成此操作。\n\n加入收藏失败，请使用Ctrl+D进行添加");
+        }
+    }
+}
+
+</script>

@@ -1,0 +1,54 @@
+<!--{include header}-->
+
+<div class="wrap">
+<div class="uleft c3" id="uleft_ev56">
+    <h2 id="helptit"><a href="/help/tour.php">帮助中心</a></h2>
+    
+		<ul>${current_forum(null)}</ul>
+</div>
+
+  <div class="uright" id="learn">
+    <div class="utit">
+					<h2>发表新话题</h2>
+    </div>
+    <div class="acon">      
+      <div class="sect">
+                    <form id="forum-new-form" method="post" class="validator">
+                        <div class="field">
+                            <label>讨论区</label>
+							<select name='category' style="margin-top:3px;">
+							<optgroup label="本地讨论区">
+								<option value="city">{$city['name']}讨论区</option>
+							</optgroup>
+							<optgroup label="公共讨论区">
+								${Utility::Option($publics, $id)}
+							</optgroup>
+							</select>
+                        </div>
+						<div class="field">
+							<label>标题</label>
+							<input type="text" size="10" name="title" id="team-create-style" class="i_text" value="${htmlspecialchars($topic['title'])}" datatype="require" require="true" />
+						</div>
+						<div class="field">
+							<label>内容</label>
+							<textarea style="width:480px;height:240px;" name="content" id="forum-new-content" class="i_textarea" datatype="require" require="true">${htmlspecialchars($topic['content'])}</textarea>
+						</div>
+					<!--{if option_yes('verifytopic')}-->
+          <label for="feedback-email-address">验证码</label>
+		  <input type="text" size="30" name="vcaptcha" id="signup-mobile" class="i_text i_yanz" require="true" datatype="require|limitc" min="4" max="4" style="text-transform:uppercase;"/>
+                    
+                    <img src="/captcha.php" title="看不清楚，点击更换" onclick="X.misc.captcha(this);" style="cursor:pointer;" />
+          <p><span class="c9" id="validatecode_Tip">请输入图片中的验证码</span></p>
+					<!--{/if}-->
+						<div class="act">
+                            <input type="submit" value="成立" name="commit" id="leader-submit" class="input input42"/>
+                        </div>
+                    </form>
+				</div>
+      
+    </div>
+  </div>
+  <div class="clear"></div>
+  <a href="#header" id="gotop">返回顶部</a>
+</div>
+<!--{include footer}-->

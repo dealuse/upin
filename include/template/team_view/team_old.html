@@ -1,0 +1,462 @@
+<!--{include header}-->
+<style>
+    .item-details-information section img{
+        display: block;
+    }
+    .gxq {margin: 15px 0; margin-left: 10px; }
+    #title_font {font-size: 14px !important; }
+    .gxq li {float:left;margin: 0px 5px ; padding-bottom: 15px; border-top: 2px solid #F7F7F7; padding-top: 9px; height: 186px;}
+    .gxq li p{width:190px; border: 1px solid white; }
+    .gxq li p .num_buy{ float: right;}
+    .gxq li h4{width:200px;  margin-top: 7px; text-align: left;  letter-spacing: -1px; }
+    .gxq li img {width:200px;height:138px ;}
+    .gxq em {font-size: 14px; font-weight: 600; color: #D74C00;}
+    .gxq B{width:200px; display: inline-block;}
+</style>
+<article id="breadNav">
+    <p>
+        您的位置：
+        <a href="/">温哥华团购</a><span>&gt;</span>
+        <!--<a href="/{$city['ename']}">{$city['name']}团购</a><span>&gt;</span> -->
+        <!--{loop $breadcrumb $i $one}-->
+        <!--<a href="/{$city['ename']}{$one['link']}">{$one['name']}</a><span>&gt;</span>-->
+        <a href="{$one['link']}">{$one['name']}</a><span>&gt;</span>
+        <!--{/loop}-->
+        {$team['product']}
+
+    </p>
+</article>
+<section id="item-details">
+    <div class="item-details-show details-block">
+        <header>
+            <h3 class="ti-5">{$team['product']}</h3>
+            <h4>{$team['title']}</h4>
+        </header>
+        <section class="wrapper">
+            <div class="fl">
+                <p class="item-price yuan tc">
+                    <i class="yuan">&yen;</i><span>{$team['team_price']}</span>
+                </p>
+                <p class="tc mt10">
+                    原价 <em class="mr8"><i class="yuan">&yen;</i>{$team['market_price']}</em>
+                    折扣 <em>${team_discount($team)}折</em>
+                </p>
+                <!--{if $team['max_number']>0 && ($team['now_number']+$team['pre_number']) >= $team['max_number']}-->
+                <p class="item-buy-botton item-empty">
+                    <a href="javascript:alert('本团购已卖光!')">已卖光</a>
+                </p>
+                <!--{elseif $team['begin_time'] > time()}-->
+                <p class="item-buy-botton item-begin">
+                    <a href="javascript:alert('本团购还未开始!')">即将开始</a>
+                </p>
+                <!--{elseif $team['end_time'] < time()}-->
+                <p class="item-buy-botton item-over">
+                    <a href="javascript:alert('本团购已结束!')">已结束</a>
+                </p>
+                <!--{else}-->
+                <p class="item-buy-botton item-buying">
+                    <a href="/team/buy.php?id={$team['id']}">抢购</a>
+                </p>
+                <!--{/if}-->
+                <p class="item-purchased">
+                    <!--{if $team['begin_time'] > time()}-->
+                    <span class="first mb10"><strong>0</strong> 人关注并购买</span>
+                    <!--{else}-->
+                    <span class="first mb10"><strong>${$team['now_number']+$team['pre_number']}</strong> 人关注并购买</span>
+                    <!--{/if}-->
+                    <span>{$cutTime}</span>
+                </p>
+            </div>
+            <div class="fr">
+                <img src="${team_image($team['image'])}" alt="{$team['product']}团购">
+            </div>
+        </section>
+        <footer class="wrapper">
+            <a class="item-fav fl wrapper" href="">
+                <i class="item-heart"></i>
+                <span>收藏本单</span>
+            </a>
+            <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" style="float:right;">
+                <span class="bds_more" style="line-height: 14px;">分享到：</span>
+                <a class="bds_qzone"></a>
+                <a class="bds_tsina"></a>
+                <a class="bds_tqq"></a>
+            </div>
+        </footer>
+    </div>
+    <!--
+    <div class="item-details-discuss  details-block mt15">
+        
+    </div>
+    -->
+    <!--{if $partnerItem}-->
+    <!--this partner other items-->
+    <div class="item-details-others details-block mt15">
+        <header>
+            <h3><strong>该商户的其他团购</strong></h3>
+        </header>
+        <section class="mt15">
+            <ul class="block">
+                <!--{loop $partnerItem $in $one}-->
+                <li>
+                    <a class="wrapper" href="/team/{$one['id']}.html">
+                        <span class="item-details-others-priced"><i class="yuan">&yen;</i>{$one['team_price']}</span>
+                        <span class="item-details-others-price">原价<i class="yuan">&yen;</i>{$one['market_price']}</span>
+                        <span class="item-details-others-title">{$one['product_sms']}</span>
+                        <span class="item-details-others-purchased">${$one['now_number']+$one['pre_number']}人关注并购买</span>
+                    </a>
+                </li>
+                <!--{/loop}-->
+            </ul>
+        </section>
+    </div>
+    <!-- END -->
+    <!--{/if}-->
+    <div class="item-details-content details-block mt15" id="item-details-content">
+        <header>
+            <nav class="wrapper">
+                <ul class="inline-block fl">
+                    <!--{if $team['delivery'] != 'express'}-->
+                    <li class="detailsNav-1">
+                        <a href="#position">商家位置</a>
+                    </li>
+                    <!--{/if}-->
+                    <li class="detailsNav-2">
+                        <a href="#information">本单详情</a>
+                    </li>
+                    <!--{if $team['detail_partner']}-->
+                    <li class="detailsNav-3">
+                        <a href="#introduce">商家简介</a>
+                    </li>
+                    <!--{/if}-->
+                </ul>
+                <a id="Totop" href="javascript:void(0);">
+                </a>
+                <a id="buyNow" href="/team/buy.php?id={$team['id']}">立即抢购</a>
+            </nav>
+        </header>
+        <!--{include team_view/partner_location}-->
+
+        <div class="item-details-information" id="information">
+            <header class="mb15">
+                <h3><strong>本单详情</strong></h3>
+            </header>
+            <section>
+                <!--{if $team['detail_table']}-->
+                <!-- item detail table -->
+                <p id="standard-bar">欢乐畅想</p>
+                {$team['detail_table']}
+                <!-- END -->
+                <!--{/if}-->
+                <!--{if $city['name'] == '北京'}-->
+                <!--温馨提示：2014年1月25日-2014年2月6日购买的电子券产品，全部移至2014年2月7日陆续发送，为此给您带来的不便，请谅解！-->
+                <br/>
+                <!--{/if}-->
+                <!--{if $team['notice']}-->
+                <!-- item detail notice -->
+                <div class="remind">
+                    {$team['notice']}
+                </div>
+                <!-- END -->
+                <!--{/if}-->
+                <p id="standard-bar">项目介绍</p>
+                <!--{if !$aptSaidLink}-->
+                <!--<div><strong>分享更多网购<a href="{$breadcrumb['group']['link']}" target="_blank" style="color:red">{$breadcrumb['group']['name']}</a>信息</strong></div>-->
+                <!--{/if}-->
+                <!-- detail -->
+                <div style="padding:2px 14px;">
+                    {$team['detail']}
+                </div>
+                <!--{if $team['detail_partner']}-->
+                <!-- item detail partner -->
+                <div id="introduce">
+                    <p id="standard-bar">商家简介</p>
+                    <div style="padding:2px 14px;">
+                        {$team['detail_partner']}
+                    </div>
+                </div>
+                <!-- END -->
+                <!--{/if}-->
+            </section>
+        </div>
+
+        <div class="item-details-discuss gxq" >
+            <header class="mb15">
+                <h3><strong>购买评价</strong></h3>
+            </header>
+            <!--{if  true}-->
+            <section>
+                <header class="wrapper">
+                    <p class="title wrapper">
+                        <span class="fl">您可能感兴趣的团购</span>
+                    </p>
+                    <div class="wrapper" id="v2-comment">
+                        <div class="gather" style=" width:100%;clear: both;height:auto " >
+                            <ul class="block gxq">
+                                <!--{loop $otherTeam $index $one}-->
+                                <!--{if $one['id'] == $lastOtherTeam}-->
+                                <li class="last">
+                                    <!--{else}-->
+                                <li>
+                                    <!--{/if}-->
+                                    <a href="/team/{$one['id']}.html">
+                                        <img class="index-item-img" src="/static/v2/img/border.gif" data-original="${team_image($one['image'],true)}" alt="{$one['product']}">
+                                        <h4>{$one['product']}</h4>
+                                        <p class="wrapper" style="float:right;">
+                                            <span class="fl"><strong><em><i class="yuan">&yen;</i>{$one['team_price']}</em></strong></span>
+                                            <span class="fl">&nbsp;&nbsp;&nbsp;原价<small>{$one['market_price']}</small></span>
+                                            <!--<span class="fr"><em>${$one['now_number']+$one['pre_number']}</em>人已团购</span>-->
+                                        </p>
+                                    </a>
+                                </li>
+                                <!--{/loop}-->
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+            </section>
+        </div>
+
+<!--
+        <div class="item-details-discuss" id="discuss">
+            <header class="mb15">
+                <h3><strong>购买评价</strong></h3>
+            </header>
+            <section>
+                <header class="wrapper">
+                    <p class="title wrapper">
+                        <span class="fl">购买评价</span>
+                        <span class="fr">我买过本单，<a href="">我要评价</a></span>
+                    </p>
+                    <div class="wrapper" id="v2-comment">
+                        <div class="gather">
+                            <p class="tc numb mt10"><strong id='v2-comment-point'>5</strong> 分</p>
+                            <p class="center">
+                                <span class="discuss-stars">
+                                    <strong id='v2-comment-point-dis' style="width:100%"></strong>
+                                </span>
+                            </p>
+                            <p class="tc">已有<em id='v2-comment-count'>56</em>人评价</p>
+                        </div>
+                        <div class="kind">
+                            <p class="wrapper center mt20">
+                                <span>设施</span>
+                                <span class="discuss-stars">
+                                    <strong style="width:88%"></strong>
+                                </span>
+                                <span>4.4分</span>
+                            </p>
+                            <p class="wrapper center">
+                                <span>服务</span>
+                                <span class="discuss-stars">
+                                    <strong style="width:84%"></strong>
+                                </span>
+                                <span>4.2分</span>
+                            </p>
+                            <p class="wrapper center">
+                                <span>环境</span>
+                                <span class="discuss-stars">
+                                    <strong style="width:86%"></strong>
+                                </span>
+                                <span>4.3分</span>
+                            </p>
+                        </div>
+                        <div class="kind numb">
+                            <p class="wrapper center">
+                                <span>5分</span>
+                                <span class="discuss-numb">
+                                    <strong id="v2-comment-grade-A-dis" style="width:60%"></strong>
+                                </span>
+                                <span id="v2-comment-grade-A">4812人</span>
+                            </p>
+                            <p class="wrapper center">
+                                <span>4分</span>
+                                <span class="discuss-numb">
+                                    <strong id="v2-comment-grade-B-dis" style="width:20%"></strong>
+                                </span>
+                                <span id="v2-comment-grade-B">2162人</span>
+                            </p>
+                            <p class="wrapper center">
+                                <span>3分</span>
+                                <span class="discuss-numb">
+                                    <strong id="v2-comment-grade-C-dis" style="width:18%"></strong>
+                                </span>
+                                <span id="v2-comment-grade-C">747人</span>
+                            </p>
+                            <p class="wrapper center">
+                                <span>2分</span>
+                                <span class="discuss-numb">
+                                    <strong id="v2-comment-grade-D-dis" style="width:4%"></strong>
+                                </span>
+                                <span id="v2-comment-grade-D">105人</span>
+                            </p>
+                            <p class="wrapper center">
+                                <span>1分</span>
+                                <span class="discuss-numb">
+                                    <strong id="v2-comment-grade-E-dis" style="width:5%"></strong>
+                                </span>
+                                <span id="v2-comment-grade-E">117人</span>
+                            </p>
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
+
+                </header>
+                <section class="discuss-list pt20">
+                    <ul class="wrapper" id="comment-body"></ul>
+                    <div id="comment-page"></div>
+                </section>
+            </section>
+            <footer class="wrapper">
+                <div class="fl wrapper">
+                    <p class="first"><i class="yuan">&yen;</i>{$team['team_price']}</p>
+                    <p>
+                        <span class="first">原价</span>
+                        <span><em><i class="yuan">&yen;</i>{$team['market_price']}</em></span>
+                    </p>
+                    <p>
+                        <span class="first">折扣</span>
+                        <span>${team_discount($team)}折</span>
+                    </p>
+                    <p>
+                        <span class="first">已购买</span>
+                        <span>${$team['now_number']+$team['pre_number']}人</span>
+                    </p>
+                </div>
+                       -->
+                <!--{if $team['max_number']>0 && $team['now_number'] >= $team['max_number']}-->
+                <div class="fr wrapper item-empty">
+                    <a href="javascript:alert('本团购已卖光!')">已卖光</a>
+                </div>
+                <!--{elseif $team['begin_time'] > time()}-->
+                <div class="fr wrapper item-begin">
+                    <a href="javascript:alert('本团购还未开始!')">即将开始</a>
+                </div>
+                <!--{elseif $team['end_time'] < time()}-->
+                <div class="fr wrapper item-over">
+                    <a href="javascript:alert('本团购已结束!')">已结束</a>
+                </div>
+                <!--{else}-->
+                <div class="fr wrapper item-buying">
+                    <a href="/team/buy.php?id={$team['id']}">抢购</a>
+                </div>
+                <!--{/if}-->
+                <div class="cb"></div>
+            </footer>
+        </div>
+    </div>
+    <!--{if $team['systemreview']}-->
+    <div class="item-details-aipinsaid details-block mt15">
+        <header class="wrapper">
+            <h3 class="fl"><strong>优品会</strong> <small>SAID</small></h3>
+            <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" style="float:right;margin-top:15px">
+                <a class="bds_qzone"></a>
+                <a class="bds_tsina"></a>
+                <a class="bds_tqq"></a>
+                <a class="bds_renren"></a>
+                <a class="bds_t163"></a>
+                <span class="bds_more" style="line-height: 14px;">更多</span>
+            </div>
+        </header>
+        <section>
+            <!--{if $aptSaidLink}-->
+            <div style="text-align: right"><strong>{$aptSaidLink}</strong></div>
+        </section>
+        <!--{/if}-->
+        <div style="margin:15px auto; width: 658px; padding-bottom: 25px;">
+            {$team['systemreview']}
+        </div>
+</section>
+</div>
+
+<!--{/if}-->
+
+<aside id="item-details-right">
+
+    <div class="item-details-commitment details-block">
+        <a href="">
+            <img src="/static/v2/img/commitment.png" alt="">
+        </a>
+    </div>
+    <header class="box ">
+        <span style=" font-size: 18px; font-weight: 600; display: inline-block; width: 112%; color: #FF7417 !important;padding: 10px 0px ;  margin-left: -14px; margin-top: -11px; background: #F6F6F6; letter-spacing: 1px ;border-bottom: 1px solid #F4F4F4 ">优品会APP客户端</span>
+        <a href="http://m.aipintuan.com/android"><img src="/static/v2/img/APPbig.png" width="220" height="220"></a>
+    </header>
+    <!--{include daigoudian/locationsite_yanan}-->
+    <!--{include daigoudian/locationsite_hebi}-->
+    <!--{include daigoudian/locationsite_ankang}-->
+      <!--{include daigoudian/locationsite_hanyin}-->
+    <!--{include daigoudian/locationsite_xingping}-->
+    <!--{include ad/right_index_banner}-->
+
+</aside>
+</section>
+<?php $includeScript[]='team_toolfixed' ?>
+<?php $includeScript[]='team_comment'; ?>
+<?php $includeScript[]='team_share'; ?>
+<!--百分点代码：单品页-->
+<script type="text/javascript">
+    var nows = (new Date().getTime()) / 1000;
+        if ("{$team['city_id']}" == 0){
+        window["_BFD"] = window["_BFD"] || {};
+            _BFD.BFD_INFO = {
+            "id": "{$team['id']}", //商品id号
+                    "name": "{$team['product']}", //商品名称
+                    "link": "/team/" + {$team['id']} + ".html", //商品链接
+                    "image_link": "http://static.aipintuan.com/static/{$team['image']}", //商品大图地址
+                    "simage_link": "http://static.aipintuan.com/static/{$team['image']}", //商品小图地址
+                    "price": "{$team['team_price']}", //在售价
+                    "market_price": "{$team['market_price']}", //市场价
+                    "category":  [["网购","/mall"],["{$breadcrumb['group']['name']}", "/mall/{$breadcrumb['group']['ename']}"], ["{$breadcrumb['sub']['name']}", "/mall/{$breadcrumb['sub']['ename']}"]],
+                    "brand": "", //商品所属品牌名称;
+                    "onsale": ({$team['end_time']} - nows) > 0 ?true:false, //上下架标识  在架为true, 下架为false;
+                    "discount": "{$team['team_price']}" * 10 / "{$team['market_price']}", //折扣百分比数值
+                    "location": ["全国"], //地域
+                    "business_circle": ["{$breadcrumb['area']['name']}{$breadcrumb['bizarea']['name']}"], //商圈
+                    "end_time": "{$team['end_time']}", //下架时间，团购一般都有
+                    "stock": "", //库存
+                    "description": "{$team['product_ind']}", //描述
+                    "start_time": {$team['begin_time']}, //商品的上架时间,double类型,单位：秒
+                    "address": "{$team['address']}", //商家的地址
+                    "subtitle": "{$team['title']}", //商品的副标题
+                    "buy_count": {$team['pre_number']} + {$team['now_number']}, //商品的购买人数
+                    "seller_name": "{$team['ptitle']}", //商品所属卖家店铺的名称
+                    "coord": [[{$team['longlat']}]], //店铺所在地的经纬度，二维数组，多商圈的店铺请提供全部店铺的经纬度
+                    "user_id": "{$login_user['id']}", //网站当前用户id，如果未登录就为0或空字符串
+                    "page_type": "detail" //当前页面全称，请勿修改
+            };
+    } else{
+    window["_BFD"] = window["_BFD"] || {};
+            _BFD.BFD_INFO = {
+            "id": "{$team['id']}", //商品id号
+                    "name": "{$team['product']}", //商品名称
+                    "link": "/team/" + {$team['id']} + ".html", //商品链接
+                    "image_link": "http://static.aipintuan.com/static/{$team['image']}", //商品大图地址
+                    "simage_link": "http://static.aipintuan.com/static/{$team['image']}", //商品小图地址
+                    "price": "{$team['team_price']}", //在售价
+                    "market_price": "{$team['market_price']}", //市场价
+                    "category": [["{$breadcrumb['group']['name']}", "/{$city['ename']}/cate/{$breadcrumb['group']['ename']}"], ["{$breadcrumb['sub']['name']}", "/{$city['ename']}/cate/{$breadcrumb['sub']['ename']}"]], //商品的类别详细信息，第一个元素为类别名称，第二个元素为类别地址，2维数组;类别从大到小，数组最后一项为商品当前属类别
+                    "brand": "", //商品所属品牌名称;
+                    "onsale": ({$team['end_time']} - nows) > 0 ?true:false, //上下架标识  在架为true, 下架为false;
+                    "discount": "{$team['team_price']}" * 10 / "{$team['market_price']}", //折扣百分比数值
+                    "location": ["{$city['name']}"], //地域
+                    "business_circle": ["{$breadcrumb['area']['name']}{$breadcrumb['bizarea']['name']}"], //商圈
+                    "end_time": "{$team['end_time']}", //下架时间，团购一般都有
+                    "stock": "", //库存
+                    "description": "{$team['product_ind']}", //描述
+                    "start_time": {$team['begin_time']}, //商品的上架时间,double类型,单位：秒
+                    "address": "{$team['address']}", //商家的地址
+                    "subtitle": "{$team['title']}", //商品的副标题
+                    "buy_count": {$team['pre_number']} + {$team['now_number']}, //商品的购买人数
+                    "seller_name": "{$team['ptitle']}", //商品所属卖家店铺的名称
+                    "coord": [[{$team['longlat']}]], //店铺所在地的经纬度，二维数组，多商圈的店铺请提供全部店铺的经纬度
+                    "user_id": "{$login_user['id']}", //网站当前用户id，如果未登录就为0或空字符串
+                    "page_type": "detail" //当前页面全称，请勿修改
+            };
+    }
+
+
+</script>
+<!--{include footer}-->

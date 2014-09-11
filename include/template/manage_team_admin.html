@@ -1,0 +1,97 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_team($selector)}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+				<!--{if $selector=='failure'}-->
+                    <h2>失败项目</h2>
+				<!--{elseif $selector=='success'}-->
+                    <h2>成功项目</h2>
+				<!--{else}-->
+                    <h2>当前项目</h2>
+				<!--{/if}-->
+					<ul class="filter">
+<form method="get">
+                                   <div id="jqtgss">
+                                        <div id="jqtgssa">
+                	                   <ul>
+                	                      <li>
+                	                 	<span id="gjc">项目ID:</span><input type="text" value="{$team_id}" class="hw-input" name="team_id">&nbsp;<span id="gjc">关键字:</span><input type="text" value="{$searchName}" class="hw-input" name="searchName">&nbsp;<select name="user_id" style="width:120px;">${Utility::Option($admins, $user_id, '--按负责人过滤--')}</select>&nbsp;<select name="group_id" style="width:80px;">${Utility::Option($cates, $group_id, '--按分类--')}</select>&nbsp;<select name="sub_id" style="width:80px;">${Utility::Option($cates, $sub_id, '--按细分类--')}</select>
+                		&nbsp;<select name="city_id" style="width:80px;">${Utility::Option($ocities, $city_id, '--按城市--')}</select>
+                    <input type="submit" class="formbutton" value="筛选">
+					      </li>
+                	                   </ul>
+					 </div> 
+                                        </div>
+                                       </form>						   
+
+				</div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<tr><th width="40">ID</th><th width="400">项目名称</th><th width="80" nowrap>类别</th><th width="100">日期</th><th width="50">成交</th><th width="60" nowrap>价格</th><th width="140">操作</th></tr>
+					<!--{loop $teams $index $one}-->
+					<!--${$oldstate = $one['state']}-->
+					<!--${$one['state'] = team_state($one)}-->
+					<?php
+						$chickCondition = array(
+							"id <> {$one[id]}",
+							'city_id' => $one['city_id'],
+							'baidu_major' => 1,
+						);
+						$have = DB::GetTableRow('team', $chickCondition);
+						if ($have) {
+							$who = Table::Fetch('team', $chickCondition);
+						}
+					?>
+					<tr ${$index%2?'':'class="alt"'} id="team-list-id-{$one['id']}">
+						<td><a href="/manage/order/pay.php?team_id={$one['id']}" title="点击查看此项目付款订单">{$one['id']}</a><!--{if $partners[$one['partner_id']]['qq'] != '' }--><br/><a href="http://wpa.qq.com/msgrd?v=3&uin={$partners[$one['partner_id']]['qq']}&site={$INI['system']['sitename']}&menu=yes" target="_blank" title="{$partners[$one['partner_id']]['qq']}"><img SRC="/thirdpart/qq/imgs/Connect_logo_1.png" ></a><!--{/if}--><br/><a href="/manage/partner/edit.php?id={$one['partner_id']}">商家</a></td>
+						<td>
+						  <a href="?partner_id={$one['partner_id']}" title="点击查看此供货商的所有产品">{$partners[$one['partner_id']]['username']}</a>
+              &nbsp;&nbsp;
+							<a class="deal-title" href="/team.php?id={$one['id']}" target="_blank">{$one['title']}</a>
+						</td>
+						<td nowrap>{$cities[$one['city_id']]['name']}<br/>{$groups[$one['group_id']]['name']}<!--{if $one['sub_id']}--> <br/>&nbsp;-{$subgroups[$one['sub_id']]['name']}<!--{/if}-->
+						</td>
+						<td nowrap>${date('Y-m-d',$one['begin_time'])}<br/>${date('Y-m-d',$one['end_time'])}</td>
+						<td nowrap>{$one['now_number']}/{$one['min_number']}</td>
+						<td nowrap><span class="money">{$currency}</span>${moneyit($one['team_price'])}<br/><span class="money">{$currency}</span>${moneyit($one['cost_price'])}<br/>${sprintf ("%.2f",($one['team_price'] - $one['cost_price'])/$one['team_price']*100)}%<br/><span class="money">{$currency}</span>${moneyit($one['market_price'])}<br/><b style="color:#F00">权重:{$one['sort_order']}</b></td>
+						<td class="op" nowrap>${$one['sched']=='Y'?'<b style="color:#F00">已在调度中..</b>':'<b style="color:#06F">未调度</b>'}<a href="/ajax/manage.php?action=${$one['sched']=='N'?'team2sched':'teamoutsched'}&id={$one['id']}" class="ajaxlink" ask="确定从明天起转变调度模式？" >${$one['sched']=='N'?'调度?':'离开?'}</a><br/><a href="/ajax/manage.php?action=teamdetail&id={$one['id']}" class="ajaxlink">详情</a>｜<a href="/manage/team/edit.php?id={$one['id']}&page={$page}">编辑</a>｜<a href="/ajax/manage.php?action=teamremove&id={$one['id']}" class="ajaxlink" ask="确定删除本项目吗？" >删除</a><!--{if $one['team_type'] =='pending'}-->｜<a href="/ajax/manage.php?action=team2normal&id={$one['id']}" class="ajaxlink" ask="确定该项目可以上线？" >上线</a><!--{/if}--><!--{if (in_array($one['state'],array('success','soldout')))}-->｜<a href="/manage/team/down.php?id={$one['id']}" target="_blank">下载</a><!--{/if}--><!--{if $one['close_time']>0}-->｜<a href="/ajax/manage.php?action=teamrenew&id={$one['id']}" class="ajaxlink" ask="确定重开本团吗？" >重开</a><!--{/if}--><!--{if $one['delivery']=='express'}--><br /><a href="/manage/team/ajax.php?action=smsexpress&id={$one['id']}" class="ajaxlink">短信快递单号</a><!--{/if}--><br /><a href="/manage/team/downlucky.php?id={$one['id']}" target="_blank">下载幸运编号</a>
+						<br/>${$one['baidu_show']=='Y'?'<span style="color:#06F; font-weight:bold; vertical-align:middle"><img src="{$INI['system']['cdnprefix']}/static/img/baiduico_true.gif" width="16" height="16" />已选择让百度收录</span>':'<span style="color:#F00; font-weight:bold; vertical-align:middle"><img src="{$INI['system']['cdnprefix']}/static/img/baiduico_false.gif" width="16" height="16" />未选择让百度收录</span>'}
+						<br/>${$one['baidu_subcategory']?'<span style="color:#33CC00;font-size:12px;">已填写百度字段</b>':'<span style="color:#CC0000; font-size:12px;">未填写百度字段</b>'}
+						<br/><!--{if $one['baidu_major']}-->
+								<span style="color:#33CC00;font-size:12px;">此项目为百度主打</span>
+								<a href="/ajax/manage.php?action=baidumajorout&id={$one['id']}" class="ajaxlink" ask="确定取消此项目百度主打？" >取消主打</a>
+							<!--{else}-->
+								<!--{if $have}-->
+									<!--{if $one['city_id'] == 0}-->
+										<span style="color:#33CC00;font-size:12px;">[全国]已有百度主打,项目ID为{$who['id']}</span>
+									<!--{else}-->
+										<span style="color:#33CC00;font-size:12px;">[{$cities[$one['city_id']]['name']}]已有百度主打,项目ID为{$who['id']}</span>
+									<!--{/if}-->
+								<!--{else}-->
+									<a href="/ajax/manage.php?action=baidumajor&id={$one['id']}" class="ajaxlink" ask="确定设置此项目为百度主打？" >设为主打</a>
+								<!--{/if}-->
+							<!--{/if}-->
+						</td>
+					</tr>
+					<!--{/loop}-->
+					<tr><td colspan="7">{$pagestring}</tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include manage_footer}-->

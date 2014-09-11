@@ -1,0 +1,321 @@
+<?php
+if($_GET['tn'] && $_GET['baiduid']){
+Session::Set('from_baidu',array('tn'=>$_GET['tn'],'baiduid'=>$_GET['baiduid']));
+Session::Set('is_baidu','1');
+}
+?>
+<!--{include header}-->
+<!--include block_block_banner-->
+<!--{if $team['close_time']}-->
+<div class="mtips"><span class="red">抱歉，您来晚了，该商品团购已经结束!</span>不想错过明天的团购？立刻订阅每日最新团购信息：<a target="_blank" href="/subscribe.php?ename={$city['ename']}" >我要订阅</a></div> 
+<!--{/if}-->
+<!--{if $order}-->
+<div class="mtips" id="nopayDiv"><span class="red">您已经下过订单，但还没有付款。（<a id="payurl" href="/order/check.php?id={$order['id']}">点击付款</a>）</span></div>
+<!--{/if}-->
+<div class="iwrap"> 
+    <!-- 左侧 -->
+    <div style="float:left">
+        <div class="i_fl" style="float:none"> 	
+            <!-- 商品主介绍 -->
+            <div class="main">
+                <h2><!--{if $team['close_time']==0}--><span class="c2"><a class="deal-today-link" href="/team.php?id={$team['id']}">今日团购：</a></span><!--{/if}-->{$team['title']}</h2>
+                <div class="mmain">
+                    <div class="lmain">
+                        <table class="discount" cellpadding="0" cellspacing="0">
+                            <tbody>
+                                <tr>
+                                    <th>原价</th>
+                                    <th class="discount_border">折扣</th>
+                                    <th>节省</th>
+                                </tr>
+                                <tr>
+                                    <td><del>&yen;${moneyit($team['market_price'])}</del></td>
+                                    <td class="discount_border">${team_discount($team)}折</td>
+                                    <td><span class="c2">&yen;{$discount_price}</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--{if ($team['state']=='soldout')}-->				
+
+                        <div class="buyinfo">	
+                            <p class="buynum">团购已卖光<br/>共有<span class="c2"  style="color:#F00; font-size:25px">${$team['now_number']+$team['pre_number']}</span>人购买</p>
+                            <p class="timeleft"><span class="savetime">{$diff_time}000</span>本团购结束时间：<br/><span class="showTime">${date('Y-m-d', $team['close_time'])} ${date('H:i:s', $team['close_time'])}</span></p>
+                            <p class="success s_js">团购已卖光，查看<a href="/team/index.php">其他团购</a></p>
+                        </div>
+                        <div class="order sold"><span>已卖光</span><em >&yen;${moneyit($team['team_price'])}</em></div>
+                        <!--{elseif $team['close_time']}-->				
+                        <div class="buyinfo">	
+                            <p class="buynum">团购已结束<br/>共有<span class="c2"  style="color:#F00; font-size:25px">{$team['now_number']}</span>人购买</p>
+                            <p class="timeleft"><span class="savetime">{$diff_time}000</span>本团购结束于：<br/><span class="showTime">${date('Y-m-d', $team['close_time'])} ${date('H:i:s', $team['close_time'])}</span></p>
+                            <p class="success s_js">团购已结束，查看<a href="/team/index.php">其他团购</a></p>
+                        </div>
+                        <div class="order end"><span>已结束</span><em >&yen;${moneyit($team['team_price'])}</em></div>
+                        <!--{else}-->
+                        <div class="buyinfo">
+                            <p class="buynum"><span class="c2" style="color:#F00; font-size:25px">${$team['now_number']+$team['pre_number']}</span><span class="yigoumai">人已购买</span><br/><span class="shuliang">数量有限，下单要快哟</span></p>
+                            <p class="timeleft"><span id="savetime" class="savetime">{$diff_time}000</span> 距离本次团购结束还有：<br/><span id="deal-timeleft" class="showTime"><i>加载中...</i></span> </p>
+                            <p class="success">团购已成功，可继续购买</p>
+                            <!--{if $team['allowrefund'] == 'Y'}-->
+                            <ul class="tuikan">
+                                <li><img src="http://www.redutuan.com/app/Tpl/redu4/images/tk1.gif"></li>
+                                <li><img src="http://www.redutuan.com/app/Tpl/redu4/images/tk3.gif"></li>
+                            </ul>
+                            <!--{/if}-->
+                        </div>
+                        <div class="order ${$team['begin_time']<time()?'buy':'wait'}">
+                            <!--{if $team['id'] == 15026}-->
+                            <a id="local-info" ${$login_user_id?'':'islogin="1"'}>抢购</a>
+                            <!--{else}-->
+                            <a ${$team['begin_time']<time()?'href="/team/buy.php?id='.$team['id'].'"':''}>抢购</a>
+                            <!--{/if}-->
+                            <em >&yen;${moneyit($team['team_price'])}</em>
+
+                        </div>
+                        <!--{/if}--> 
+                    </div>
+                    <div class="rmain"> 
+                        <img src="${team_image($team['image'])}"  width="440" height="275" alt="{$team['title']}" />
+                        <div class="buytips">
+                            <!--{include block_team_share_bottom}-->
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <span class="yj lt"></span><span class="yj rt"></span><span class="yj lb"></span><span class="yj rb"></span>
+                <!--{include block_team_share}-->
+            </div>
+            <!-- 商品主介绍 end --> 
+            <!-- 商品详情 -->
+            <div class="xq">
+                <ul class="xqlist c3">
+                    <li id="itemxq" class="tab_btn cur"><a>商品详情</a></li>
+                    <li id="peisong" class="tab_btn"><a>配送说明</a></li>
+                </ul>
+                <div class="deal_tools" style="display:none;">
+                    <ul>
+                        <li id="to_xqlist">本单详情</li>
+                        <li id="to_pingjia">购买评价</li>
+                        <li id="peisong2" style="color:#F00">配送说明</li>
+                        <li id="to_shouhou2">售后服务</li>
+                        <li class="buy_fix">
+                            <a href="/team/buy.php?id={$team['id']}"></a>
+                            <span>&yen;&nbsp;${moneyit($team['team_price'])}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="ju-qc-main">
+                    <div class="ju-qc-content">
+                        <div class="qc-detail-box deposit">
+                            <h5>该商家已提供团购保证金：<em>$</em><strong>30000</strong>元，有效期：${date('Y-m-d',$partner['create_time']-15*86400)} 至 ${date('Y-m-d',$team['expire_time']+86400*180)}</h5>
+                            <div class="qc-info">买家通过优品会参团购买商品，如在保证金有效期内，因卖家未履行消费者保障服务承诺及优品会规则而导致买家权益受损，优品会将根据相应规则，要求卖家履行赔付义务并使用此保证金赔付买家。</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="details wide">
+
+                    <style type="text/css">
+                        /*用纯CSS控制图片最大宽度 ev56.com*/
+                        #ev56_main_side .blk_ev56 img{width: expression(this.width > 600 ? 600: true); max-width: 600px;margin-left:auto; margin-right:auto; display:block}
+                        /*#ev56_main_side .blk_ev56 p img{}*/
+                    </style>		
+                    <div id="ev56_main_side" class="tab_box">
+
+                        <!--{if trim($team['detail'])}-->
+                        <!--<h2 id="detail">本单详情</h2>-->
+                        <div class="blk_ev56 detail">{$team['detail']}</div>
+                        <!--{/if}-->
+
+                        <!--{if trim($team['notice'])}-->
+                        <h2 id="detailit">特别提示</h2>
+                        <div class="blk_ev56 cf">{$team['notice']}</div>
+                        <!--{/if}-->
+
+                        <!--{if trim(strip_tags($team['systemreview']))}-->							
+                        <div class="quote_tit2_div">
+                            <ul class="sharecon">
+                                <li>分享到 ：</li>
+                                <li><a class="i_sina" href="${share_sina($team)}" target="_blank">新浪</a></li>
+                                <li><a class="i_qq"  href="${share_tencent($team)}" target="_blank">腾讯</a></li>
+                            </ul>
+                            <h3 class="quote_tit2">{$INI['system']['abbreviation']}说</h3>
+                        </div>
+                        <span id="syscomment">
+                            <div class="blk_ev56 review">{$team['systemreview']}</div>
+                        </span>
+                        <!--{/if}-->
+
+                    </div>
+                    <!--
+                    <iframe style="width: 670px;">
+                    </iframe>
+                    -->
+
+                    <div class="tab_box" style="display:none;">
+                        <div class="detail_tab" id="detail_send_tab">
+                            <ul>
+                                <li class="detail_tabbj"></li>
+                            </ul>
+                        </div>
+                        <div class="detail_send_con">
+                            <ul>
+                                <li>
+                                    <b class="detail_send_pos">快递费用</b>
+                                    <span>
+                                        {$express_info[0]}
+                                    </span>
+                                </li>
+                                <li>
+                                    <b class="detail_send_ems">默认快递</b>
+                                    <span>{$express_info[1]}</span>
+                                </li>
+                                <li>
+                                    <b class="detail_send_ran">配送范围</b>
+                                    <span>{$express_info[2]}</span>
+                                </li>
+                                <li>
+                                    <b class="detail_send_cit">发货城市</b>
+                                    <span>{$express_info[3]}</span>
+                                </li>
+                                <li>
+                                    <b class="detail_send_tim">发货时间</b>
+                                    <span>{$express_info[4]}</span>
+                                </li>
+                                <li>
+                                    <b class="detail_send_pro">签收提示</b>
+                                    <span>{$express_info[5]}</span>
+                                </li>
+                            </ul>
+                        </div>					
+                    </div>
+
+
+                </div>
+                <div class="clear"></div>
+                <!--{include block_side_gouwuwuyou}-->
+                <div class="clear"></div>
+                <div class="pingjia" style="height: 0px; position: relative; top: -30px;"></div>
+                <span class="fx flt"></span>
+                <!-- bottom -->
+                <div class="soll-comment" style="margin-top: 20px;padding:0 20px 20px 20px;border-top: 1px dashed #CCC;">
+                    <h3 class="quote_tit3">购买评价</h3>
+                    <div class="sifxf">
+                        <div class="point_rank">
+                            <div class="rank">
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;商品与网站描述是否相符</p>
+                                <div>
+                                    <ul>
+                                        <li><span>5分</span><span class="img"><img
+                                                    src="/static/theme/ev56_58/css/i/point.png" width="60%"
+                                                    height="9"></span><span>60%</span></li>
+                                        <li><span>4分</span><span class="img"><img
+                                                    src="/static/theme/ev56_58/css/i/point.png" width="40%"
+                                                    height="9"></span><span>40%</span></li>
+                                        <li><span>3分</span><span class="img"><img
+                                                    src="/static/theme/ev56_58/css/i/point.png" width="0%"
+                                                    height="9"></span><span>0%</span></li>
+                                        <li><span>2分</span><span class="img"><img
+                                                    src="/static/theme/ev56_58/css/i/point.png" width="0%"
+                                                    height="9"></span><span>0%</span></li>
+                                        <li><span>1分</span><span class="img"><img
+                                                    src="/static/theme/ev56_58/css/i/point.png" width="0%"
+                                                    height="9"></span><span>0%</span></li>
+                                    </ul>
+                                    <div class="point">4.9</div>
+                                </div>
+                            </div>
+                            <div class="rank">
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;发货快递配送是否满意</p>
+                                <div>
+                                    <ul>
+                                        <li><span>5分</span><span class="img"><img
+                                                    src="/static/theme/ev56_58/css/i/point.png" width="50%"
+                                                    height="9"></span><span>50%</span></li>
+                                        <li><span>4分</span><span class="img"><img
+                                                    src="/static/theme/ev56_58/css/i/point.png" width="50%"
+                                                    height="9"></span><span>50%</span></li>
+                                        <li><span>3分</span><span class="img"><img
+                                                    src="/static/theme/ev56_58/css/i/point.png" width="0%"
+                                                    height="9"></span><span>0%</span></li>
+                                        <li><span>2分</span><span class="img"><img
+                                                    src="/static/theme/ev56_58/css/i/point.png" width="0%"
+                                                    height="9"></span><span>0%</span></li>
+                                        <li><span>1分</span><span class="img"><img
+                                                    src="/static/theme/ev56_58/css/i/point.png" width="0%"
+                                                    height="9"></span><span>0%</span></li>
+                                    </ul>
+                                    <div class="point">4.9</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                        <!--{include block_side_bottom_comments}-->
+                    </div>
+                </div>
+                <!--{if $team['state']!='soldout' && !$team['close_time']}-->
+                <div class="quick-buy">
+                    <div class="quick-buy-left">
+                        <div class="quick-buy-left-line">
+                            <a href="/cate/all/all/n"><img src="/static/theme/ev56_58/css/images/cont_117.jpg"></a>
+                            <a href="javascript:AddFavorite();return false;">收藏本页</a>
+                            <a href="javascript:save();return false;">保存到桌面</a>
+                        </div>
+                        <div class="quick-buy-left-line" >
+                            <!-- Baidu Button BEGIN -->
+                            <div id="bdshare" style="display:inline-block;float:none;" 
+                                 class="bdshare_t bds_tools get-codes-bdshare" data="{'bdDes':'优品会','text':'{$team['title']}','title':'{$team['product']}','url':'/team/{$team['id']}.html'}">
+                                <span class="bds_more">分享到：</span>
+                                <a class="bds_qzone">QQ空间</a>
+                                <a class="bds_tsina">新浪微博</a>
+                                <a class="bds_tqq">腾讯微博</a>
+                                <a class="bds_renren">人人网</a>
+                                <a class="bds_t163">网易微博</a>
+                            </div>
+                            <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1952265" ></script>
+                            <script type="text/javascript" id="bdshell_js"></script>
+                            <script type="text/javascript">
+                                document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date() / 3600000);
+                            </script>
+                            <!-- Baidu Button END -->
+                        </div>
+                    </div>
+                    <a class="quick-buy-right" href="/team/buy.php?id={$team['id']}"><img src="/static/theme/ev56_58/css/images/quick_buy_btn.png" /></a>
+
+                </div>
+                <!--{/if}-->
+                <!-- bottom -->
+            </div>
+            <!-- 商品详情 end --> 
+        </div>
+        <!--{include block_side_bottoms}-->
+        <!--include block_bottom_taoke-->
+    </div>
+    <!-- 左侧 end --> 
+    <div class="i_frr">
+        <!--{include block_side_guanggao}-->
+        <!--{include block_side_chengnuo}-->
+        <!--本单答疑--> 
+        <!--{include block_side_ask}-->
+        <!--include block_side_taoke-->
+        <!--{include block_side_weibo}-->
+        <!--产品视频-->
+        <!--{include block_side_flv}-->   
+        <!--今日其他团购-->
+        <!--{include block_sidecate_others}-->
+        <!--{include block_side_others}-->
+        <!--今日秒杀--> 
+        <!--{include block_side_others_seconds}-->
+        <!--网站公告-->
+        <!--{include block_side_bulletin}-->   
+        <!--网站新闻--> 
+        <!--{include block_side_news}-->
+        <!--手机访问-->
+        <!--{include block_side_mobile}-->  
+        <!--小调查-->
+        <!--{include block_side_vote}-->    
+        <!--邀请有奖、加入我们-->  	
+        <!--{include block_side_ev56_job}-->
+    </div>
+    <div class="clear"></div>
+</div>
+<?php $includeScript[] = 'team_old'; ?>
+<!--{include footer}-->

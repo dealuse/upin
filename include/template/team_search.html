@@ -1,0 +1,319 @@
+<!--{include header}-->
+<div class="iwrap"> 
+    <!-- 左侧 -->
+    <div style="float:left">
+        <div class="i_fl" style="float:none; margin-top:15px;"> 	
+            <!-- 商品主介绍 -->
+            <style>
+                .search_title{
+                    background: none repeat scroll 0 0 #FEFEFE;
+                    padding: 15px 22px;
+                }
+                .s-pro-list {
+                    border-top: 1px solid #E5E5E5;
+                    margin-bottom: 15px;
+                    padding-top: 10px;
+                }
+                .s-pro-tit {
+                    margin-left: 24px;
+                }
+                .s-pro-tit strong {
+                    color: #E60012;
+                    padding: 0 8px;
+                } 
+                .s-pro-list dl {
+                    background: url("{$INI['system']['cdnprefix']}/static/img/s-pro-bg.gif") repeat-x scroll 0 0 transparent;
+                    border-bottom: 1px dotted #C2C2C2;
+                    height: 111px;
+                    overflow: hidden;
+                    padding: 15px 0;
+                    position: relative;
+                }
+                .s-pro-list dt {
+                    border: 1px solid #D9D9D9;
+                    display: inline;
+                    float: left;
+                    margin: 0 15px 0 24px;
+                    padding: 1px;
+                }
+                .s-pro-list a {
+                    color: #6E6E6E;
+                }
+                .s-pro-list a:hover {
+                    color:#000;
+                }
+                .s-pro-list img {
+                    border: 0 none;
+                    vertical-align: top;
+                }
+                .s-pro-list dd {
+                    line-height: 21px;
+                    overflow: hidden;
+                    width: 385px;
+                }
+                .s-pro-test {
+                    height: 65px;
+                    margin-bottom: 15px;
+                    overflow: hidden;
+                }
+                .s-price strong {
+                    color: #E60012;
+                    font-family: Arial;
+                    font-size: 24px;
+                    margin-right: 12px;
+                }
+                .s-price em {
+                    color: #585858;
+                    padding: 0 8px;
+                }
+                a.search-arrow {
+                    background: url("{$INI['system']['cdnprefix']}/static/img/search-arrow.gif") no-repeat scroll 0 0 transparent;
+                    height: 31px;
+                    position: absolute;
+                    right: 28px;
+                    top: 55px;
+                    width: 16px;
+                }
+                .ser .paginator{
+                    padding:0;
+                    margin:0;
+                }
+                .s-pro-tit {
+                    marg
+                    in-left: 24px;
+                }
+                .s-res-text {
+                    color: #474747;
+                    line-height: 25px;
+                    margin: 15px 0 8px 24px;
+                }
+                .s-res-text .f60 {
+                    color: #FF6600;
+                }
+                .s-like-fm {
+                    background: none repeat scroll 0 0 #F7F7F7;
+                    color: #000000;
+                    margin-left: 24px;
+                    padding: 5px;
+                }
+                .s-like-fm-1 {
+                    border: 1px solid #DBDBDB;
+                    display: inline-block;
+                    margin: 0;
+                    padding: 0 5px 25px;
+                }
+                .i-like-fm {
+                    margin: 0 21px;
+                }
+                .s-like-fm {
+                    color: #000000;
+                }
+                .i-like-text {
+                    font-size: 14px;
+                    line-height: 15px;
+                    margin: 15px 0 0 10px;
+                }
+                .s-like-text {
+                    -moz-border-bottom-colors: none;
+                    -moz-border-image: none;
+                    -moz-border-left-colors: none;
+                    -moz-border-right-colors: none;
+                    -moz-border-top-colors: none;
+                    border-color: #999999 #CCCCCC #CCCCCC #999999;
+                    border-style: solid;
+                    border-width: 1px;
+                    display: inline-block;
+                    float: left;
+                    height: 80px;
+                    margin-right: 18px;
+                    padding: 5px;
+                }
+                input.like-sub-btn {
+                    -moz-border-bottom-colors: none;
+                    -moz-border-image: none;
+                    -moz-border-left-colors: none;
+                    -moz-border-right-colors: none;
+                    -moz-border-top-colors: none;
+                    background: none repeat scroll 0 0 #FC7322;
+                    border-color: #FF863F #E74B00 #E74B00 #FF863F;
+                    border-style: solid;
+                    border-width: 1px;
+                    color: #FFFFFF;
+                    cursor: pointer;
+                    font-size: 14px;
+                    height: 28px;
+                    line-height: 28px;
+                    margin-top: 10px;
+                    overflow: visible;
+                    padding: 0 15px;
+                    width: auto;
+                }
+                .i-like-text select, .i-like-text input {
+                    font-size: 12px;
+                    height: 20px;
+                    line-height: 21px;
+                    margin: 0 3px 7px;
+                    padding-left: 3px;
+                    vertical-align: middle;
+                    width: 90px;
+                }
+                input.like-sub-btn {
+                    -moz-border-bottom-colors: none;
+                    -moz-border-image: none;
+                    -moz-border-left-colors: none;
+                    -moz-border-right-colors: none;
+                    -moz-border-top-colors: none;
+                    background: none repeat scroll 0 0 #FC7322;
+                    border-color: #FF863F #E74B00 #E74B00 #FF863F;
+                    border-style: solid;
+                    border-width: 1px;
+                    color: #FFFFFF;
+                    cursor: pointer;
+                    font-size: 14px;
+                    height: 28px;
+                    line-height: 28px;
+                    margin-top: 10px;
+                    overflow: visible;
+                    padding: 0 15px;
+                    width: auto;
+                }
+                em {
+                    color:#F03;
+                    font-weight:bold;
+                }
+                .item-details-information section img{
+                    display: block; 
+                }
+                .gxq {margin: 15px 0px;margin-left: -5px; }
+                #title_font {font-size: 14px !important; }
+                .gxq li {float:left;margin: 0px 7px ; padding-bottom: 15px; border-top: 2px solid #F7F7F7; padding-top: 9px; height: 180px;}
+                .gxq li p{width:190px; border: 1px solid white; }
+                .gxq li p .num_buy{ float: right;}
+                .gxq li h4{width:220px;  margin-top: 7px; text-align: left;  letter-spacing: -1px; }
+                .gxq li img {width:218px;height:140px ;}
+            </style>
+            <div class="main" style=" border: 1px solid #E8E8E8;">
+                <div class="search_title">
+                </div>
+                <p class="s-pro-tit">在<strong>{$city['name']}</strong>共找到<strong>{$count}</strong>个团购</p>
+                <div class="s-pro-list" style="padding-top:10px">
+
+                    <div class="class_quick_fm ser" style=""></div>
+                    <!--{if $count}-->
+                    <!--{loop $docs $index $team}-->
+                    <dl>
+                        <dt><a target="_blank" href="/team/{$team[id]}.html?f=search"><img title="{$team['title']}" width="169" height="105" src="${team_image($team['image'],true)}"></a></dt>
+                        <dd>
+                            <p class="s-pro-test">【${$cities[$team['city_id']]?$cities[$team['city_id']]:'全国'}】
+                                <a target="_blank" href="/team/{$team[id]}.html?f=search" title="{$team['title']}">{$search->highlight($team['title'])}</a>
+                            </p>
+                            <p class="s-price"><strong>¥{$team['team_price']}</strong>|<em>折扣：${team_discount($team)}折</em>|<em>${$team['pre_number']+$team['now_number']}人购买</em></p>
+                        </dd>
+                        <a target="_blank" href="/team/{$team[id]}.html?f=search" class="search-arrow"></a>
+                    </dl>
+                    <!--{/loop}-->
+                    <div class="class_quick_fm"></div>
+                    <!--{else}-->
+                    <!--{if $session_alert=Session::Get('alert',true)}-->
+                    <script>
+                        //alert('{$session_alert}');
+                    </script>
+                    <p style="border:1px solid #ffc26e; background:#ffffe0; padding:8px 5px; font: 12px tahoma,arial,宋体;" class="s-pro-tit">
+                        抱歉，没有找到与<strong>"{$searchName}"</strong>相关的团购。
+                    </p>
+                    <ul class="s-res-text">
+                        <li style="background:none; text-indent:0;"><strong style="color:#000; font-size:14px;">优品会建议您：</strong></li>
+                        <li>看看输入的文字是否有误</li>
+                        <li>去掉可能不必要的字词，如"的"、"什么"等</li>
+                        <li>换个近义词试试</li>
+                        <li class="f60"><strong>您还可以：</strong>告诉优品会您想团什么？优品会会竭尽全力寻找到最令您满意的团购产品</li>
+                    </ul>
+                    <div class="s-like-fm">
+                        <div class="i-like-fm s-like-fm-1">
+                            <form method="post" action="/weneed.php" id="iwant">
+                                <div class="i-like-text">
+                                    <ul>
+                                        <li>
+                                            <div class="l">我想要
+                                                <select name="cid" id="typeclass">
+                                                    <!--${
+                                                        $first = 0;
+                                                        $flagcates = 0;
+                                                    }-->
+                                                    <!--{loop $level_groupss $indexcate $cate}-->
+                                                    <!--${
+                                                        if($cate['flag'] && $first == 0){
+                                                                $flagcates = 1;
+                                                            $first = 1;
+                                                    }-->
+                                                    <optgroup label="{$cate['cname']}">
+                                                        <!--${
+                                                            continue;
+                                                            } else if($cate['flag'] && $first){
+                                                        }-->
+                                                    </optgroup>
+                                                    <optgroup label="{$cate['cname']}">
+                                                        <!--${
+                                                            continue;
+                                                            } 
+                                                            }-->
+                                                        <option <?php if($team['sub_id']==$cate['id']){?> selected=""  <?php } ?> value="{$cate['id']}">{$cate['cname']}</option>
+
+
+                                                        <!--{/loop}-->
+                                                    </optgroup>
+                                                </select>的，
+                                            </div>
+                                            最好不要超过<span style="font-family:Arial"> ¥ </span><input type="text" onkeyup="value = value.replace(/[^\d]/g, '')" style="width:90px; border:1px solid #999; border-right-color:#ccc;border-bottom-color:#ccc;" name="hprice" id="hprice">元的，</li>
+                                        <li>我是要
+                                            <select name="forobj" id="forobj">
+                                                <option value="1">独自享用</option>
+                                                <option value="2">同家人分享</option>
+                                                <option value="3">同朋友分享</option>
+                                                <option value="4">同爱人分享</option>
+                                                <option value="5">同团队分享</option>
+                                                <option value="6">同小朋友准备</option>
+                                                <option value="7">同其他人分享</option>
+                                            </select>
+                                            的。</li>
+                                    </ul>
+
+                                    <p class="c" style="padding:5px 0 10px 0;">再详细点就是：</p>
+                                    <p>
+                                        <textarea onfocus="if (value == '具体说明') {
+                                                    value = ''
+                                                }" onblur="if (value == '') {
+                                                            value = '具体说明'
+                                                        }" style="width:458px; color: #999;" class="s-like-text l" name="detailcontent" id="detailcontent">具体说明</textarea>
+                                        <input type="submit" style="margin-top:0; " value="提交" class="like-sub-btn l">
+                                    </p>
+                                </div></form>
+                        </div>
+                    </div>
+                    <!--{/if}-->
+                </div>
+            </div>
+        </div>
+        <!--this hot team-->
+        <div class="item-details-discuss  details-block mt15">
+
+        </div>
+        <!-- END -->
+    </div>
+    <!-- 左侧 end --> 
+    <div class="i_frr">  
+        <!--今日其他团购-->
+        <!--{include block_side_others}-->
+    </div>
+    <div class="clear"></div>
+</div>
+<script type="text/javascript">
+    window["_BFD"] = window["_BFD"] || {};
+    _BFD.BFD_INFO = {
+        "search_word": "{$searchName}", //搜索词
+        "search_result": "{$count}"==0?0:1, //搜索有无结果，1表示有结果，0表示无结果
+        "user_id": "{$login_user['id']}", //网站当前用户id，如果未登录就为0或空字符串
+        "page_type": "search" //当前页面全称，请勿修改
+    };
+</script>
+<!--{include footer}-->

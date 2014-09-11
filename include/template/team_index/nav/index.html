@@ -1,0 +1,176 @@
+<header id="categoryNav" class="box fs12 cb mt10">
+    <div class="deal">
+        <ul class="inline-block">
+            <li class="title">
+                <strong>热门推荐:</strong>
+            </li>
+            <li class="level-1">
+                <a href="/zc/jiameng.php">分站加盟</a>
+            </li>
+            <li class="level-1">
+                <a href="/team/29710.html">金富源天然珍珠</a>
+            </li>
+            <li class="level-1">
+                <a href="/team/29849.html">公主女鞋</a>
+            </li>
+            <li class="level-1">
+                <a href="/team/29259.html">天然黑檀手链</a>
+            </li>
+            <li class="level-1">
+                <a href="/team/31878.html">鲁冰花妈妈装</a>
+            </li>
+            <li class="level-1">
+                <a href="/team/29813.html">CMS活肌面霜</a>
+            </li>
+            <li class="level-1">
+                <a href="/team/28964.html">哈伦铅笔裤</a>
+            </li>
+        </ul>
+    </div>
+    <section class="category wrapper">
+        <div class="pr category-block">
+            <p class="pa">分类：</p>
+            <ul class="inline-block">
+                <!--{loop $navGroup $in $one}-->
+                <!--{if $one['select']}-->
+                <li class="active">
+                    <!--{else}-->
+                <li>
+                    <!--{/if}-->
+                    <!--{if $one['link'] == '/'}-->
+                    <a href="/{$city['ename']}">
+                        <!--{else}-->
+                        <a href="/{$city['ename']}{$one['link']}">
+                            <!--{/if}-->
+                            <strong>{$one['name']}</strong>
+                            <small>{$one['count']}</small>
+                        </a>
+                </li>
+                <!--{/loop}-->
+                <li>
+                    <a href="/mall">
+                        <strong>购物</strong>
+                        <small>3000+</small>
+                    </a>
+                </li>
+            </ul>
+            <!--{if $navSub}-->
+            <div class="category-sub">
+                <div class="pr category-location">
+                    <ul class="inline-block">
+                        <!--{loop $navSub $in $one}-->
+                        <!--{if $one['select']}-->
+                        <li class="active">
+                            <!--{else}-->
+                        <li>
+                            <!--{/if}-->
+                            <a href="/{$city['ename']}{$one['link']}">
+                                <strong>{$one['name']}</strong>
+                                <small>{$one['count']}</small>
+                            </a>
+                        </li>
+                        <!--{/loop}-->
+                    </ul>
+                </div>
+            </div>
+            <!--{/if}-->
+        </div>
+        <!--{if $navArea['area']}-->
+        <div class="pr category-block category-block-last">
+            <p class="pa location">区域：</p>
+            <ul class="inline-block">
+                <!--{loop $navArea['area'] $in $one}-->
+                <!--{if $one['select']}-->
+                <li class="active">
+                    <!--{else}-->
+                <li>
+                    <!--{/if}-->
+                    <!--{if $one['link'] == '/'}-->
+                    <a href="/{$city['ename']}">
+                        <!--{else}-->
+                        <a href="/{$city['ename']}{$one['link']}">
+                            <!--{/if}-->
+                            <strong>{$one['name']}</strong>
+                            <small>{$one['count']}</small>
+                        </a>
+                </li>
+                <!--{/loop}-->
+                <!--{if $city['name'] == '西安' || $city['name'] == '安康' || $city['name'] == '汉中' || $city['name'] == '延安' || $city['name'] == '渭南'}-->
+                <!--{loop $shanxiMap $in $one}-->
+                <?php 
+                if($one[0] == $city['name']){
+                continue;
+                }
+                ?>
+                <li>
+                    <a href="/{$one[1]}">
+                        <strong>{$one[0]}</strong>
+                    </a>
+                </li>
+                <!--{/loop}-->
+                <!--{/if}-->
+            </ul>
+            <!--{if $navArea['bizarea']}-->
+            <div class="category-sub">
+                <div class="pr category-location">
+                    <ul class="inline-block">
+                        <!--{loop $navArea['bizarea'] $in $one}-->
+                        <!--{if $one['select']}-->
+                        <li class="active">
+                            <!--{else}-->
+                        <li>
+                            <!--{/if}-->
+                            <a href="/{$city['ename']}{$one['link']}">
+                                <strong>{$one['name']}</strong>
+                                <small>{$one['count']}</small>
+                            </a>
+                        </li>
+                        <!--{/loop}-->
+                    </ul>
+                </div>
+            </div>
+            <!--{/if}-->
+        </div>
+        <!--{/if}-->
+    </section>
+    <div class="sort wrapper">
+        <ul class="inline-block fl">
+            <!--{if !$REAL_LINK_GLOBAL['sort_order']}-->
+            <li class="first active">
+                <!--{else}-->
+            <li class="first">
+                <!--{/if}-->
+                <a href="/{$city['ename']}/{$navOrder}">默认排序</a>
+            </li>
+            <!--{if $REAL_LINK_GLOBAL['sort_order'] == 'hot'}-->
+            <li class="active">
+                <!--{else}-->
+            <li>
+                <!--{/if}-->
+                <a href="/{$city['ename']}/{$navOrder}/hot">销量 <i>↓</i></a>
+            </li>
+            <!--{if $REAL_LINK_GLOBAL['sort_order'] == 'price_desc'}-->
+            <li class="active">
+                <!--{else}-->
+            <li>
+                <!--{/if}-->
+                <a href="/{$city['ename']}/{$navOrder}/price_desc">价格 <i>&darr;</i></a>
+            </li>
+            <!--{if $REAL_LINK_GLOBAL['sort_order'] == 'price_asc'}-->
+            <li class="active">
+                <!--{else}-->
+            <li>
+                <!--{/if}-->
+                <a href="/{$city['ename']}/{$navOrder}/price_asc">价格 <i>&uarr;</i></a>
+            </li>
+            <!--{if $REAL_LINK_GLOBAL['sort_order'] == 'time'}-->
+            <li class="active">
+                <!--{else}-->
+            <li>
+                <!--{/if}-->
+                <a href="/{$city['ename']}/{$navOrder}/time">发布时间 <i>&darr;</i></a>
+            </li>
+        </ul>
+        {$pagestring}
+    </div>
+</header>

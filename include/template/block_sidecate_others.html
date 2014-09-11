@@ -1,0 +1,25 @@
+<!--${
+$others_side_ns = 10;
+$others_team_id = abs(intval($team['id']));
+$others_city_id = abs(intval($city['id']));
+$other_sub_id = abs(intval($team['sub_id']));
+if ( abs(intval($INI['system']['sideteam'])) && !$disable_multi){
+        $others = index_team_sideCate_sql($others_team_id, $others_city_id,$other_sub_id,$others_side_ns);
+}
+}-->
+<!--{if $others}-->
+
+<div class="rbox b15" id="plist">
+    <h3>看过此团购的用户还购买了 </h3>
+    <ul>
+        <!--${$index=0}-->
+        <!--{loop $others $one}-->
+        <li>
+            <h2 style="overflow: hidden; height: 180px;"><a style=" font:14px/1.2 微软雅黑;" id="othersfirsturl{$one['id']}" href="/team.php?id={$one['id']}" title="{$one['title']}">
+                    <!--{if $one['image']}--><img class="index-item-img" src="/static/v2/img/border.gif" data-original="${team_image($one['image'],true)}" width="210" height="131" alt="{$one['title']}"/><!--{/if}-->${mb_substr($one['title'],0,29,'utf-8')}</a></h2>
+            <p><a id="otherssecondurl{$one['id']}" href="/team.php?id={$one['id']}" title="{$one['title']}" >去看看</a><span>&yen;${moneyit($one['team_price'])}</span>&nbsp;&nbsp;&nbsp;原价<del>{$one['market_price']}</del></p>
+        </li>
+        <!--{/loop}-->
+    </ul>
+</div>
+<!--{/if}-->

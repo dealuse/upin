@@ -1,0 +1,45 @@
+<!--{include header}-->
+<style type="text/css">
+.mtips .close{position:absolute;top:0;right:20px;padding-right:16px;background:url("/static/theme/ev56_58/css/i/bg-sysmsg-close.gif") 100% 50% no-repeat;font-size:12px;cursor:pointer;}
+
+.ulogin .alifast {border-top: 1px solid #DDDDDD;color: #333333;margin: 20px 10px 0;padding: 15px 0 0;}
+</style>
+<!---content--->
+<div class="wrap2">
+  <div class="uleft2 ul3">
+    <div class="utit">
+      <h2>重设密码</h2>
+    </div>
+	     <div class="ucon login">
+                    <form method="post" action="/account/reset.php?code={$code}" class="validator">
+      <ul>
+        <li>
+         
+                            <label class="f-label" for="reset-password">新密码</label>
+							<input type="password" name="password" value="" id="reset-password" class="i_text" maxlength="32" />
+						 <div id="username_Tip"></div>
+        </li>
+        <li>
+                           <label class="f-label" for="reset-password2">重复密码</label>
+                            <input type="password" name="password2" value="" id="reset-password2" class="i_text" maxlength="32" />
+						 <div id="password_Tip"></div>
+        </li>
+        <li>
+          <label for=""></label>
+                        <input type="hidden" name="code" value="{$code}" />						
+                        <input type="submit" class="formbutton" value="重设" class="input input42" />
+		</li>
+      </ul>
+	  	</form>
+    </div>
+  </div>
+  <div class="uright2 ur3">
+    <h3>还没有{$INI['system']['abbreviation']}账户？</h3>
+    <p class="c9">立即<a href="/account/signup.php">注册</a>，仅需30秒！</p>
+    <p><a href="/account/signup.php" class="zhuce">注册新用户</a></p>
+  </div>
+  <div class="clear"></div>
+</div>
+<!---contentEnd--->
+        
+<!--{include footer}-->

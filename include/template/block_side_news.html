@@ -1,0 +1,22 @@
+<!--${
+$others_news = DB::LimitQuery('news', array(
+				'order' => 'ORDER BY `begin_time` DESC, `id` DESC',
+				'size' => '5',
+				));
+}-->
+<!--{if $others_news}-->
+<style type="text/css">
+#demo {overflow:hidden;height: 120px;}
+#demo1 ul li{border-bottom:1px dashed #333;}
+#demo1 ul li a{text-decoration:none}
+</style>
+<div class="rbox b15" id="notice">
+  <h3>{$INI['system']['sitename']}新闻</h3>
+  <ul class="wzlist c3">
+		<!--{loop $others_news $one}-->
+			<li><a href="/news.php?id={$one['id']}"  title="{$one['title']}" target="_blank">${mb_strimwidth($one['title'],0,30,'...')}</a></li>
+		<!--{/loop}-->
+  </ul>
+</div>
+
+<!--{/if}-->
